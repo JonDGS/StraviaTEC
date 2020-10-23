@@ -1,0 +1,2 @@
+# StraviaTEC
+Para nadie es un secreto que, durante la pandemia y las medidas sanitarias impuestas por los gobiernos para salvaguardar la vida, han hecho que los deportes individuales (atletismo, ciclismo, senderismo, etc) tomen mucho auge. Por tal motivo se expone StraviaTec como una opción a todos los deportistas (principiantes, intermedios y elites) para que lleven un registro de todas sus actividades que les permita desde compartir sus sesiones hasta mejorar sus tiempos y entrenamientos.
