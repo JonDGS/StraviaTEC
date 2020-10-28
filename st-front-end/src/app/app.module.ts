@@ -6,6 +6,8 @@ import {RouterModule, Routes} from '@angular/router';
 import { HomeViewComponent } from './home/home-view/home-view.component';
 import { AthleteViewComponent } from './athlete/athlete-view/athlete-view.component';
 import { OrganizerViewComponent } from './organizer/organizer-view/organizer-view.component';
+import { RegisterComponent } from './home/home-view/register/register.component';
+import { LoginComponent } from './home/home-view/login/login.component';
 
 
 const appRoutes: Routes = [
@@ -20,6 +22,8 @@ const appRoutes: Routes = [
     HomeViewComponent,
     AthleteViewComponent,
     OrganizerViewComponent,
+    RegisterComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
