@@ -8,18 +8,23 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  @ViewChild('newLoginForm') loginForm: NgForm;
+  @ViewChild('loginForm') loginForm: NgForm;
   constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
 
   /**
-   * 
-   * @param page 
+   *
+   * @param page
    */
   goToPage(pageName:string){
     this.router.navigate([`${pageName}`]);
     console.log("Login form");
+  }
+
+  onLogin(){
+    console.log(this.loginForm.value.username);
+    this.goToPage('athlete');
   }
 }

@@ -1,3 +1,8 @@
+
+
+
+
+
 <div class="modal-dialog text-center">
   <div class="col-sm-9 main-section">
     <div class="modal-content">
@@ -6,12 +11,11 @@
         <i class="fas fa-user fa-5x"></i>
       </div>
       <div class="col-12 form-input">
-        <form>
+        <form (ngSubmit)="onLogin()" #loginForm="ngForm">
           <div class="form-group">
             <input
               type="text"
               class="form-control"
-              id="username"
               ngModel
               name="username"
               required
@@ -22,23 +26,17 @@
             <input
               type="password"
               class="form-control"
-              id="inputPassword"
               ngModel
               name="password"
               required
               placeholder="password"
             />
           </div>
-          <div class="col-12 forgot">
-            <a href="#">Forgot password?</a>
-          </div>
           <button
             type="submit"
             class="btn btn-primary"
-            (click)="goToPage('athlete')"
-          >
-            Iniciar
-          </button>
+            [disabled]="!loginForm.valid"
+          >Login</button>
         </form>
       </div>
     </div>
