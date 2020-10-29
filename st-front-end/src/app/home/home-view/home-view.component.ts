@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home-view.component.css']
 })
 export class HomeViewComponent implements OnInit {
-  loadedAction: string;
+  loadedAction: string = 'login';
 
   constructor() { }
 

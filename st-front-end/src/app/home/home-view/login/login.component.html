@@ -1,1 +1,46 @@
-<p>login works!</p>
+<div class="modal-dialog text-center">
+  <div class="col-sm-9 main-section">
+    <div class="modal-content">
+      <div class="col-12 title"><h2>Login to StraviaTEC</h2></div>
+      <div class="col-12 user-img">
+        <i class="fas fa-user fa-5x"></i>
+      </div>
+      <div class="col-12 form-input">
+        <form>
+          <div class="form-group">
+            <input
+              type="text"
+              class="form-control"
+              id="username"
+              ngModel
+              name="username"
+              required
+              placeholder="username"
+            />
+          </div>
+          <div class="form-group">
+            <input
+              type="password"
+              class="form-control"
+              id="inputPassword"
+              ngModel
+              name="password"
+              required
+              placeholder="password"
+            />
+          </div>
+          <div class="col-12 forgot">
+            <a href="#">Forgot password?</a>
+          </div>
+          <button
+            type="submit"
+            class="btn btn-primary"
+            (click)="goToPage('athlete')"
+          >
+            Iniciar
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

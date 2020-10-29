@@ -8,6 +8,7 @@ import { AthleteViewComponent } from './athlete/athlete-view/athlete-view.compon
 import { OrganizerViewComponent } from './organizer/organizer-view/organizer-view.component';
 import { RegisterComponent } from './home/home-view/register/register.component';
 import { LoginComponent } from './home/home-view/login/login.component';
+import { FormsModule } from '@angular/forms';
 
 
 const appRoutes: Routes = [
@@ -27,6 +28,7 @@ const appRoutes: Routes = [
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     RouterModule.forRoot(appRoutes)
   ],
   providers: [],
