@@ -9,6 +9,8 @@ import { OrganizerViewComponent } from './organizer/organizer-view/organizer-vie
 import { RegisterComponent } from './home/home-view/register/register.component';
 import { LoginComponent } from './home/home-view/login/login.component';
 import { FormsModule } from '@angular/forms';
+import { ActivityManagementComponent } from './athlete/athlete-view/activity-management/activity-management.component';
+import { ProfileWidgetComponent } from './athlete/athlete-view/profile-widget/profile-widget.component';
 
 
 const appRoutes: Routes = [
@@ -25,6 +27,8 @@ const appRoutes: Routes = [
     OrganizerViewComponent,
     RegisterComponent,
     LoginComponent,
+    ActivityManagementComponent,
+    ProfileWidgetComponent,
   ],
   imports: [
     BrowserModule,
