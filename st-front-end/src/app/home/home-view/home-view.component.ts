@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {  Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-home-view',
@@ -10,8 +10,9 @@ export class HomeViewComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
-  }
+ngOnInit(){
+  
+}
 
   loadRegister(){
     this.loadedAction = 'register';

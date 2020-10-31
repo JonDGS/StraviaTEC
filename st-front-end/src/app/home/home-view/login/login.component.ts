@@ -1,4 +1,4 @@
-import { Router, Routes } from '@angular/router';
+import { Router } from '@angular/router';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
@@ -11,9 +11,9 @@ export class LoginComponent implements OnInit {
   @ViewChild('loginForm') loginForm: NgForm;
   constructor(private router: Router) { }
 
-  ngOnInit(): void {
+  ngOnInit(){
+    
   }
-
   /**
    *
    * @param page

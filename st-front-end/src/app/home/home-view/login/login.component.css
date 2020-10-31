@@ -1,16 +1,25 @@
-.modal-content {
+.main-section {
   margin: 0 auto;
+  padding: 0px;
   margin-top: 130px;
+}
+
+.modal-content {
+  background-color: #434e5a;
+
+  opacity: 0.8;
+  padding: 0 18px;
 }
 title,
 h2 {
+  color: white;
   padding-top: 2%;
 }
 
-user-img {
-  color: aqua;
-}
 user-img,
 i {
   padding: 5%;
+}
+button {
+  margin-bottom: 5%;
 }

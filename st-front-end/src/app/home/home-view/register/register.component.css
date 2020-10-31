@@ -5,3 +5,22 @@
 .myRegisterButton {
   margin: 5px;
 }
+
+.main-section {
+  margin: 0 auto;
+  padding: 0px;
+  max-width: 200%;
+}
+.modal-content {
+  background-color: #434e5a;
+  opacity: 0.8;
+  padding: 0 18px;
+  max-width: 200%;
+}
+
+h5 {
+  color: white;
+}
+button {
+  margin-bottom: 5%;
+}
