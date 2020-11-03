@@ -1,0 +1,7 @@
+.avatar {
+  vertical-align: middle;
+  horiz-align: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}

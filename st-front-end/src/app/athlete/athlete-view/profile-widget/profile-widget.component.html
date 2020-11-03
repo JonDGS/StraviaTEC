@@ -1,1 +1,37 @@
-<p>profile-widget works!</p>
+<div class="card" style="margin-left: 20px; border: red 1px solid; width: 20rem">
+
+  <!--Profile Image-->
+  <div class="text-center">
+    <img
+      class="avatar"
+      src="{{ user.photo }}"
+      alt="User's profile picture"
+      style="">
+  </div>
+  <div class="card-body">
+
+    <!--Profile Name-->
+    <h3 class="card-title text-center">
+      {{ user.name }} {{ user.lastName }}
+    </h3>
+
+    <!--Profile Info-->
+    <div class="row">
+      <div class="col-3 text-center">
+        <strong>Age</strong>
+        <br>
+        {{ user.age }}
+      </div>
+      <div class="col-4 text-center">
+        <strong>Activities</strong>
+        <br>
+        0
+      </div>
+      <div class="col text-center">
+        <strong>Location</strong>
+        <br>
+        {{ user.country }}, {{ user.state}}
+      </div>
+    </div>
+  </div>
+</div>
