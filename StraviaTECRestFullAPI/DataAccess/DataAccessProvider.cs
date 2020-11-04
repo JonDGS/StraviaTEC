@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using System.Data;
 
 namespace StraviaTECRestFullAPI.DataAccess
 {
@@ -16,45 +17,48 @@ namespace StraviaTECRestFullAPI.DataAccess
             _context = context;
         }
 
-        public void AddPatientRecord(Patient patient)
+        public void AddOrganizerRecord(Organizer patient)
         {
-            _context.patients.Add(patient);
+            _context.organizers.Add(patient);
             _context.SaveChanges();
         }
 
-        public void UpdatePatientRecord(Patient patient)
+        public void UpdateOrganizerRecord(Organizer patient)
         {
-            _context.patients.Update(patient);
+            _context.organizers.Update(patient);
             _context.SaveChanges();
         }
 
-        public void DeletePatientRecord(string id)
+        public void DeleteOrganizerRecord(string id)
         {
-            var entity = _context.patients.FirstOrDefault(t => t.id == id);
-            _context.patients.Remove(entity);
+            var entity = _context.organizers.FirstOrDefault(t => t.id == id);
+            _context.organizers.Remove(entity);
             _context.SaveChanges();
         }
 
-        public Patient GetPatientSingleRecord(string id)
+        public Organizer GetOrganizerSingleRecord(string id)
         {
-            return _context.patients.FirstOrDefault(t => t.id == id);
+            return _context.organizers.FirstOrDefault(t => t.id == id);
         }
-        public Array GetPatientsName()
+        public Array GetOrganizersName()
         {
             
-            var nameList = _context.patients.Select(p => p.name).ToArray();
+            var nameList = _context.organizers.Select(p => p.name).ToArray();
             return nameList;
             
             
 
         }
-        public List<Patient> GetPatientRecords()
+        public List<Organizer> GetOrganizerRecords()
         {
-            return _context.patients.ToList();
+            return _context.organizers.ToList();
         }
 
         public void AddAthleteRecord(Athlete athlete)
         {
+            athlete.passwordHash = HashComputer.GetHashString(athlete.passwordHash);
+            athlete.age = DateTime.Now.Year - athlete.birthday.Year;
+
             _context.athletes.Add(athlete);
             _context.SaveChanges();
         }

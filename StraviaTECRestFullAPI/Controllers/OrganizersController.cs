@@ -11,53 +11,53 @@ using StraviaTECRestFullAPI.Models;
 namespace StraviaTECRestFullAPI.Controllers
 {
     [Route("api/[controller]")]
-    public class PatientsController : ControllerBase
+    public class organizersController : ControllerBase
     {
         private readonly IDataAccessProvider _dataAccessProvider;
 
-        public PatientsController(IDataAccessProvider dataAccessProvider)
+        public organizersController(IDataAccessProvider dataAccessProvider)
         {
             _dataAccessProvider = dataAccessProvider;
         }
 
         [HttpGet]
-        public IEnumerable<Patient> Get()
+        public IEnumerable<Organizer> Get()
         {
-            return _dataAccessProvider.GetPatientRecords();
+            return _dataAccessProvider.GetOrganizerRecords();
         }
 
         [HttpGet]
         [Route("GetNames")]
         public Array GetNames()
         {
-           return _dataAccessProvider.GetPatientsName();
+           return _dataAccessProvider.GetOrganizersName();
         }
 
         [HttpPost]
-        public IActionResult Create([FromBody] Patient patient)
+        public IActionResult Create([FromBody] Organizer patient)
         {
             if (ModelState.IsValid)
             {
                 Guid obj = Guid.NewGuid();
                 patient.id = obj.ToString();
-                _dataAccessProvider.AddPatientRecord(patient);
+                _dataAccessProvider.AddOrganizerRecord(patient);
                 return Ok();
             }
             return BadRequest();
         }
 
         [HttpGet("{id}")]
-        public Patient Details(string id)
+        public Organizer Details(string id)
         {
-            return _dataAccessProvider.GetPatientSingleRecord(id);
+            return _dataAccessProvider.GetOrganizerSingleRecord(id);
         }
 
         [HttpPut]
-        public IActionResult Edit([FromBody] Patient patient)
+        public IActionResult Edit([FromBody] Organizer patient)
         {
             if (ModelState.IsValid)
             {
-                _dataAccessProvider.UpdatePatientRecord(patient);
+                _dataAccessProvider.UpdateOrganizerRecord(patient);
                 return Ok();
             }
             return BadRequest();
@@ -66,12 +66,12 @@ namespace StraviaTECRestFullAPI.Controllers
         [HttpDelete("{id}")]
         public IActionResult DeleteConfirmed(string id)
         {
-            var data = _dataAccessProvider.GetPatientSingleRecord(id);
+            var data = _dataAccessProvider.GetOrganizerSingleRecord(id);
             if (data == null)
             {
                 return NotFound();
             }
-            _dataAccessProvider.DeletePatientRecord(id);
+            _dataAccessProvider.DeleteOrganizerRecord(id);
             return Ok();
         }
     }

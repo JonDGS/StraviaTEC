@@ -12,11 +12,13 @@ namespace StraviaTECRestFullAPI.DataAccess
         public PostgreSqlContext(DbContextOptions<PostgreSqlContext> options) : base(options)
         {
         }
-        public DbSet<Patient> patients { get; set; }
+        public DbSet<Organizer> organizers { get; set; }
         public DbSet<Athlete> athletes { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            builder.Entity<Athlete>().HasKey(a => new { a.id, a.username });
+            builder.Entity<Organizer>().HasKey(o => new { o.id, o.username });
             base.OnModelCreating(builder);
         }
         

@@ -8,12 +8,12 @@ namespace StraviaTECRestFullAPI.DataAccess
 {
     public interface IDataAccessProvider
     {
-        void AddPatientRecord(Patient patient);
-        void UpdatePatientRecord(Patient patient);
-        void DeletePatientRecord(string id);
-        Patient GetPatientSingleRecord(string id);
-        List<Patient> GetPatientRecords();
-        Array GetPatientsName();
+        void AddOrganizerRecord(Organizer patient);
+        void UpdateOrganizerRecord(Organizer patient);
+        void DeleteOrganizerRecord(string id);
+        Organizer GetOrganizerSingleRecord(string id);
+        List<Organizer> GetOrganizerRecords();
+        Array GetOrganizersName();
 
         void AddAthleteRecord(Athlete athlete);
         void UpdateAthleteRecord(Athlete athlete);
