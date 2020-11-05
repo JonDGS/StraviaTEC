@@ -11,6 +11,7 @@ import { LoginComponent } from './home/home-view/login/login.component';
 import { FormsModule } from '@angular/forms';
 import { ActivityManagementComponent } from './athlete/athlete-view/activity-management/activity-management.component';
 import { ProfileWidgetComponent } from './athlete/athlete-view/profile-widget/profile-widget.component';
+import { NavbarComponent } from './athlete/athlete-view/navbar/navbar.component';
 
 
 const appRoutes: Routes = [
@@ -29,6 +30,7 @@ const appRoutes: Routes = [
     LoginComponent,
     ActivityManagementComponent,
     ProfileWidgetComponent,
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,
