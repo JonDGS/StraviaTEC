@@ -12,11 +12,13 @@ import { FormsModule } from '@angular/forms';
 import { ActivityManagementComponent } from './athlete/athlete-view/activity-management/activity-management.component';
 import { ProfileWidgetComponent } from './athlete/athlete-view/profile-widget/profile-widget.component';
 import { NavbarComponent } from './athlete/athlete-view/navbar/navbar.component';
+import { AthleteSettingsComponent } from './athlete/athlete-view/athlete-settings/athlete-settings.component';
 
 
 const appRoutes: Routes = [
   { path: '', component: HomeViewComponent },
   { path: 'athlete', component: AthleteViewComponent },
+  { path: 'athlete/settings', component: AthleteSettingsComponent},
   { path: 'organizer', component: OrganizerViewComponent }
 ];
 
@@ -31,6 +33,7 @@ const appRoutes: Routes = [
     ActivityManagementComponent,
     ProfileWidgetComponent,
     NavbarComponent,
+    AthleteSettingsComponent,
   ],
   imports: [
     BrowserModule,
