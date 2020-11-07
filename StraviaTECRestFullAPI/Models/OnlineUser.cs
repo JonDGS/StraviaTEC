@@ -13,5 +13,14 @@ namespace StraviaTECRestFullAPI.Models
         public DateTime entry;
         public DateTime expiryDate;
 
+        public OnlineUser(string id, string token, string type)
+        {
+            this.id = id;
+            this.token = token;
+            this.type = type;
+            this.entry = DateTime.Now;
+            this.expiryDate = DateTime.Now.AddHours(12);
+        }
+
     }
 }
