@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {Athlete} from '../models/athlete.model';
 
@@ -19,5 +20,5 @@ export class AthleteService {
     'https://www.hola.com/imagenes/cocina/recetas/20200617170335/mac-and-cheese/0-837-58/mac-cheese-adobe-m.jpg',
     '123abc');
 
-  constructor() { }
+  constructor(http : HttpClient) { }
 }

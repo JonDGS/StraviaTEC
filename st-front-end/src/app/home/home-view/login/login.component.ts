@@ -1,3 +1,4 @@
+import { HomeService } from './../home.service';
 import { Router } from '@angular/router';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
@@ -9,7 +10,7 @@ import { NgForm } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
   @ViewChild('loginForm') loginForm: NgForm;
-  constructor(private router: Router) { }
+  constructor(private router: Router, private hService : HomeService) { }
 
   ngOnInit(){
     
@@ -26,5 +27,9 @@ export class LoginComponent implements OnInit {
   onLogin(){
     console.log(this.loginForm.value.username);
     this.goToPage('athlete');
+
+    this.hService.httpGET().subscribe(res => {
+      console.log(res)
+    })
   }
 }

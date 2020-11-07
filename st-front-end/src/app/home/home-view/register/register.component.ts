@@ -1,3 +1,4 @@
+import { HomeService } from './../home.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
@@ -8,13 +9,14 @@ import { NgForm } from '@angular/forms';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor() { }
+  constructor(private hService : HomeService) { }
   @ViewChild('userForm') userForm: NgForm;
   ngOnInit(): void {
   }
 
   onRegister(){
-    console.log(this.userForm);
+    
+    this.hService.httpPost()
   }
 
 }
