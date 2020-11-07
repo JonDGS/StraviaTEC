@@ -1,0 +1,11 @@
+.container {
+  padding: 5px;
+  border: 0.1px solid black;
+}
+
+.spinner-cont {
+  display: flex;
+}
+.spinner {
+  margin: 0;
+}

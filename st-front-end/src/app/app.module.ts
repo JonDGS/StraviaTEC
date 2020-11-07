@@ -14,6 +14,7 @@ import { ProfileWidgetComponent } from './athlete/athlete-view/profile-widget/pr
 import { NavbarComponent } from './athlete/athlete-view/navbar/navbar.component';
 import { AthleteSettingsComponent } from './athlete/athlete-view/athlete-settings/athlete-settings.component';
 
+import {HttpClientModule } from '@angular/common/http';
 
 const appRoutes: Routes = [
   { path: '', component: HomeViewComponent },
@@ -37,8 +38,9 @@ const appRoutes: Routes = [
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     FormsModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
   ],
   providers: [],
   bootstrap: [AppComponent]
