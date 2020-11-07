@@ -1,2 +1,122 @@
 <app-navbar></app-navbar>
-<p>athlete-settings works!</p>
+<div class="row">
+  <div class="col-6">
+    <div class="card" style="margin-left: 10px; margin-top: 10px; border: #434e5a solid 1px">
+      <!--<img src="..."  alt="...">-->
+      <div class="card-body">
+        <h5 class="card-title">General Information</h5>
+        <p class="card-text">
+          Name: {{ athlete.name }} {{ athlete.lastName }}<br>
+          Nationality: {{ athlete.nationality }}<br>
+          Location: {{ athlete.country }}, {{ athlete.state }}, {{ athlete.city }}<br>
+          Birthday: {{ athlete.birthday }}<br>
+          Age: {{ athlete.age }}<br>
+        </p>
+        <h5 class="card-title">Account Information</h5>
+        <p class="card-text">
+          Username: {{ athlete.username }}<br>
+          Password: {{ athlete.password }}<br>
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="col-6">
+    <div class="card" style="margin-top: 10px; margin-right: 10px; margin-bottom: 10px; border: #434e5a solid 1px">
+      <!--<img src="..."  alt="...">-->
+      <div class="card-body">
+        <form (ngSubmit)="onUpdateProfile()" #updateProfileForm="ngForm">
+          <h5 class="card-title">Update General Information</h5>
+
+          <!--Name-->
+          <label for="newName">Name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="newName"
+            name="newName"
+            [ngModel]="aName"
+            required>
+
+          <!--Last Name-->
+          <label for="newLastName">Last Name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="newLastName"
+            name="newLastName"
+            [ngModel]="aLastName"
+            required>
+
+          <!--Nationality-->
+          <label for="newNationality">Nationality</label>
+          <input
+            type="text"
+            class="form-control"
+            id="newNationality"
+            name="newNationality"
+            [ngModel]="aNationality"
+            required>
+
+          <!--Country-->
+          <label for="newCountry">Country</label>
+          <input
+            type="text"
+            class="form-control"
+            id="newCountry"
+            name="newCountry"
+            [ngModel]="aCountry"
+            required>
+
+          <!--State-->
+          <label for="newState">State</label>
+          <input
+            type="text"
+            class="form-control"
+            id="newState"
+            name="newState"
+            [ngModel]="aState"
+            required>
+
+          <!--City-->
+          <label for="newCity">City</label>
+          <input
+            type="text"
+            class="form-control"
+            id="newCity"
+            name="newCity"
+            [ngModel]="aCity"
+            required>
+
+          <!--Birthday-->
+          <label for="newBirthday">Birthday</label>
+          <input
+            type="date"
+            class="form-control"
+            id="newBirthday"
+            name="newBirthday"
+            ngModel
+            required>
+
+          <br>
+          <h5 class="card-title">Update Account Information</h5>
+
+          <!--Password-->
+          <label for="newPassword">Password</label>
+          <input
+            type="password"
+            class="form-control"
+            id="newPassword"
+            name="newPassword"
+            ngModel
+            required>
+
+          <br>
+          <button
+            class="btn btn-success"
+            type="submit"
+            [disabled]="!updateProfileForm.valid">Update Profile</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
