@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Mvc;
 using StraviaTECRestFullAPI.DataAccess;
 using StraviaTECRestFullAPI.Models;
 using System;
