@@ -6,19 +6,17 @@ import {  Component, OnInit } from '@angular/core';
   styleUrls: ['./home-view.component.css']
 })
 export class HomeViewComponent implements OnInit {
-  loadedAction: string = 'login';
+  loadedAction = 'login';
 
   constructor() { }
 
-ngOnInit(){
-  
-}
+  ngOnInit() {}
 
-  loadRegister(){
+  loadRegister(): void{
     this.loadedAction = 'register';
   }
 
-  loadLogin(){
+  loadLogin(): void{
     this.loadedAction = 'login';
   }
 }
