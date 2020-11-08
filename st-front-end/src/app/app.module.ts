@@ -15,11 +15,13 @@ import { NavbarComponent } from './athlete/athlete-view/navbar/navbar.component'
 import { AthleteSettingsComponent } from './athlete/athlete-view/athlete-settings/athlete-settings.component';
 
 import {HttpClientModule } from '@angular/common/http';
+import { AthleteChallengesComponent } from './athlete/athlete-view/athlete-challenges/athlete-challenges.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeViewComponent },
   { path: 'athlete', component: AthleteViewComponent },
   { path: 'athlete/settings', component: AthleteSettingsComponent},
+  { path: 'athlete/challenges', component: AthleteChallengesComponent},
   { path: 'organizer', component: OrganizerViewComponent }
 ];
 
@@ -35,6 +37,7 @@ const appRoutes: Routes = [
     ProfileWidgetComponent,
     NavbarComponent,
     AthleteSettingsComponent,
+    AthleteChallengesComponent,
   ],
   imports: [
     BrowserModule,

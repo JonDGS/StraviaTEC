@@ -10,19 +10,23 @@ import {AthleteService} from '../../athlete.service';
 export class NavbarComponent implements OnInit {
   @ViewChild('searchForm') searchForm: NgForm;
   defaultCategory = 'athlete';
-  onSettings: boolean;
+  changedView: boolean;
 
   constructor(private aService: AthleteService) { }
 
   ngOnInit(): void {
-    this.onSettings = this.aService.onSettings;
+    this.changedView = this.aService.onChangedView;
   }
 
-  onSearch(){
+  onSearch(): void{
     console.log(this.searchForm);
   }
 
-  onAthleteSettingChanged(){
-    this.aService.onSettings = !this.aService.onSettings;
+  onAthleteViewChanged(): void {
+    this.aService.onChangedView = true;
+  }
+
+  onAthleteViewReturned(): void {
+    this.aService.onChangedView = false;
   }
 }

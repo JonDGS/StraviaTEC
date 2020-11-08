@@ -21,10 +21,10 @@ export class AthleteService {
     '123abc');
 
 
-    onSettings = false;
+    onChangedView = false;
 
-  constructor(private http : HttpClient) { 
-    
+  constructor(private http : HttpClient) {
+
   }
-  
+
 }

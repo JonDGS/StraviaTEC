@@ -3,9 +3,20 @@
   <div class="collapse navbar-collapse" id="navbarNav">
 
     <ul class="navbar-nav">
+      <!--User Settings-->
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          [routerLink]="['/athlete/settings']"
+          (click)="onAthleteViewChanged()">Settings</a>
+      </li>
+
       <!--Challenges-->
       <li class="nav-item">
-        <a class="nav-link">Challenges</a>
+        <a
+          class="nav-link"
+          [routerLink]="['/athlete/challenges']"
+          (click)="onAthleteViewChanged()">Challenges</a>
       </li>
     </ul>
 
@@ -34,18 +45,11 @@
 
     <ul class="navbar-nav">
       <!--Home Page-->
-      <li class="nav-item" *ngIf="onSettings">
+      <li class="nav-item" *ngIf="changedView">
         <a
           class="nav-link"
           [routerLink]="['/athlete']"
-          (click)="onAthleteSettingChanged()">Return</a>
-      </li>
-      <!--User Settings-->
-      <li class="nav-item" *ngIf="!onSettings">
-        <a
-          class="nav-link"
-          [routerLink]="['/athlete/settings']"
-          (click)="onAthleteSettingChanged()">Settings</a>
+          (click)="onAthleteViewReturned()">Return</a>
       </li>
     </ul>
   </div>
