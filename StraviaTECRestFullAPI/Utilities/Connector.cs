@@ -24,9 +24,27 @@ namespace StraviaTECRestFullAPI.Utilities
                 cmd.Parameters.AddWithValue("_password", password);
                 bool result = (bool)cmd.ExecuteScalar();
 
+                connection.Close();
+
                 return result;
             }
+        }
 
+        public static string generatedUserPassHash(string username, string password)
+        {
+            connection.Open();
+
+            using (NpgsqlCommand cmd = new NpgsqlCommand("\"GenerateHashPassword\"", connection))
+            {
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("_username", username);
+                cmd.Parameters.AddWithValue("_password", password);
+                string result = (string)cmd.ExecuteScalar();
+
+                connection.Close();
+
+                return result;
+            }
         }
     }
 }
