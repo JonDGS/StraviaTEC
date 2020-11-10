@@ -1,2 +1,5 @@
 <app-navbar></app-navbar>
-<p>athlete-challenges works!</p>
+
+<app-athlete-challenge-item
+  *ngFor="let c of challenges"
+  [challenge]="c"></app-athlete-challenge-item>

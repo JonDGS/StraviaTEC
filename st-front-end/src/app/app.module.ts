@@ -11,11 +11,12 @@ import { LoginComponent } from './home/home-view/login/login.component';
 import { FormsModule } from '@angular/forms';
 import { ActivityManagementComponent } from './athlete/athlete-view/activity-management/activity-management.component';
 import { ProfileWidgetComponent } from './athlete/athlete-view/profile-widget/profile-widget.component';
-import { NavbarComponent } from './athlete/athlete-view/navbar/navbar.component';
+import { NavbarComponent } from './athlete/athlete-view/athlete-navbar/athlete-navbar.component';
 import { AthleteSettingsComponent } from './athlete/athlete-view/athlete-settings/athlete-settings.component';
 
 import {HttpClientModule } from '@angular/common/http';
 import { AthleteChallengesComponent } from './athlete/athlete-view/athlete-challenges/athlete-challenges.component';
+import { AthleteChallengeItemComponent } from './athlete/athlete-view/athlete-challenges/athlete-challenge-item/athlete-challenge-item.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeViewComponent },
@@ -38,6 +39,7 @@ const appRoutes: Routes = [
     NavbarComponent,
     AthleteSettingsComponent,
     AthleteChallengesComponent,
+    AthleteChallengeItemComponent,
   ],
   imports: [
     BrowserModule,

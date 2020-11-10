@@ -4,8 +4,8 @@ import {AthleteService} from '../../athlete.service';
 
 @Component({
   selector: 'app-navbar',
-  templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css']
+  templateUrl: './athlete-navbar.component.html',
+  styleUrls: ['./athlete-navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
   @ViewChild('searchForm') searchForm: NgForm;
