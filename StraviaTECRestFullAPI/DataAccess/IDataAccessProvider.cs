@@ -8,8 +8,8 @@ namespace StraviaTECRestFullAPI.DataAccess
 {
     public interface IDataAccessProvider
     {
-        void AddOrganizerRecord(Organizer patient);
-        void UpdateOrganizerRecord(Organizer patient);
+        void AddOrganizerRecord(Organizer organizer);
+        void UpdateOrganizerRecord(Organizer organizer);
         void DeleteOrganizerRecord(string id);
         Organizer GetOrganizerSingleRecord(string id);
         List<Organizer> GetOrganizerRecords();
@@ -20,5 +20,11 @@ namespace StraviaTECRestFullAPI.DataAccess
         void DeleteAthleteRecord(string id);
         Athlete GetAthleteSingleRecord(string id);
         List<Athlete> GetAthleteRecords();
+
+        string AddOnlineUserRecord(LogInUserMsg userInfo);
+        //void UpdateOnlineUserRecord(OnlineUser onlineUser);
+        void DeleteOnlineUserRecord(string token);
+        OnlineUser GetOnlineUserSingleRecord(string token);
+        List<OnlineUser> GetOnlineUserRecords();
     }
 }

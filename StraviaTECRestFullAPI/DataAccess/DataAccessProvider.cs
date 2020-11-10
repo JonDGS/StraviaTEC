@@ -42,12 +42,8 @@ namespace StraviaTECRestFullAPI.DataAccess
         }
         public Array GetOrganizersName()
         {
-            
             var nameList = _context.organizers.Select(p => p.name).ToArray();
             return nameList;
-            
-            
-
         }
         public List<Organizer> GetOrganizerRecords()
         {
@@ -84,6 +80,55 @@ namespace StraviaTECRestFullAPI.DataAccess
         public List<Athlete> GetAthleteRecords()
         {
             return _context.athletes.ToList();
+        }
+
+        public string AddOnlineUserRecord(LogInUserMsg userInfo)
+        {
+            OnlineUser onlineUser = new OnlineUser();
+            Console.WriteLine(_context.athletes.Any(a => a.username == userInfo.username));
+            if (_context.athletes.Any(a => a.username == userInfo.username))
+            {
+                onlineUser.id_athlete_fk = _context.athletes.Where(a => a.username == userInfo.username).Select(u => u.id).SingleOrDefault();
+                Console.WriteLine(onlineUser.id_athlete_fk);
+                return "Success";
+            }
+            else if (_context.organizers.Any(o => o.username == userInfo.username)) {
+                onlineUser.id_organizer_fk = _context.athletes.Where(o => o.username == userInfo.username).Select(u => u.id).SingleOrDefault();
+                Console.WriteLine(onlineUser.id_organizer_fk);
+                return "Success";
+            }
+            else {
+                Console.WriteLine("Usuario no registrado");
+                return "Error";
+            }
+            /*
+            _context.onlineUsers.Add(onlineUser);
+            _context.SaveChanges();
+            */
+        }
+
+        public void UpdateOnlineUserRecord(OnlineUser onlineUser)
+        {
+            _context.onlineUsers.Update(onlineUser);
+            _context.SaveChanges();
+        }
+
+        public void DeleteOnlineUserRecord(string token)
+        {
+
+            var entity = _context.onlineUsers.FirstOrDefault(t => t.token == token);
+            _context.onlineUsers.Remove(entity);
+            _context.SaveChanges();
+        }
+
+        public OnlineUser GetOnlineUserSingleRecord(string token)
+        {
+            return _context.onlineUsers.FirstOrDefault(t => t.token == token);
+        }
+
+        public List<OnlineUser> GetOnlineUserRecords()
+        {
+            return _context.onlineUsers.ToList();
         }
     }
 }

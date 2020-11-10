@@ -14,6 +14,7 @@ namespace StraviaTECRestFullAPI.DataAccess
         }
         public DbSet<Organizer> organizers { get; set; }
         public DbSet<Athlete> athletes { get; set; }
+        public DbSet<OnlineUser> onlineUsers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
