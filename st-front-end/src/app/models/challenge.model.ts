@@ -1,3 +1,5 @@
+import {Sponsor} from './sponsor.model';
+
 export class Challenge {
   constructor(
     public id: string,
@@ -6,6 +8,6 @@ export class Challenge {
     public activityType: string,
     public type: string, // Fondo o altitud? - missing these last 3, and the private attribute
     public distance: number,
-    public sponsors: string[]
+    public sponsors: Sponsor[]
     ) {}
 }

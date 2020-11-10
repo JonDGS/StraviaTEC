@@ -7,6 +7,11 @@ import {AthleteService} from '../../athlete.service';
   templateUrl: './athlete-challenges.component.html',
   styleUrls: ['./athlete-challenges.component.css']
 })
+
+/**
+ * This component is used for displaying the available challenges of the athlete view, this
+ * is made by creating a list of athlete-challenges-item components
+ */
 export class AthleteChallengesComponent implements OnInit {
   challenges: Challenge[];
 
@@ -15,5 +20,4 @@ export class AthleteChallengesComponent implements OnInit {
   ngOnInit(): void {
     this.challenges = this.aService.challenges;
   }
-
 }

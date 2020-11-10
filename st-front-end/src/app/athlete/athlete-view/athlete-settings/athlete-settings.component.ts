@@ -8,6 +8,10 @@ import {NgForm} from '@angular/forms';
   templateUrl: './athlete-settings.component.html',
   styleUrls: ['./athlete-settings.component.css']
 })
+
+/**
+ * This component is used for changing the athlete user profile
+ */
 export class AthleteSettingsComponent implements OnInit {
   @ViewChild('updateProfileForm') profileForm: NgForm;
   athlete: Athlete;
@@ -30,6 +34,9 @@ export class AthleteSettingsComponent implements OnInit {
     this.aCity = this.athlete.city;
   }
 
+  /**
+   * This method is called whenever a user decides to update its information
+   */
   onUpdateProfile(): void {
     console.log(this.profileForm);
   }

@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import {RouterModule, Routes} from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { HomeViewComponent } from './home/home-view/home-view.component';
 import { AthleteViewComponent } from './athlete/athlete-view/athlete-view.component';
 import { OrganizerViewComponent } from './organizer/organizer-view/organizer-view.component';
@@ -14,9 +14,11 @@ import { ProfileWidgetComponent } from './athlete/athlete-view/profile-widget/pr
 import { NavbarComponent } from './athlete/athlete-view/athlete-navbar/athlete-navbar.component';
 import { AthleteSettingsComponent } from './athlete/athlete-view/athlete-settings/athlete-settings.component';
 
-import {HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { AthleteChallengesComponent } from './athlete/athlete-view/athlete-challenges/athlete-challenges.component';
 import { AthleteChallengeItemComponent } from './athlete/athlete-view/athlete-challenges/athlete-challenge-item/athlete-challenge-item.component';
+import { SearchComponent } from './athlete/athlete-view/search/search.component';
+import { SearchItemComponent } from './athlete/athlete-view/search/search-item/search-item.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeViewComponent },
@@ -40,6 +42,8 @@ const appRoutes: Routes = [
     AthleteSettingsComponent,
     AthleteChallengesComponent,
     AthleteChallengeItemComponent,
+    SearchComponent,
+    SearchItemComponent
   ],
   imports: [
     BrowserModule,
