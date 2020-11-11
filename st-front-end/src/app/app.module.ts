@@ -13,6 +13,7 @@ import { ActivityManagementComponent } from './athlete/athlete-view/activity-man
 import { ProfileWidgetComponent } from './athlete/athlete-view/profile-widget/profile-widget.component';
 import { NavbarComponent } from './athlete/athlete-view/navbar/navbar.component';
 import {HttpClientModule } from '@angular/common/http';
+import { ActivityFeedComponent } from './athlete/athlete-view/activity-feed/activity-feed.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeViewComponent },
@@ -31,6 +32,7 @@ const appRoutes: Routes = [
     ActivityManagementComponent,
     ProfileWidgetComponent,
     NavbarComponent,
+    ActivityFeedComponent,
   ],
   imports: [
     BrowserModule,

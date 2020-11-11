@@ -9,7 +9,6 @@ export class HomeService {
 /***********************************************
  * this data object is only for test porpuses 
  */
- 
   public data = {
     username:"Dxnium",
     passwordHash:"hola1234",
@@ -32,7 +31,7 @@ export class HomeService {
   }
 
   httpPost(){
-    this.http.post(`http://jongs.mynetgear.com:45457/api/athletes`,this.data).subscribe(
+    this.http.post(`http://jongs.mynetgear.com:45457/api/athletes`,"").subscribe(
       res=>{
         console.log(res);
       }
