@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {Athlete} from '../models/athlete.model';
 import {Challenge} from '../models/challenge.model';
+import {Group} from '../models/group.model';
+import {Race} from '../models/race.model';
 
 @Injectable({
   providedIn: 'root'
@@ -39,6 +41,14 @@ export class AthleteService {
     new Challenge( '2', 'North Challenge', '20 days', 'Swimming', 'Fondo?', 35, []),
     new Challenge( '3', 'South Challenge', '10 days', 'Kayaking', 'Fondo?', 40, [])
   ];
+
+  /*
+    This variables are going to be used for displaying the  search results
+   */
+  searchType: string;
+  availableGroups: Group[];
+  availableAthletes: Athlete[];
+  availableRaces: Race[];
 
   constructor(private http: HttpClient) {
 

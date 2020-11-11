@@ -1,6 +1,8 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {AthleteService} from '../../athlete.service';
+import {Athlete} from '../../../models/athlete.model';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -14,10 +16,13 @@ import {AthleteService} from '../../athlete.service';
  */
 export class NavbarComponent implements OnInit {
   @ViewChild('searchForm') searchForm: NgForm;
-  defaultCategory = 'athlete';
+  defaultCategory = 'athletes';
   changedView: boolean;
 
-  constructor(private aService: AthleteService) { }
+  // DELETE LATER
+  searchL: Athlete[];
+
+  constructor(private aService: AthleteService, private router: Router) { }
 
   ngOnInit(): void {
     this.changedView = this.aService.onChangedView;
@@ -27,7 +32,49 @@ export class NavbarComponent implements OnInit {
    * Is called when the search form is used
    */
   onSearch(): void{
-    console.log(this.searchForm);
+    // We announce the search
+    console.log('Search item: ' + this.searchForm.value.searchItem + ',on ' + this.searchForm.value.category + ' category.');
+
+    // We activate the return button
+    this.onAthleteViewChanged();
+
+    // We set the search type
+    this.aService.searchType = this.searchForm.value.category;
+
+    // Aca llamamos a una funcion que en base a la busqueda rellena las listas de de availableX del servicio athlete ! ! ! !
+    this.searchL = [
+      new Athlete(
+        'Alvaro',
+        'Vargas',
+        'Costa Rican',
+        117730762,
+        20,
+        '3/4/2000',
+        'Costa Rica',
+        'Heredia',
+        'Belen',
+        'avargasm',
+        '',
+        'abc123'),
+      new Athlete(
+        'Jon',
+        'Doro',
+        'Costa Rican',
+        117720889,
+        20,
+        '8/6/2000',
+        'Costa Rica',
+        'San Jose',
+        'Tres Rios',
+        'sk8r',
+        '',
+        '123abc'
+      )];
+
+    this.aService.availableAthletes = this.searchL;
+
+    // We go to the search page
+    this.router.navigate(['/athlete/search']);
   }
 
   /**

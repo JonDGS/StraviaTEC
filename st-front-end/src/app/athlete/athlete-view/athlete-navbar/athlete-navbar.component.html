@@ -33,14 +33,15 @@
         class="form-control mr-sm-2"
         [ngModel]="defaultCategory"
         name="category">
-        <option value="athlete">Athletes</option>
+        <option value="athletes">Athletes</option>
         <option value="groups">Groups</option>
         <option value="races">Races</option>
       </select>
       <button
         class="btn btn-outline-success my-2 my-sm-0"
         [disabled]="!searchForm.valid"
-        type="submit">Search</button>
+        type="submit"
+        >Search</button>
     </form>
 
     <ul class="navbar-nav">
