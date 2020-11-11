@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {AthleteService} from '../../../athlete.service';
 
 @Component({
   selector: 'app-search-item',
@@ -10,10 +11,12 @@ import { Component, OnInit } from '@angular/core';
  * This component is used for displaying the individual search item
  */
 export class SearchItemComponent implements OnInit {
+  searchItemType: string;
+  @Input() searchItem: any;
 
-  constructor() { }
+  constructor(private aService: AthleteService) { }
 
   ngOnInit(): void {
+    this.searchItemType = this.aService.searchType;
   }
-
 }

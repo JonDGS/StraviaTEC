@@ -1,1 +1,17 @@
-<p>search-item works!</p>
+<div *ngIf="searchItemType === 'athletes'" class="card search-card">
+  <div class="card-body">
+    <h5 class="card-title">{{ searchItem.name }} {{ searchItem.lastName }}</h5>
+    <div class="row">
+      <div class="col-9">
+        Location: {{ searchItem.country }}, {{ searchItem.state }}<br>
+        Activities: 0 | Age: {{ searchItem.age }}<br>
+      </div>
+      <div class="col-3">
+        <button
+          class="btn btn-success btn-block"
+        >Follow</button>
+      </div>
+    </div>
+  </div>
+</div>
+
