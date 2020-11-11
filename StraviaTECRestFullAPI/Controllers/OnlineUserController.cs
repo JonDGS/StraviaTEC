@@ -25,12 +25,41 @@ namespace StraviaTECRestFullAPI.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (_dataAccessProvider.AddOnlineUserRecord(userInfo) == "Succes") {
-                    return Ok();
+                if (_dataAccessProvider.AddOnlineUserRecord(userInfo) == "Success") {
+                    return Ok("Success");
+                } else if (_dataAccessProvider.AddOnlineUserRecord(userInfo) == "BadPassword") {
+                    return NotFound("Incorrect username or password");
+                } else if (_dataAccessProvider.AddOnlineUserRecord(userInfo) == "NotRegistered") {
+                    return NotFound("Not Registered");
                 }
-               return Ok();
+               
             }
             return BadRequest();
+        }
+        [HttpGet]
+        public IEnumerable<OnlineUser> Get()
+        {
+            return _dataAccessProvider.GetOnlineUserRecords();
+        }
+
+        [HttpGet("{token}")]
+        public OnlineUser Details(string token)
+        {
+            return _dataAccessProvider.GetOnlineUserSingleRecord(token);
+        }
+
+
+        [HttpDelete]
+        [Route("LogOut/{token}")]
+        public IActionResult DeleteConfirmed(string token)
+        {
+            var data = _dataAccessProvider.GetOnlineUserSingleRecord(token);
+            if (data == null)
+            {
+                return NotFound();
+            }
+            _dataAccessProvider.DeleteOnlineUserRecord(token);
+            return Ok();
         }
     }
 }

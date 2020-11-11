@@ -34,13 +34,13 @@ namespace StraviaTECRestFullAPI.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create([FromBody] Organizer patient)
+        public IActionResult Create([FromBody] Organizer organizer)
         {
             if (ModelState.IsValid)
             {
                 Guid obj = Guid.NewGuid();
-                patient.id = obj.ToString();
-                _dataAccessProvider.AddOrganizerRecord(patient);
+                organizer.id = obj.ToString();
+                _dataAccessProvider.AddOrganizerRecord(organizer);
                 return Ok();
             }
             return BadRequest();
@@ -53,11 +53,11 @@ namespace StraviaTECRestFullAPI.Controllers
         }
 
         [HttpPut]
-        public IActionResult Edit([FromBody] Organizer patient)
+        public IActionResult Edit([FromBody] Organizer organizer)
         {
             if (ModelState.IsValid)
             {
-                _dataAccessProvider.UpdateOrganizerRecord(patient);
+                _dataAccessProvider.UpdateOrganizerRecord(organizer);
                 return Ok();
             }
             return BadRequest();

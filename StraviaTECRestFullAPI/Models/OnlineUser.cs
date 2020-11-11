@@ -13,7 +13,7 @@ namespace StraviaTECRestFullAPI.Models
         [Key]
         public string token { get; set; }
         public DateTime entry { get; set; }
-        public DateTime expiryDate { get; set; }
+        public DateTime expirydate { get; set; }
 
     }
 }
