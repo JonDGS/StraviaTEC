@@ -20,6 +20,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AthleteChallengesComponent } from './athlete/athlete-view/athlete-challenges/athlete-challenges.component';
 import { AthleteChallengeItemComponent } from './athlete/athlete-view/athlete-challenges/athlete-challenge-item/athlete-challenge-item.component';
 
+import { ActivityFeedComponent } from './athlete/athlete-view/activity-feed/activity-feed.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeViewComponent },
@@ -45,7 +46,8 @@ const appRoutes: Routes = [
     AthleteChallengesComponent,
     AthleteChallengeItemComponent,
     SearchComponent,
-    SearchItemComponent
+    SearchItemComponent,
+    ActivityFeedComponent,
   ],
   imports: [
     BrowserModule,
