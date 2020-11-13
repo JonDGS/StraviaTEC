@@ -19,6 +19,9 @@ import { SearchItemComponent } from './athlete/athlete-view/search/search-item/s
 import { HttpClientModule } from '@angular/common/http';
 import { AthleteChallengesComponent } from './athlete/athlete-view/athlete-challenges/athlete-challenges.component';
 import { AthleteChallengeItemComponent } from './athlete/athlete-view/athlete-challenges/athlete-challenge-item/athlete-challenge-item.component';
+import { ParticipatingActivitiesComponent } from './athlete/athlete-view/participating-activities/participating-activities.component';
+import { ParticipatingChallengesComponent } from './athlete/athlete-view/participating-activities/participating-challenges/participating-challenges.component';
+import { ParticipatingRacesComponent } from './athlete/athlete-view/participating-activities/participating-races/participating-races.component';
 
 
 const appRoutes: Routes = [
@@ -45,7 +48,10 @@ const appRoutes: Routes = [
     AthleteChallengesComponent,
     AthleteChallengeItemComponent,
     SearchComponent,
-    SearchItemComponent
+    SearchItemComponent,
+    ParticipatingActivitiesComponent,
+    ParticipatingChallengesComponent,
+    ParticipatingRacesComponent
   ],
   imports: [
     BrowserModule,

@@ -3,6 +3,7 @@ import {NgForm} from '@angular/forms';
 import {AthleteService} from '../../athlete.service';
 import {Athlete} from '../../../models/athlete.model';
 import {Router} from '@angular/router';
+import {Race} from '../../../models/race.model';
 
 @Component({
   selector: 'app-navbar',
@@ -18,9 +19,6 @@ export class NavbarComponent implements OnInit {
   @ViewChild('searchForm') searchForm: NgForm;
   defaultCategory = 'athletes';
   changedView: boolean;
-
-  // DELETE LATER
-  searchL: Athlete[];
 
   constructor(private aService: AthleteService, private router: Router) { }
 
@@ -42,36 +40,6 @@ export class NavbarComponent implements OnInit {
     this.aService.searchType = this.searchForm.value.category;
 
     // Aca llamamos a una funcion que en base a la busqueda rellena las listas de de availableX del servicio athlete ! ! ! !
-    this.searchL = [
-      new Athlete(
-        'Alvaro',
-        'Vargas',
-        'Costa Rican',
-        117730762,
-        20,
-        '3/4/2000',
-        'Costa Rica',
-        'Heredia',
-        'Belen',
-        'avargasm',
-        '',
-        'abc123'),
-      new Athlete(
-        'Jon',
-        'Doro',
-        'Costa Rican',
-        117720889,
-        20,
-        '8/6/2000',
-        'Costa Rica',
-        'San Jose',
-        'Tres Rios',
-        'sk8r',
-        '',
-        '123abc'
-      )];
-
-    this.aService.availableAthletes = this.searchL;
 
     // We go to the search page
     this.router.navigate(['/athlete/search']);

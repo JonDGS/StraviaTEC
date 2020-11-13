@@ -1,0 +1,10 @@
+<div class="card participating-card">
+  <div class="card-body">
+    <h5 class="card-title">Participating Challenges</h5>
+    <div class="card-text">
+      <div *ngFor="let ch of currentChallenges">
+          - {{ ch.name }} | {{ ch.period }} | {{ ch.activityType }}
+      </div>
+    </div>
+  </div>
+</div>

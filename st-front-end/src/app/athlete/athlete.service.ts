@@ -47,8 +47,56 @@ export class AthleteService {
    */
   searchType: string;
   availableGroups: Group[];
-  availableAthletes: Athlete[];
-  availableRaces: Race[];
+  availableAthletes = [
+    new Athlete(
+      'Alvaro',
+      'Vargas',
+      'Costa Rican',
+      117730762,
+      20,
+      '3/4/2000',
+      'Costa Rica',
+      'Heredia',
+      'Belen',
+      'avargasm',
+      '',
+      'abc123'),
+    new Athlete(
+      'Jon',
+      'Doro',
+      'Costa Rican',
+      117720889,
+      20,
+      '8/6/2000',
+      'Costa Rica',
+      'San Jose',
+      'Tres Rios',
+      'sk8r',
+      '',
+      '123abc')
+  ];
+  availableRaces = [
+    new Race(
+      '1',
+      'Mario Circuit',
+      '4/4/2021',
+      '9000',
+      '',
+      'Kayak',
+      '123'),
+    new Race(
+      '2',
+      'Mew Mew Medows',
+      '7/7/2021',
+      '5000',
+      '',
+      'Running',
+      '321')
+  ];
+
+  // This lists are for the participating activities
+  participatingChallenges = this.challenges;
+  participatingRaces = this.availableRaces;
 
   constructor(private http: HttpClient) {
 
