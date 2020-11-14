@@ -22,6 +22,7 @@ import { AthleteChallengeItemComponent } from './athlete/athlete-view/athlete-ch
 import { ParticipatingActivitiesComponent } from './athlete/athlete-view/participating-activities/participating-activities.component';
 import { ParticipatingChallengesComponent } from './athlete/athlete-view/participating-activities/participating-challenges/participating-challenges.component';
 import { ParticipatingRacesComponent } from './athlete/athlete-view/participating-activities/participating-races/participating-races.component';
+import { ParticipatingGroupsComponent } from './athlete/athlete-view/participating-activities/participating-groups/participating-groups.component';
 
 
 const appRoutes: Routes = [
@@ -51,7 +52,8 @@ const appRoutes: Routes = [
     SearchItemComponent,
     ParticipatingActivitiesComponent,
     ParticipatingChallengesComponent,
-    ParticipatingRacesComponent
+    ParticipatingRacesComponent,
+    ParticipatingGroupsComponent
   ],
   imports: [
     BrowserModule,

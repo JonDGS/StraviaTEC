@@ -43,10 +43,20 @@ export class AthleteService {
   ];
 
   /*
-    This variables are going to be used for displaying the  search results
+    This variables are going to be used for displaying the  search results, should be filled
+    with the info given by a search. Currently they are being filled manually
    */
   searchType: string;
-  availableGroups: Group[];
+  availableGroups = [
+    new Group(
+      'FastBois',
+      '1',
+      'Jesus'),
+    new Group(
+      'FastMen',
+      '2',
+      'Cris')
+    ];
   availableAthletes = [
     new Athlete(
       'Alvaro',
@@ -94,9 +104,13 @@ export class AthleteService {
       '321')
   ];
 
-  // This lists are for the participating activities
+  /*
+    This lists are for the participating activities, should be filled with the info of the currently
+    participating groups, races and challenges. For the moment we are filling them with the search lists
+   */
   participatingChallenges = this.challenges;
   participatingRaces = this.availableRaces;
+  participatingGroups = this.availableGroups;
 
   constructor(private http: HttpClient) {
 
