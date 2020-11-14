@@ -26,6 +26,7 @@ import { ParticipatingGroupsComponent } from './athlete/athlete-view/participati
 import { OrganizerNavbarComponent } from './organizer/organizer-view/organizer-navbar/organizer-navbar.component';
 import { OrganizerSettingsComponent } from './organizer/organizer-view/organizer-settings/organizer-settings.component';
 
+import { ActivityFeedComponent } from './athlete/athlete-view/activity-feed/activity-feed.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeViewComponent },
@@ -58,7 +59,8 @@ const appRoutes: Routes = [
     ParticipatingRacesComponent,
     ParticipatingGroupsComponent,
     OrganizerNavbarComponent,
-    OrganizerSettingsComponent
+    OrganizerSettingsComponent,
+    ActivityFeedComponent
   ],
   imports: [
     BrowserModule,
