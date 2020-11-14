@@ -1,100 +1,100 @@
-<div class="container">
-  <h6>Activity Management</h6>
-  <form (ngSubmit)="onSubmit()" #activityForm="ngForm">
-    <div class="form-row">
-      <div class="form-group col-md-12">
-        <input
-          type="time"
-          class="form-control"
-          id="appt"
-          name="time"
-          ngModel
-          min="09:00"
-          max="18:00"
-          required
-        />
-      </div>
-      <div class="form-group col">
-        <input
-          type="date"
-          class="form-control"
-          ngModel
-          name="date"
-          placeholder="Date"
-        />
-      </div>
-    </div>
-    <div class="form-row">
-      <div class="form-group col">
-        <select id="inputType" class="form-control" ngModel name="type">
-          <option>Run</option>
-          <option>Bike</option>
-          <option>Swim</option>
-        </select>
-      </div>
-      <div class="form-group col">
-        <input
-          type="text"
-          class="form-control"
-          placeholder="Duration"
-          ngModel
-          name="km"
-        />
-      </div>
-    </div>
-    <div class="form-row">
-      <div class="form-group col">
-        <select
-          id="inputActivity"
-          class="form-control"
-          name="classification"
-          ngModel
-        >
-          <option>Activity</option>
-          <option>Race</option>
-          <option>Challange</option>
-        </select>
-      </div>
-      <div class="form-group col">
-        <div class="form-group spinner">
+<div class="card" style="border: #434e5a solid 1px">
+  <div class="card-body">
+    <h6>Activity Management</h6>
+    <form (ngSubmit)="onSubmit()" #activityForm="ngForm">
+      <div class="form-row">
+        <div class="form-group col-md-12">
           <input
             type="time"
             class="form-control"
-            value="0"
-            min="0"
-            max="1000"
+            id="appt"
+            name="time"
             ngModel
-            name="spinner"
-            step="1"
-            id="spinner"
+            min="09:00"
+            max="18:00"
+            required
           />
         </div>
         <div class="form-group col">
-          <input type="date" class="form-control" placeholder="Date" />
-        </div>
-      </div>
-    </div>
-    <div class="form-row">
-      <div class="form-group col">
-        <div class="custom-file">
           <input
-            type="file"
-            class="custom-file-input"
-            id="inputGroupFile01"
-            aria-describedby="inputGroupFileAddon01"
+            type="date"
+            class="form-control"
             ngModel
-            name="gpxFile"
+            name="date"
+            placeholder="Date"
           />
-          <label class="custom-file-label" for="inputGroupFile01">GPX</label>
         </div>
       </div>
-    </div>
-    <button
-      type="submit"
-      class="btn btn-success"
-      [disabled]="!activityForm.valid"
-    >
-      Login
-    </button>
-  </form>
+      <div class="form-row">
+        <div class="form-group col">
+          <select id="inputType" class="form-control" ngModel name="type">
+            <option>Run</option>
+            <option>Bike</option>
+            <option>Swim</option>
+          </select>
+        </div>
+        <div class="form-group col">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Duration"
+            ngModel
+            name="duration"
+          />
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col">
+          <select
+            id="inputActivity"
+            class="form-control"
+            name="classification"
+            ngModel
+          >
+            <option>Activity</option>
+            <option>Race</option>
+            <option>Challange</option>
+          </select>
+        </div>
+        <div class="form-group col">
+          <div class="form-group spinner">
+            <input
+              type="number"
+              class="form-control"
+              value="0"
+              min="0"
+              max="1000"
+              placeholder="Km"
+              ngModel
+              name="spinner"
+              step="1"
+              id="spinner"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col">
+          <div class="custom-file">
+            <input
+              type="file"
+              class="custom-file-input"
+              id="inputGroupFile01"
+              aria-describedby="inputGroupFileAddon01"
+              ngModel
+              name="gpxFile"
+            />
+            <label class="custom-file-label" for="inputGroupFile01">GPX</label>
+          </div>
+        </div>
+      </div>
+      <button
+        type="submit"
+        class="btn btn-success"
+        [disabled]="!activityForm.valid"
+      >
+        Post
+      </button>
+    </form>
+  </div>
 </div>
