@@ -23,7 +23,7 @@ export class NavbarComponent implements OnInit {
   constructor(private aService: AthleteService, private router: Router) { }
 
   ngOnInit(): void {
-    this.changedView = this.aService.onChangedView;
+    this.changedView = this.aService.changedView;
   }
 
   /**
@@ -50,13 +50,13 @@ export class NavbarComponent implements OnInit {
    * in other words it indicates when the home page is not being displayed
    */
   onAthleteViewChanged(): void {
-    this.aService.onChangedView = true;
+    this.aService.changedView = true;
   }
 
   /**
    * This method is called when the home page view is returned
    */
   onAthleteViewReturned(): void {
-    this.aService.onChangedView = false;
+    this.aService.changedView = false;
   }
 }

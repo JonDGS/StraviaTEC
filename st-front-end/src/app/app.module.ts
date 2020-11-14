@@ -23,6 +23,8 @@ import { ParticipatingActivitiesComponent } from './athlete/athlete-view/partici
 import { ParticipatingChallengesComponent } from './athlete/athlete-view/participating-activities/participating-challenges/participating-challenges.component';
 import { ParticipatingRacesComponent } from './athlete/athlete-view/participating-activities/participating-races/participating-races.component';
 import { ParticipatingGroupsComponent } from './athlete/athlete-view/participating-activities/participating-groups/participating-groups.component';
+import { OrganizerNavbarComponent } from './organizer/organizer-view/organizer-navbar/organizer-navbar.component';
+import { OrganizerSettingsComponent } from './organizer/organizer-view/organizer-settings/organizer-settings.component';
 
 
 const appRoutes: Routes = [
@@ -31,7 +33,8 @@ const appRoutes: Routes = [
   { path: 'athlete/settings', component: AthleteSettingsComponent},
   { path: 'athlete/search', component: SearchComponent},
   { path: 'athlete/challenges', component: AthleteChallengesComponent},
-  { path: 'organizer', component: OrganizerViewComponent }
+  { path: 'organizer', component: OrganizerViewComponent },
+  { path: 'organizer/settings', component: OrganizerSettingsComponent }
 ];
 
 @NgModule({
@@ -53,7 +56,9 @@ const appRoutes: Routes = [
     ParticipatingActivitiesComponent,
     ParticipatingChallengesComponent,
     ParticipatingRacesComponent,
-    ParticipatingGroupsComponent
+    ParticipatingGroupsComponent,
+    OrganizerNavbarComponent,
+    OrganizerSettingsComponent
   ],
   imports: [
     BrowserModule,

@@ -33,7 +33,7 @@ export class AthleteService {
     Used for checking if the athlete home page view was changed (/athlete), mainly works for activating the return button
     on the athlete-navbar
    */
-  onChangedView = false;
+  changedView = false;
 
   // Used for storing the available challenges to display in the athlete/challenges page
   challenges = [
