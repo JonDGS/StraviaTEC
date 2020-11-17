@@ -14,7 +14,7 @@ namespace StraviaTECRestFullAPI.Models
     {
 
         public string username { get; set; }
-        public string passwordHash { get; set; }
+        public string passwordhash { get; set; }
         public string id { get; set; }
         public string photo = null;
         public string name { get; set; }
