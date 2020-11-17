@@ -2,9 +2,12 @@
 using Microsoft.AspNetCore.Mvc;
 using StraviaTECRestFullAPI.DataAccess;
 using StraviaTECRestFullAPI.Models;
+using StraviaTECRestFullAPI.Utilities;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace StraviaTECRestFullAPI.Controllers
@@ -65,6 +68,38 @@ namespace StraviaTECRestFullAPI.Controllers
             }
             _dataAccessProvider.DeleteAthleteRecord(id);
             return Ok();
+        }
+
+        [HttpPost("{id}/uploadImage")]
+        public HttpResponseMessage handleImage(FileUPloadAPI image)
+        {
+
+            try
+            {
+                if (image.files.Length > 0)
+                {
+                    string photosDatabase = AppDomain.CurrentDomain.BaseDirectory + "/Database/photos/";
+
+                    if (!Directory.Exists(photosDatabase))
+                    {
+                        Directory.CreateDirectory(photosDatabase);
+                    }
+
+                    using (FileStream fileStream = System.IO.File.Create(photosDatabase + "/" + image.files.FileName))
+                    {
+                        image.files.CopyTo(fileStream);
+                        fileStream.Flush();
+                        return new HttpResponseMessage(System.Net.HttpStatusCode.OK);
+                    }
+                }
+
+                return new HttpResponseMessage(System.Net.HttpStatusCode.NotFound);
+            }
+            catch (Exception ex)
+            {
+
+                return new HttpResponseMessage(System.Net.HttpStatusCode.InternalServerError);
+            }
         }
 
     }
