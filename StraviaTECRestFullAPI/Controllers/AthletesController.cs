@@ -100,5 +100,13 @@ namespace StraviaTECRestFullAPI.Controllers
             }
         }
 
+        [HttpGet("getProfilePicture")]
+        public IActionResult getProfilePicture()
+        {
+            string token = Request.Form["token"].ToString();
+
+            return new FileStreamResult(FileManager.getUserPhoto(token), "application/octet-stream");
+        }
+
     }
 }

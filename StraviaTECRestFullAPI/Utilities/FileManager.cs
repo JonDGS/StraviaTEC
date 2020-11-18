@@ -62,5 +62,17 @@ namespace StraviaTECRestFullAPI.Utilities
 
             return null;
         }
+
+        public static FileStream getUserPhoto(string token)
+        {
+            FileStream picture = File.OpenRead(Connector.getPhotoPath(token));
+
+            if(picture != null)
+            {
+                return picture;
+            }
+
+            return null;
+        }
     }
 }

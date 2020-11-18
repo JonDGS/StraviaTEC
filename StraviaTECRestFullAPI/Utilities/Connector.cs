@@ -64,5 +64,21 @@ namespace StraviaTECRestFullAPI.Utilities
             }
 
         }
+
+        public static string getPhotoPath(string token)
+        {
+            connection.Open();
+
+            using (NpgsqlCommand cmd = new NpgsqlCommand("\"GetPhotoPath\"", connection))
+            {
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("_token", token);
+                string result = (string)cmd.ExecuteScalar();
+
+                connection.Close();
+
+                return result;
+            }
+        }
     }
 }
