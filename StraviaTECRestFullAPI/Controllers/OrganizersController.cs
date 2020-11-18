@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using StraviaTECRestFullAPI.DataAccess;
 using StraviaTECRestFullAPI.Models;
+using StraviaTECRestFullAPI.Utilities;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -73,6 +74,36 @@ namespace StraviaTECRestFullAPI.Controllers
             }
             _dataAccessProvider.DeleteOrganizerRecord(id);
             return Ok();
+        }
+
+        [HttpPost("uploadImage")]
+        public IActionResult handleImage(FileUPloadAPI image)
+        {
+
+            string token = Request.Form["token"].ToString();
+
+            try
+            {
+                if (image.files.Length > 0)
+                {
+                    string savedLocation = FileManager.saveFile(image, token);
+
+                    if (savedLocation.Equals(null))
+                    {
+                        return Forbid("File extension is not valid");
+                    }
+
+                    return Ok("Saved successfully");
+
+                }
+
+                return NotFound("No data to process");
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest("");
+            }
         }
     }
 }
