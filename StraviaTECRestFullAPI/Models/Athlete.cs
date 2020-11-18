@@ -23,6 +23,8 @@ namespace StraviaTECRestFullAPI.Models
         public string city { get; set; }
         public string nationality { get; set; }
         public int age { get; set; }
-        public System.DateTime birthday { get; set; }
+        public int birthday { get; set; }
+        public int birthmonth { get; set; }
+        public int birthyear { get; set; }
     }
 }

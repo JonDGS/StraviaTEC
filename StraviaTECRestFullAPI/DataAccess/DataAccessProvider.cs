@@ -91,7 +91,8 @@ namespace StraviaTECRestFullAPI.DataAccess
         public void AddAthleteRecord(Athlete athlete)
         {
             athlete.passwordhash = Connector.generatedUserPassHash(athlete.username,athlete.passwordhash);
-            athlete.age = DateTime.Now.Year - athlete.birthday.Year;
+            athlete.age = DateTime.Today.Year - athlete.birthyear;
+            //DateTime.Today.Year
 
             _context.athletes.Add(athlete);
             _context.SaveChanges();
