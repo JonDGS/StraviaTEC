@@ -27,6 +27,9 @@ import { OrganizerNavbarComponent } from './organizer/organizer-view/organizer-n
 import { OrganizerSettingsComponent } from './organizer/organizer-view/organizer-settings/organizer-settings.component';
 
 import { ActivityFeedComponent } from './athlete/athlete-view/activity-feed/activity-feed.component';
+import { OrganizerChallengesComponent } from './organizer/organizer-view/organizer-challenges/organizer-challenges.component';
+import { OrganizerGroupsComponent } from './organizer/organizer-view/organizer-groups/organizer-groups.component';
+import { OrganizerRacesComponent } from './organizer/organizer-view/organizer-races/organizer-races.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeViewComponent },
@@ -60,7 +63,10 @@ const appRoutes: Routes = [
     ParticipatingGroupsComponent,
     OrganizerNavbarComponent,
     OrganizerSettingsComponent,
-    ActivityFeedComponent
+    ActivityFeedComponent,
+    OrganizerChallengesComponent,
+    OrganizerGroupsComponent,
+    OrganizerRacesComponent
   ],
   imports: [
     BrowserModule,
