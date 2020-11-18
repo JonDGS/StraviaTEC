@@ -8,30 +8,50 @@ namespace StraviaTECRestFullAPI.DataAccess
 {
     public interface IDataAccessProvider
     {
+        /*
+        Description: CRUD Operations for organizer 
+        */
         void AddOrganizerRecord(Organizer organizer);
         void UpdateOrganizerRecord(Organizer organizer);
         void DeleteOrganizerRecord(string id);
         Organizer GetOrganizerSingleRecord(string id);
         List<Organizer> GetOrganizerRecords();
         Array GetOrganizersName();
-
+        /*
+        Description: CRUD Operations for athlete 
+       */
         void AddAthleteRecord(Athlete athlete);
         void UpdateAthleteRecord(Athlete athlete);
         void DeleteAthleteRecord(string id);
         Athlete GetAthleteSingleRecord(string id);
         List<Athlete> GetAthleteRecords();
-
+        /*
+        Description: CRUD Operations for online users 
+       */
         OnlineUser AddOnlineUserRecord(LogInUserMsg userInfo);
-        //void UpdateOnlineUserRecord(OnlineUser onlineUser);
         void DeleteOnlineUserRecord(string token);
         OnlineUser GetOnlineUserSingleRecord(string token);
         List<OnlineUser> GetOnlineUserRecords();
         string getOnlineUserTokenRecord(LogInUserMsg userInfo);
 
+        /*
+        Description: CRUD Operations for race 
+       */
         void AddRaceRecord(Race race);
         void UpdateRaceRecord(Race race);
         void DeleteRaceRecord(string idrace);
         Race GetRaceSingleRecord(string idrace);
         List<Race> GetRaceRecords();
+
+        /*
+        Description: CRUD Operations for follows 
+       */
+        void AddFollowsRecord(FollowRequest followrequest);
+        void UpdateFollowsRecord(FollowRequest followrequest);
+        void DeleteFollowsRecord(FollowRequest followrequest);
+        List<Athlete> GetFolloweesRecord(FollowRequest followrequest);
+        List<Athlete> GetFollowersRecord(FollowRequest followrequest);
+        List<Follows> GetFollowsRecords();
+
     }
 }

@@ -17,6 +17,8 @@ namespace StraviaTECRestFullAPI.DataAccess
         public DbSet<OnlineUser> onlineusers { get; set; }
         public DbSet<Race> race { get; set; }
 
+        public DbSet<Follows> follows { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<Athlete>().HasKey(a => new { a.id, a.username });

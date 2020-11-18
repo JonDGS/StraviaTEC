@@ -295,6 +295,84 @@ namespace StraviaTECRestFullAPI.DataAccess
         {
             return _context.race.ToList();
         }
-
+        /*
+       Description:Adds a follower to Follows table 
+       Params:Object Follow
+       Output:None
+      */
+        public void AddFollowsRecord(FollowRequest followrequest)
+        {
+            Follows follows = new Follows();
+            Guid obj = Guid.NewGuid();
+            follows.id_follows = obj.ToString();
+            follows.id_followee = _context.athletes.Where(a => a.username == followrequest.username).Select(u => u.id).SingleOrDefault();
+            follows.id_athlete = _context.onlineusers.Where(ou => ou.token == followrequest.token).Select(a =>a.id_athlete_fk ).SingleOrDefault();
+            _context.follows.Add(follows);
+            _context.SaveChanges();
+        }
+        /*
+        Description:Updates a follow to Follows table 
+        Params:Object Follow
+        Output:None
+       */
+        public void UpdateFollowsRecord(FollowRequest followrequest)
+        {
+            //Tiene que ser el objeto
+            
+            string id_followee = _context.athletes.Where(a => a.username == followrequest.username).Select(u => u.id).SingleOrDefault();
+            string id_athlete = _context.onlineusers.Where(ou => ou.token == followrequest.token).Select(a => a.id_athlete_fk).SingleOrDefault();
+            var follows = _context.follows.Where(f => f.id_athlete == id_athlete && f.id_followee == id_followee).SingleOrDefault();
+            _context.follows.Update(follows);
+            _context.SaveChanges();
+        }
+        /*
+        Description:Deletes a follow to Follow table 
+        Params:id Follow
+        Output:none
+       */
+        public void DeleteFollowsRecord(FollowRequest followrequest)
+        {
+            
+            string id_followee = _context.athletes.Where(a => a.username == followrequest.username).Select(u => u.id).SingleOrDefault();
+            string id_athlete = _context.onlineusers.Where(ou => ou.token == followrequest.token).Select(a => a.id_athlete_fk).SingleOrDefault();
+            var follows = _context.follows.Where(f => f.id_athlete == id_athlete && f.id_followee == id_followee).SingleOrDefault();
+            _context.follows.Remove(follows);
+            _context.SaveChanges();
+        }
+        /*
+        Description:Gets the followees or followee according to a specified follow request 
+        Params:follow request 
+        Output: List of Athlete objects
+       */
+        public List<Athlete> GetFolloweesRecord(FollowRequest followrequest)
+        {
+            string id_athlete = _context.onlineusers.Where(ou => ou.token == followrequest.token).Select(a => a.id_athlete_fk).SingleOrDefault();
+            var id_followees = _context.follows.Where(f => f.id_athlete == id_athlete).Select(a => a.id_followee).ToArray();
+            //Athlete[] followeesList = _context.athletes.Where(f => id_followees.Contains(f.id)).ToArray();
+            //Array.ForEach(followeesList, Console.WriteLine);
+            return _context.athletes.Where(f => id_followees.Contains(f.id)).ToList();
+        }
+        /*
+        Description:Gets the followees or followee according to a specified follow request 
+        Params:follow request 
+        Output: List of Athlete objects
+       */
+        public List<Athlete> GetFollowersRecord(FollowRequest followrequest)
+        {
+            string id_athlete = _context.onlineusers.Where(ou => ou.token == followrequest.token).Select(a => a.id_athlete_fk).SingleOrDefault();
+            var id_followers = _context.follows.Where(f => f.id_followee == id_athlete).Select(a => a.id_athlete).ToArray();
+            //Athlete[] followeesList = _context.athletes.Where(f => id_followees.Contains(f.id)).ToArray();
+            //Array.ForEach(followeesList, Console.WriteLine);
+            return _context.athletes.Where(f => id_followers.Contains(f.id)).ToList();
+        }
+        /*
+        Description:Gets all the follows in Follows table 
+        Params:none
+        Output:List of all the follows
+       */
+        public List<Follows> GetFollowsRecords()
+        {
+            return _context.follows.ToList();
+        }
     }
 }
