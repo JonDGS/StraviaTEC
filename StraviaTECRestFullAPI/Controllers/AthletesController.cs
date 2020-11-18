@@ -70,21 +70,23 @@ namespace StraviaTECRestFullAPI.Controllers
             return Ok();
         }
 
-        [HttpPost("{id}/uploadImage")]
+        [HttpPost("uploadImage")]
         public IActionResult handleImage(FileUPloadAPI image)
         {
+
+            string token = Request.Form["token"].ToString();
 
             try
             {
                 if (image.files.Length > 0)
                 {
-                    string savedLocation = FileManager.saveFile(image);
+                    string savedLocation = FileManager.saveFile(image, token);
 
                     if (savedLocation.Equals(null))
                     {
                         return Forbid("File extension is not valid");
                     }
-
+                    
                     return Ok("Saved successfully");
 
                 }

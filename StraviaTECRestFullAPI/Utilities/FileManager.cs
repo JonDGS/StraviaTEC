@@ -15,7 +15,7 @@ namespace StraviaTECRestFullAPI.Utilities
             return extension;
         }
         
-        public static string saveFile(FileUPloadAPI file)
+        public static string saveFile(FileUPloadAPI file, string token)
         {
             string fileName = file.files.FileName;
             string destination = AppDomain.CurrentDomain.BaseDirectory + "/Database";
@@ -38,18 +38,29 @@ namespace StraviaTECRestFullAPI.Utilities
                 default:
                     return null;
             }
-
+            
             if (!Directory.Exists(destination))
             {
                 Directory.CreateDirectory(destination);
             }
 
-            using (FileStream fileStream = System.IO.File.Create(destination + "/" + file.files.FileName))
+            string fullPath = destination + "/" + file.files.FileName;
+
+            bool dbApproved = Connector.savePhoto(token, fullPath);
+
+            if (dbApproved)
             {
-                file.files.CopyTo(fileStream);
-                fileStream.Flush();
-                return destination + "/" + file.files.FileName;
+
+                using (FileStream fileStream = System.IO.File.Create(fullPath))
+                {
+                    file.files.CopyTo(fileStream);
+                    fileStream.Flush();
+                    return destination + "/" + file.files.FileName;
+                }
+
             }
+
+            return null;
         }
     }
 }

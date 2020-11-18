@@ -46,5 +46,23 @@ namespace StraviaTECRestFullAPI.Utilities
                 return result;
             }
         }
+
+        public static bool savePhoto(string token, string path) {
+
+            connection.Open();
+
+            using (NpgsqlCommand cmd = new NpgsqlCommand("\"UploadPhotoPath\"", connection))
+            {
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("_token", token);
+                cmd.Parameters.AddWithValue("_path", path);
+                bool result = (bool)cmd.ExecuteScalar();
+
+                connection.Close();
+
+                return result;
+            }
+
+        }
     }
 }
