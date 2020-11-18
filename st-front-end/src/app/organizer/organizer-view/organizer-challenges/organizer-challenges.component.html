@@ -1,1 +1,95 @@
-<p>organizer-challenges works!</p>
+<div class="card my-challenges-card">
+  <div class="card-body">
+    <h5 class="card-tittle">My Challenges</h5>
+    <div *ngFor="let c of challenges">
+      - {{ c.name }} | {{ c.period }} | {{ c.activityType }}
+    </div>
+    <br>
+    <h5 class="card-tittle">Create New Challenge</h5>
+    <form (ngSubmit)="addChallenge()" #newChallenge="ngForm">
+
+      <div class="form-row">
+        <!--Name-->
+        <div class="col">
+          <label for="challengeName">Name</label>
+          <input
+            type="text"
+            class="form-control"
+            name="name"
+            id="challengeName"
+            ngModel
+            required>
+        </div>
+        <!--Period-->
+        <div class="col">
+          <label for="challengePeriod">Period</label>
+          <input
+            type="text"
+            class="form-control"
+            name="period"
+            id="challengePeriod"
+            ngModel
+            required>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <!--Type-->
+        <div class="col">
+          <label for="challengeType">Type</label>
+          <input
+            type="text"
+            class="form-control"
+            name="type"
+            id="challengeType"
+            ngModel
+            required>
+        </div>
+        <!--Activity Type-->
+        <div class="col">
+          <label for="challengeActivityType">Activity Type</label>
+          <input
+            type="text"
+            class="form-control"
+            name="activityType"
+            id="challengeActivityType"
+            ngModel
+            required>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <!--Distance-->
+        <div class="col">
+          <label for="challengeDistance">Distance (km)</label>
+          <input
+            type="text"
+            class="form-control"
+            name="distance"
+            id="challengeDistance"
+            ngModel
+            required>
+        </div>
+        <!--Sponsors-->
+        <div class="col">
+          <label for="challengeSponsors">Sponsors</label>
+          <input
+            type="text"
+            class="form-control"
+            name="sponsors"
+            id="challengeSponsors"
+            ngModel
+            required>
+        </div>
+      </div>
+      <br>
+
+      <div class="form-row justify-content-center">
+        <button
+          type="submit"
+          class="btn btn-success"
+          [disabled]="!newChallenge.valid">Create Challenge</button>
+      </div>
+    </form>
+  </div>
+</div>

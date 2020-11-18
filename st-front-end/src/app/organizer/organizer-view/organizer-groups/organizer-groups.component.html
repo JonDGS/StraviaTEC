@@ -1,1 +1,46 @@
-<p>organizer-groups works!</p>
+<div class="card my-groups-card">
+  <div class="card-body">
+    <h5 class="card-tittle">My Groups</h5>
+    <div *ngFor="let g of groups">
+      - {{ g.name }} | Admin: {{ g.admin }}
+    </div>
+    <br>
+
+    <h5 class="card-tittle">Create New Group</h5>
+    <form (ngSubmit)="addGroup()" #newGroup="ngForm">
+
+      <div class="form-row">
+        <!--Name-->
+        <div class="col">
+          <label for="groupName">Name</label>
+          <input
+            type="text"
+            class="form-control"
+            name="name"
+            id="groupName"
+            ngModel
+            required>
+        </div>
+        <!--Admin-->
+        <div class="col">
+          <label for="groupAdmin">Admin</label>
+          <input
+            type="text"
+            class="form-control"
+            name="admin"
+            id="groupAdmin"
+            ngModel
+            required>
+        </div>
+      </div>
+      <br>
+
+      <div class="form-row justify-content-center">
+        <button
+          type="submit"
+          class="btn btn-success"
+          [disabled]="!newGroup.valid">Create Group</button>
+      </div>
+    </form>
+  </div>
+</div>

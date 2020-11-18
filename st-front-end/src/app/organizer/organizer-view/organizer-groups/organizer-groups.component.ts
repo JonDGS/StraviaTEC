@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {Group} from '../../../models/group.model';
+import {OrganizerService} from '../../organizer.service';
+import {NgForm} from '@angular/forms';
 
 @Component({
   selector: 'app-organizer-groups',
@@ -6,10 +9,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./organizer-groups.component.css']
 })
 export class OrganizerGroupsComponent implements OnInit {
+  @ViewChild('newGroup') groupForm: NgForm;
+  groups: Group[];
 
-  constructor() { }
+  constructor(private oService: OrganizerService) { }
 
   ngOnInit(): void {
+    this.groups = this.oService.myCreatedGroups;
   }
 
+  addGroup(): void {
+    console.log(this.groupForm);
+  }
 }

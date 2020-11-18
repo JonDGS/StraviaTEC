@@ -1,1 +1,96 @@
-<p>organizer-races works!</p>
+<div class="card my-races-card">
+  <div class="card-body">
+    <h5 class="card-tittle">My Races</h5>
+    <div *ngFor="let r of races">
+      - {{ r.name }} | {{ r.date }} | {{ r.type }} <br>
+      &nbsp;&nbsp;&nbsp;Bank Account: {{ r.bankAccount }} | Price: {{ r.cost}}
+    </div>
+    <br>
+    <h5 class="card-tittle">Create New Race</h5>
+    <form (ngSubmit)="addRace()" #newRace="ngForm">
+
+      <div class="form-row">
+        <!--Name-->
+        <div class="col">
+          <label for="raceName">Name</label>
+          <input
+            type="text"
+            class="form-control"
+            name="name"
+            id="raceName"
+            ngModel
+            required>
+        </div>
+        <!--Date-->
+        <div class="col">
+          <label for="raceDate">Period</label>
+          <input
+            type="date"
+            class="form-control"
+            name="date"
+            id="raceDate"
+            ngModel
+            required>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <!--Type-->
+        <div class="col">
+          <label for="raceType">Type</label>
+          <input
+            type="text"
+            class="form-control"
+            name="type"
+            id="raceType"
+            ngModel
+            required>
+        </div>
+        <!--GPX-->
+        <div class="col">
+          <label for="raceGPX">GPX</label>
+          <input
+            type="text"
+            class="form-control"
+            name="gpx"
+            id="raceGPX"
+            ngModel
+            required>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <!--Cost-->
+        <div class="col">
+          <label for="raceCost">Cost</label>
+          <input
+            type="number"
+            class="form-control"
+            name="race"
+            id="raceCost"
+            ngModel
+            required>
+        </div>
+        <!--Bank Account-->
+        <div class="col">
+          <label for="raceBankAccount">Bank Account</label>
+          <input
+            type="text"
+            class="form-control"
+            name="bankAccount"
+            id="raceBankAccount"
+            ngModel
+            required>
+        </div>
+      </div>
+      <br>
+
+      <div class="form-row justify-content-center">
+        <button
+          type="submit"
+          class="btn btn-success"
+          [disabled]="!newRace.valid">Create Race</button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -48,14 +48,8 @@ export class AthleteService {
    */
   searchType: string;
   availableGroups = [
-    new Group(
-      'FastBois',
-      '1',
-      'Jesus'),
-    new Group(
-      'FastMen',
-      '2',
-      'Cris')
+    new Group('FastBois', '1', 'Jesus'),
+    new Group('FastMen', '2', 'Cris')
     ];
   availableAthletes = [
     new Athlete(
