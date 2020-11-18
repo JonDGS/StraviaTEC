@@ -70,35 +70,33 @@ namespace StraviaTECRestFullAPI.Controllers
             return Ok();
         }
 
-        [HttpPost("{id}/uploadImage")]
-        public HttpResponseMessage handleImage(FileUPloadAPI image)
+        [HttpPost("uploadImage")]
+        public IActionResult handleImage(FileUPloadAPI image)
         {
+
+            string token = Request.Form["token"].ToString();
 
             try
             {
                 if (image.files.Length > 0)
                 {
-                    string photosDatabase = AppDomain.CurrentDomain.BaseDirectory + "/Database/photos/";
+                    string savedLocation = FileManager.saveFile(image, token);
 
-                    if (!Directory.Exists(photosDatabase))
+                    if (savedLocation.Equals(null))
                     {
-                        Directory.CreateDirectory(photosDatabase);
+                        return Forbid("File extension is not valid");
                     }
+                    
+                    return Ok("Saved successfully");
 
-                    using (FileStream fileStream = System.IO.File.Create(photosDatabase + "/" + image.files.FileName))
-                    {
-                        image.files.CopyTo(fileStream);
-                        fileStream.Flush();
-                        return new HttpResponseMessage(System.Net.HttpStatusCode.OK);
-                    }
                 }
 
-                return new HttpResponseMessage(System.Net.HttpStatusCode.NotFound);
+                return NotFound("No data to process");
             }
             catch (Exception ex)
             {
 
-                return new HttpResponseMessage(System.Net.HttpStatusCode.InternalServerError);
+                return BadRequest("");
             }
         }
 
