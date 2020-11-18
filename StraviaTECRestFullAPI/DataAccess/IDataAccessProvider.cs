@@ -21,11 +21,12 @@ namespace StraviaTECRestFullAPI.DataAccess
         Athlete GetAthleteSingleRecord(string id);
         List<Athlete> GetAthleteRecords();
 
-        string AddOnlineUserRecord(LogInUserMsg userInfo);
+        OnlineUser AddOnlineUserRecord(LogInUserMsg userInfo);
         //void UpdateOnlineUserRecord(OnlineUser onlineUser);
         void DeleteOnlineUserRecord(string token);
         OnlineUser GetOnlineUserSingleRecord(string token);
         List<OnlineUser> GetOnlineUserRecords();
+        string getOnlineUserTokenRecord(LogInUserMsg userInfo);
 
         void AddRaceRecord(Race race);
         void UpdateRaceRecord(Race race);

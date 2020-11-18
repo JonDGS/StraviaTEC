@@ -21,20 +21,16 @@ namespace StraviaTECRestFullAPI.Controllers
 
         [HttpPost]
         [Route("LogIn")]
-        public IActionResult Create([FromBody] LogInUserMsg userInfo)
+        public OnlineUser Create([FromBody] LogInUserMsg userInfo)
         {
             if (ModelState.IsValid)
             {
-                if (_dataAccessProvider.AddOnlineUserRecord(userInfo) == "Success") {
-                    return Ok("Success");
-                } else if (_dataAccessProvider.AddOnlineUserRecord(userInfo) == "BadPassword") {
-                    return NotFound("Incorrect username or password");
-                } else if (_dataAccessProvider.AddOnlineUserRecord(userInfo) == "NotRegistered") {
-                    return NotFound("Not Registered");
-                }
+          
+                return _dataAccessProvider.AddOnlineUserRecord(userInfo); 
                
             }
-            return BadRequest();
+            return _dataAccessProvider.AddOnlineUserRecord(userInfo);
+
         }
         [HttpGet]
         public IEnumerable<OnlineUser> Get()

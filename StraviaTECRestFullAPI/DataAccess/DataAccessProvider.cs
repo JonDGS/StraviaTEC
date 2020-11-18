@@ -141,7 +141,7 @@ namespace StraviaTECRestFullAPI.DataAccess
         Params:Login message with the credentials to be validated
         Output:Succes, Bad Password, Not registered message
        */
-        public string AddOnlineUserRecord(LogInUserMsg userInfo)
+        public OnlineUser AddOnlineUserRecord(LogInUserMsg userInfo)
         {
             OnlineUser onlineUser = new OnlineUser();
             if (_context.athletes.Any(a => a.username == userInfo.username))
@@ -152,10 +152,11 @@ namespace StraviaTECRestFullAPI.DataAccess
                     onlineUser.token = TokenManager.generateToken(12);
                     _context.onlineusers.Add(onlineUser);
                     _context.SaveChanges();
-                    return "Success";
+                    return onlineUser;
                 }
                 else {
-                    return "BadPassword";
+                    onlineUser.token = "BadPassword";
+                    return onlineUser;
                 }
             }
             else if (_context.organizers.Any(o => o.username == userInfo.username)) {
@@ -166,17 +167,43 @@ namespace StraviaTECRestFullAPI.DataAccess
                     
                     _context.onlineusers.Add(onlineUser);
                     _context.SaveChanges();
-                    return "Success";
+                    return onlineUser;
                 }
                 else {
-                    return "BadPassword";
+                    onlineUser.token = "BadPassword";
+                    return onlineUser;
                 }
             }
             else {
                 Console.WriteLine("NotRegistered");
-                return "Error";
+                onlineUser.token = "NotRegistered";
+                return onlineUser;
             }
             
+        }
+        /*
+        Description:Get an online user token 
+        Params:Object OnlineUser
+        Output:None
+       */
+        public string getOnlineUserTokenRecord(LogInUserMsg userInfo)
+        {
+            string token = "Hola hay un error jejej";
+            if (_context.athletes.Any(o => o.username == userInfo.username))
+            {
+                string id_athlete = _context.athletes.Where(o => o.username == userInfo.username).Select(u => u.id).SingleOrDefault();
+                token = _context.onlineusers.Where(ou => ou.id_athlete_fk == id_athlete).Select(u => u.token).SingleOrDefault();
+                
+
+            }
+            else if (_context.organizers.Any(o => o.username == userInfo.username))
+            {
+                string id_organizer = _context.organizers.Where(o => o.username == userInfo.username).Select(u => u.id).SingleOrDefault();
+                token = _context.onlineusers.Where(ou => ou.id_organizer_fk == id_organizer).Select(u => u.token).SingleOrDefault();
+               
+            }
+            return token;
+
         }
         /*
         Description:Updates an online user in OnlineUser table 
