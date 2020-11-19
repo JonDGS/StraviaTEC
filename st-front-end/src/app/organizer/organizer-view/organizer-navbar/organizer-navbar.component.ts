@@ -22,4 +22,8 @@ export class OrganizerNavbarComponent implements OnInit {
   onOrganizerViewReturned(): void {
     this.oService.changedView = false;
   }
+
+  onOrganizerLogout(): void {
+
+  }
 }

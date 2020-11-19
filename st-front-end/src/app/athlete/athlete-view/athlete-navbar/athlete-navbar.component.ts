@@ -59,4 +59,8 @@ export class NavbarComponent implements OnInit {
   onAthleteViewReturned(): void {
     this.aService.changedView = false;
   }
+
+  onAthleteLogout(): void {
+
+  }
 }
