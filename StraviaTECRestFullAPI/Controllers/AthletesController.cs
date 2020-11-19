@@ -71,10 +71,8 @@ namespace StraviaTECRestFullAPI.Controllers
         }
 
         [HttpPost("uploadImage")]
-        public IActionResult handleImage(FileUPloadAPI image)
+        public IActionResult handleImage(FileUPloadAPI image, [FromQuery] string token)
         {
-
-            string token = Request.Form["token"].ToString();
 
             try
             {
@@ -101,9 +99,8 @@ namespace StraviaTECRestFullAPI.Controllers
         }
 
         [HttpGet("getProfilePicture")]
-        public IActionResult getProfilePicture()
+        public IActionResult getProfilePicture([FromQuery] string token)
         {
-            string token = Request.Form["token"].ToString();
 
             try
             {
