@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 
 /**
- * This component holds all the components that form the athlete view of the page
+ * This component holds all the components that form the athlete view
  */
 export class AthleteViewComponent implements OnInit {
 

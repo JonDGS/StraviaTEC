@@ -7,6 +7,10 @@ import {AthleteService} from '../../../athlete.service';
   templateUrl: './participating-groups.component.html',
   styleUrls: ['./participating-groups.component.css']
 })
+
+/**
+ * This class is used a widget for displaying the groups the user is currently participating on
+ */
 export class ParticipatingGroupsComponent implements OnInit {
   currentGroups: Group[];
 

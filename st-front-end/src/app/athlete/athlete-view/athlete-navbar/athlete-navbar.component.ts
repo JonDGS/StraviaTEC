@@ -46,20 +46,23 @@ export class NavbarComponent implements OnInit {
   }
 
   /**
-   * This method keeps track of the changed state of the home view,
-   * in other words it indicates when the home page is not being displayed
+   * This method keeps track of the changed state of the athlete home view,
+   * in other words it indicates when the athlete home page is not being displayed
    */
   onAthleteViewChanged(): void {
     this.aService.changedView = true;
   }
 
   /**
-   * This method is called when the home page view is returned
+   * This method is called when the athlete home page view is returned
    */
   onAthleteViewReturned(): void {
     this.aService.changedView = false;
   }
 
+  /**
+   * This method is used for the user to logout and return to the home page
+   */
   onAthleteLogout(): void {
 
   }

@@ -6,11 +6,15 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './activity-feed.component.html',
   styleUrls: ['./activity-feed.component.css']
 })
+
+/**
+ * This class is used for displaying the followed users posts
+ */
 export class ActivityFeedComponent implements OnInit {
 
 //Api map image key
   apiKey : string = 'Z-68H2MHBYk-Y6CrvdYh37u5eGTqF49qoIGkmjWNczM&w';
-//list of activities 
+//list of activities
   activities : Activity[];
 
   constructor() {
@@ -21,9 +25,9 @@ export class ActivityFeedComponent implements OnInit {
   }
 
   /**
-   * generateActivities 
-   * 
-   * Just for develoment porpuse 
+   * generateActivities
+   *
+   * Just for develoment porpuse
    * --> GetActivities(){}
    */
   generateActivities(){

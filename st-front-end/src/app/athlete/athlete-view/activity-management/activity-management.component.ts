@@ -17,10 +17,13 @@ export class ActivityManagementComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  //This will be a conection with http servicer PostActivity
-  onSubmit(){
+  // This will be a connection with http service PostActivity
+  /**
+   * This function is called when a new activity is added, it should call the http service
+   * and post the new activity to the server
+   */
+  onSubmit(): void{
     console.log(this.activityForm);
   }
-
 
 }
