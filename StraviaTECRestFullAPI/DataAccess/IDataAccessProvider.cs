@@ -13,8 +13,8 @@ namespace StraviaTECRestFullAPI.DataAccess
         */
         void AddOrganizerRecord(Organizer organizer);
         void UpdateOrganizerRecord(Organizer organizer);
-        void DeleteOrganizerRecord(string id);
-        Organizer GetOrganizerSingleRecord(string id);
+        void DeleteOrganizerRecord(string token);
+        Organizer GetOrganizerSingleRecord(string token);
         List<Organizer> GetOrganizerRecords();
         Array GetOrganizersName();
         /*
@@ -22,8 +22,9 @@ namespace StraviaTECRestFullAPI.DataAccess
        */
         void AddAthleteRecord(Athlete athlete);
         void UpdateAthleteRecord(Athlete athlete);
-        void DeleteAthleteRecord(string id);
-        Athlete GetAthleteSingleRecord(string id);
+        void DeleteAthleteRecord(string token);
+
+        Athlete GetAthleteSingleRecord(string token);
         List<Athlete> GetAthleteRecords();
         /*
         Description: CRUD Operations for online users 
@@ -49,6 +50,8 @@ namespace StraviaTECRestFullAPI.DataAccess
         void AddFollowsRecord(FollowRequest followrequest);
         void UpdateFollowsRecord(FollowRequest followrequest);
         void DeleteFollowsRecord(FollowRequest followrequest);
+        void DeleteFollowByToken(string token);
+
         List<Athlete> GetFolloweesRecord(FollowRequest followrequest);
         List<Athlete> GetFollowersRecord(FollowRequest followrequest);
         List<Follows> GetFollowsRecords();

@@ -41,10 +41,10 @@ namespace StraviaTECRestFullAPI.Controllers
             return BadRequest();
         }
 
-        [HttpGet("{id}")]
-        public Athlete Details(string id)
+        [HttpGet("{token}")]
+        public Athlete Details(string token)
         {
-            return _dataAccessProvider.GetAthleteSingleRecord(id);
+            return _dataAccessProvider.GetAthleteSingleRecord(token);
         }
 
         [HttpPut]
@@ -58,15 +58,15 @@ namespace StraviaTECRestFullAPI.Controllers
             return BadRequest();
         }
 
-        [HttpDelete("{id}")]
-        public IActionResult DeleteConfirmed(string id)
+        [HttpDelete("{token}")]
+        public IActionResult DeleteConfirmed(string token)
         {
-            var data = _dataAccessProvider.GetAthleteSingleRecord(id);
+            var data = _dataAccessProvider.GetAthleteSingleRecord(token);
             if (data == null)
             {
                 return NotFound();
             }
-            _dataAccessProvider.DeleteAthleteRecord(id);
+            _dataAccessProvider.DeleteAthleteRecord(token);
             return Ok();
         }
 

@@ -47,10 +47,10 @@ namespace StraviaTECRestFullAPI.Controllers
             return BadRequest();
         }
 
-        [HttpGet("{id}")]
-        public Organizer Details(string id)
+        [HttpGet("{token}")]
+        public Organizer Details(string token)
         {
-            return _dataAccessProvider.GetOrganizerSingleRecord(id);
+            return _dataAccessProvider.GetOrganizerSingleRecord(token);
         }
 
         [HttpPut]

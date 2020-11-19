@@ -49,9 +49,11 @@ namespace StraviaTECRestFullAPI.DataAccess
         Params:id Organizer
         Output:None
        */
-        public void DeleteOrganizerRecord(string id)
+        public void DeleteOrganizerRecord(string token)
         {
-            var entity = _context.organizers.FirstOrDefault(t => t.id == id);
+            string id_organizer = _context.onlineusers.Where(ou => ou.token == token).Select(a => a.id_organizer_fk).SingleOrDefault();
+            this.DeleteOnlineUserRecord(token);
+            var entity = _context.organizers.FirstOrDefault(t => t.id == id_organizer);
             _context.organizers.Remove(entity);
             _context.SaveChanges();
         }
@@ -60,9 +62,10 @@ namespace StraviaTECRestFullAPI.DataAccess
         Params:id Organizer
         Output:Organizer object
        */
-        public Organizer GetOrganizerSingleRecord(string id)
+        public Organizer GetOrganizerSingleRecord(string token)
         {
-            return _context.organizers.FirstOrDefault(t => t.id == id);
+            string id_organizer = _context.onlineusers.Where(ou => ou.token == token).Select(a => a.id_organizer_fk).SingleOrDefault();
+            return _context.organizers.FirstOrDefault(t => t.id == id_organizer);
         }
         /*
         Description:Gets all the organizers's name 
@@ -92,8 +95,6 @@ namespace StraviaTECRestFullAPI.DataAccess
         {
             athlete.passwordhash = Connector.generatedUserPassHash(athlete.username,athlete.passwordhash);
             athlete.age = DateTime.Today.Year - athlete.birthyear;
-            //DateTime.Today.Year
-
             _context.athletes.Add(athlete);
             _context.SaveChanges();
         }
@@ -112,9 +113,12 @@ namespace StraviaTECRestFullAPI.DataAccess
         Params:id Athlete
         Output:none
        */
-        public void DeleteAthleteRecord(string id)
+        public void DeleteAthleteRecord(string token)
         {
-            var entity = _context.athletes.FirstOrDefault(t => t.id == id);
+            string id_athlete = _context.onlineusers.Where(ou => ou.token == token).Select(a => a.id_athlete_fk).SingleOrDefault();
+            this.DeleteFollowByToken(token);
+            this.DeleteOnlineUserRecord(token);
+            var entity = _context.athletes.FirstOrDefault(t => t.id == id_athlete);
             _context.athletes.Remove(entity);
             _context.SaveChanges();
         }
@@ -123,9 +127,10 @@ namespace StraviaTECRestFullAPI.DataAccess
         Params:id athlete
         Output: Athlete object
        */
-        public Athlete GetAthleteSingleRecord(string id)
+        public Athlete GetAthleteSingleRecord(string token)
         {
-            return _context.athletes.FirstOrDefault(t=> t.id == id);
+            string id_athlete = _context.onlineusers.Where(ou => ou.token == token).Select(a => a.id_athlete_fk).SingleOrDefault();
+            return _context.athletes.FirstOrDefault(t=> t.id == id_athlete);
         }
         /*
         Description:Gets all the athletes in Athletes table 
@@ -144,15 +149,25 @@ namespace StraviaTECRestFullAPI.DataAccess
         public OnlineUser AddOnlineUserRecord(LogInUserMsg userInfo)
         {
             OnlineUser onlineUser = new OnlineUser();
+            bool verifiedCredentials = Connector.checkUserPass(userInfo.username, userInfo.passwordHash);
             if (_context.athletes.Any(a => a.username == userInfo.username))
             {
-                if (Connector.checkUserPass(userInfo.username, userInfo.passwordHash))
+                string id_athlete = _context.athletes.Where(a => a.username == userInfo.username).Select(u => u.id).SingleOrDefault();
+                if (verifiedCredentials)
                 {
-                    onlineUser.id_athlete_fk = _context.athletes.Where(a => a.username == userInfo.username).Select(u => u.id).SingleOrDefault();
-                    onlineUser.token = TokenManager.generateToken(12);
-                    _context.onlineusers.Add(onlineUser);
-                    _context.SaveChanges();
-                    return onlineUser;
+                    if (_context.onlineusers.Any(ou => ou.id_athlete_fk == id_athlete)) {
+
+                        var entity = _context.onlineusers.FirstOrDefault(ou => ou.id_athlete_fk == id_athlete);
+                        return entity;
+                    }
+                    else {
+                        onlineUser.id_athlete_fk = id_athlete;
+
+                        onlineUser.token = TokenManager.generateToken(12);
+                        _context.onlineusers.Add(onlineUser);
+                        _context.SaveChanges();
+                        return onlineUser;
+                    }
                 }
                 else {
                     onlineUser.token = "BadPassword";
@@ -160,14 +175,23 @@ namespace StraviaTECRestFullAPI.DataAccess
                 }
             }
             else if (_context.organizers.Any(o => o.username == userInfo.username)) {
-                if (Connector.checkUserPass(userInfo.username, userInfo.passwordHash))
+
+                string id_organizer = _context.organizers.Where(o => o.username == userInfo.username).Select(u => u.id).SingleOrDefault();
+                if (verifiedCredentials)
                 {
-                    onlineUser.id_organizer_fk = _context.organizers.Where(o => o.username == userInfo.username).Select(u => u.id).SingleOrDefault();
-                    onlineUser.token = TokenManager.generateToken(12);
-                    
-                    _context.onlineusers.Add(onlineUser);
-                    _context.SaveChanges();
-                    return onlineUser;
+                    if (_context.onlineusers.Any(ou => ou.id_organizer_fk == id_organizer))
+                    {
+                        var entity = _context.onlineusers.FirstOrDefault(ou => ou.id_organizer_fk == id_organizer);
+                        return entity;
+                    }
+                    else
+                    {
+                        onlineUser.id_organizer_fk = id_organizer;
+                        onlineUser.token = TokenManager.generateToken(12);
+                        _context.onlineusers.Add(onlineUser);
+                        _context.SaveChanges();
+                        return onlineUser;
+                    }
                 }
                 else {
                     onlineUser.token = "BadPassword";
@@ -221,8 +245,7 @@ namespace StraviaTECRestFullAPI.DataAccess
         Output:None
        */
         public void DeleteOnlineUserRecord(string token)
-        {
-
+        { 
             var entity = _context.onlineusers.FirstOrDefault(t => t.token == token);
             _context.onlineusers.Remove(entity);
             _context.SaveChanges();
@@ -337,6 +360,20 @@ namespace StraviaTECRestFullAPI.DataAccess
             string id_athlete = _context.onlineusers.Where(ou => ou.token == followrequest.token).Select(a => a.id_athlete_fk).SingleOrDefault();
             var follows = _context.follows.Where(f => f.id_athlete == id_athlete && f.id_followee == id_followee).SingleOrDefault();
             _context.follows.Remove(follows);
+            _context.SaveChanges();
+        }
+        /*
+        Description:Deletes a follow to Follow table 
+        Params:id Follow
+        Output:none
+       */
+        public void DeleteFollowByToken(string token)
+        {
+            string id_athlete = _context.onlineusers.Where(ou => ou.token == token).Select(a => a.id_athlete_fk).SingleOrDefault();
+            var follows = _context.follows.Where(f => f.id_athlete == id_athlete || f.id_followee == id_athlete).ToArray();
+            for (int i=0; i<follows.Length;i++) {
+                _context.follows.Remove(follows[i]);
+            }
             _context.SaveChanges();
         }
         /*
