@@ -105,7 +105,15 @@ namespace StraviaTECRestFullAPI.Controllers
         {
             string token = Request.Form["token"].ToString();
 
-            return new FileStreamResult(FileManager.getUserPhoto(token), "application/octet-stream");
+            try
+            {
+                return new FileStreamResult(FileManager.getUserPhoto(token), "application/octet-stream");
+            }
+            catch (Exception)
+            {
+
+                return NotFound("Image was not found");
+            }
         }
 
     }
