@@ -16,8 +16,8 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onRegister(){ 
-    this.hService.httpPost()
+  onRegister(){
+    this.hService.register(/**this.userForm.value */);
   }
 /**
  * Change the actual viewType for organizer Form to register
