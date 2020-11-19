@@ -12,7 +12,7 @@ namespace StraviaTECRestFullAPI.Utilities
         {
             int pointIndex = filename.IndexOf('.');
             string extension = filename.Substring(pointIndex);
-            return extension;
+            return extension.ToLower();
         }
         
         public static string saveFile(FileUPloadAPI file, string token)

@@ -82,7 +82,7 @@ namespace StraviaTECRestFullAPI.Controllers
                 {
                     string savedLocation = FileManager.saveFile(image, token);
 
-                    if (savedLocation.Equals(null))
+                    if (savedLocation == null)
                     {
                         return Forbid("File extension is not valid");
                     }
