@@ -6,7 +6,7 @@
       <div class="card-body">
         <h5 class="card-title">General Information</h5>
         <p class="card-text">
-          Name: {{ athlete.name }} {{ athlete.lastName }}<br>
+          Name: {{ athlete.name }} {{ athlete.lastName1 }} {{ athlete.lastName2 }}<br>
           Nationality: {{ athlete.nationality }}<br>
           Location: {{ athlete.country }}, {{ athlete.state }}, {{ athlete.city }}<br>
           Birthday: {{ athlete.birthday }}<br>
@@ -27,75 +27,108 @@
         <form (ngSubmit)="onUpdateProfile()" #updateProfileForm="ngForm">
           <h5 class="card-title">Update General Information</h5>
 
-          <!--Name-->
-          <label for="newName">Name</label>
-          <input
-            type="text"
-            class="form-control"
-            id="newName"
-            name="newName"
-            [ngModel]="aName"
-            required>
+          <!--Full Name-->
+          <div class="form-row">
+            <div class="col">
+              <!--Name-->
+              <label for="newName">Name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="newName"
+                name="newName"
+                [ngModel]="aName"
+                required>
+            </div>
+            <div class="col">
+              <!--Last Name 1-->
+              <label for="newLastName1">First Last Name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="newLastName1"
+                name="newLastName1"
+                [ngModel]="aLastName1"
+                required>
+            </div>
+            <div class="col">
+              <!--Last Name 2-->
+              <label for="newLastName2">Second Last Name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="newLastName2"
+                name="newLastName2"
+                [ngModel]="aLastName2"
+                required>
+            </div>
+          </div>
 
-          <!--Last Name-->
-          <label for="newLastName">Last Name</label>
-          <input
-            type="text"
-            class="form-control"
-            id="newLastName"
-            name="newLastName"
-            [ngModel]="aLastName"
-            required>
+          <div class="form-row">
+            <div class="col">
+              <!--Nationality-->
+              <label for="newNationality">Nationality</label>
+              <input
+                type="text"
+                class="form-control"
+                id="newNationality"
+                name="newNationality"
+                [ngModel]="aNationality"
+                required>
+            </div>
+          </div>
 
-          <!--Nationality-->
-          <label for="newNationality">Nationality</label>
-          <input
-            type="text"
-            class="form-control"
-            id="newNationality"
-            name="newNationality"
-            [ngModel]="aNationality"
-            required>
+          <!--Location-->
+          <div class="form-row">
+            <div class="col">
+              <!--Country-->
+              <label for="newCountry">Country</label>
+              <input
+                type="text"
+                class="form-control"
+                id="newCountry"
+                name="newCountry"
+                [ngModel]="aCountry"
+                required>
+            </div>
+            <div class="col">
+              <!--State-->
+              <label for="newState">State</label>
+              <input
+                type="text"
+                class="form-control"
+                id="newState"
+                name="newState"
+                [ngModel]="aState"
+                required>
+            </div>
+            <div class="col">
+              <!--City-->
+              <label for="newCity">City</label>
+              <input
+                type="text"
+                class="form-control"
+                id="newCity"
+                name="newCity"
+                [ngModel]="aCity"
+                required>
+            </div>
+          </div>
 
-          <!--Country-->
-          <label for="newCountry">Country</label>
-          <input
-            type="text"
-            class="form-control"
-            id="newCountry"
-            name="newCountry"
-            [ngModel]="aCountry"
-            required>
+          <div class="form-row">
+            <div class="col">
+              <!--Birthday-->
+              <label for="newBirthday">Birthday</label>
+              <input
+                type="date"
+                class="form-control"
+                id="newBirthday"
+                name="newBirthday"
+                ngModel
+                required>
+            </div>
+          </div>
 
-          <!--State-->
-          <label for="newState">State</label>
-          <input
-            type="text"
-            class="form-control"
-            id="newState"
-            name="newState"
-            [ngModel]="aState"
-            required>
-
-          <!--City-->
-          <label for="newCity">City</label>
-          <input
-            type="text"
-            class="form-control"
-            id="newCity"
-            name="newCity"
-            [ngModel]="aCity"
-            required>
-
-          <!--Birthday-->
-          <label for="newBirthday">Birthday</label>
-          <input
-            type="date"
-            class="form-control"
-            id="newBirthday"
-            name="newBirthday"
-            ngModel
-            required>
 
           <br>
           <h5 class="card-title">Update Account Information</h5>

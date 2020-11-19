@@ -16,7 +16,8 @@ export class AthleteSettingsComponent implements OnInit {
   @ViewChild('updateProfileForm') profileForm: NgForm;
   athlete: Athlete;
   aName: string;
-  aLastName: string;
+  aLastName1: string;
+  aLastName2: string;
   aNationality: string;
   aCountry: string;
   aState: string;
@@ -27,7 +28,8 @@ export class AthleteSettingsComponent implements OnInit {
   ngOnInit(): void {
     this.athlete = this.aService.currentUser;
     this.aName = this.athlete.name;
-    this.aLastName = this.athlete.lastName;
+    this.aLastName1 = this.athlete.lastName1;
+    this.aLastName2 = this.athlete.lastName2;
     this.aNationality = this.athlete.nationality;
     this.aCountry = this.athlete.country;
     this.aState = this.athlete.state;
