@@ -1,3 +1,4 @@
+import { ServerService } from './../../server.service';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
@@ -10,31 +11,45 @@ export class HomeService {
  * this data object is only for test porpuses 
  */
   public data = {
-    username:"Dxnium",
-    passwordHash:"hola1234",
-    name:"Daniel",
-    lastname_1:"Umana",
-    lastname_2:"Monge",
-    country:"Costa Rica",
-    state:"SJ",
-    city:"SJ",
-    nationality:"Costa Rican",
-    birhtday:"19-19-19"
+  "username":"Dxnium",
+  "passwordhash":"hola1234",
+  "name":"Daniel",
+  "lastname_1":"Umana",
+  "lastname_2":"Monge",
+  "country":"SJ",
+  "state":"SJ",
+  "city":"SJ",
+  "nationality":"Costa Rican",
+  "birthday":10,
+  "birthmonth":10,
+  "birthyear":10
 }
 /********************************************** */
 
 
-  constructor(private http : HttpClient) { }
+  constructor(private server : ServerService) { }
 
-  httpGET(){
-    return this.http.get(`http://jongs.mynetgear.com:45457/api/athletes`)
+  // httpGET(){
+  //   return this.http.get(`http://jongs.mynetgear.com:45457/api/athletes`)
+  // }
+
+  // httpPost(){
+  //   this.http.post(`http://jongs.mynetgear.com:45457/api/athletes`,"").subscribe(
+  //     res=>{
+  //       console.log(res);
+  //     }
+  //   );
+  // }
+/**
+ * Register Athlete
+ * @param dataForm 
+ */
+  register(dataForm?){
+    this.server.httpRegister(this.data)
   }
 
-  httpPost(){
-    this.http.post(`http://jongs.mynetgear.com:45457/api/athletes`,"").subscribe(
-      res=>{
-        console.log(res);
-      }
-    );
+  login(){
+    this.server.httpLogin()
   }
+
 }
