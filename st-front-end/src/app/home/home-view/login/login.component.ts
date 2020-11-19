@@ -25,11 +25,7 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin(){
-    console.log(this.loginForm.value.username);
     this.goToPage('athlete');
-
-    this.hService.httpGET().subscribe(res => {
-      console.log(res)
-    })
+    this.hService.login();
   }
 }
