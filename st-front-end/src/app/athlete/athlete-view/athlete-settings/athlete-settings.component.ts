@@ -42,4 +42,13 @@ export class AthleteSettingsComponent implements OnInit {
   onUpdateProfile(): void {
     console.log(this.profileForm);
   }
+
+  /**
+   * This method is called when the user decides to delete its account
+   */
+  onDeleteAccount(): void {
+    if (confirm('Are you sure you want to delete your account? The information contained in it will be lost forever')) {
+      console.log(this.aService.currentUser.username + ' account is going to be deleted');
+    }
+  }
 }
