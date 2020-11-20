@@ -82,7 +82,7 @@ namespace StraviaTECRestFullAPI.Utilities
             }
         }
 
-        public static List<Athlete> searchAthleteBasedOnTerm(string term)
+        public static List<FoundAthlete> searchAthleteBasedOnTerm(string term)
         {
             connection.Open();
 
@@ -94,7 +94,7 @@ namespace StraviaTECRestFullAPI.Utilities
                 cmd.Parameters.AddWithValue("_searchterm", term);
                 var result = cmd.ExecuteReader();
 
-                List<Athlete> currentAthletes = new List<Athlete>();
+                List<FoundAthlete> currentAthletes = new List<FoundAthlete>();
 
                 while (result.Read())
                 {
@@ -113,13 +113,49 @@ namespace StraviaTECRestFullAPI.Utilities
                         }
                     }
 
-                    currentAthletes.Add(new Athlete(attributes[0], attributes[1], attributes[2], attributes[3], attributes[4], attributes[5], attributes[6], attributes[7],
-                       attributes[8], attributes[9], attributes[10], int.Parse(attributes[11]), int.Parse(attributes[12]), int.Parse(attributes[13]), int.Parse(attributes[14])));
+                    currentAthletes.Add(new FoundAthlete(attributes[0], attributes[7], attributes[8], int.Parse(attributes[11])));
                 }
 
                 connection.Close();
 
+                foreach(FoundAthlete foundAthlete in currentAthletes)
+                {
+                    foundAthlete.calculateAmountOfActivities();
+                }
+
                 return currentAthletes;
+            }
+        }
+
+        public static int getNumberOfActivitiesByAthlete(string username)
+        {
+            connection.Open();
+
+            using (NpgsqlCommand cmd = new NpgsqlCommand("\"CountActivitiesByUser\"", connection))
+            {
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("_username", username);
+                int result = int.Parse((string)cmd.ExecuteScalar());
+
+                connection.Close();
+
+                return result;
+            }
+        }
+
+        public static bool validateToken(string token)
+        {
+            connection.Open();
+
+            using (NpgsqlCommand cmd = new NpgsqlCommand("\"ValidateToken\"", connection))
+            {
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("_token", token);
+                bool result = (bool)cmd.ExecuteScalar();
+
+                connection.Close();
+
+                return result;
             }
         }
     }

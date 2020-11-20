@@ -113,5 +113,21 @@ namespace StraviaTECRestFullAPI.Controllers
             }
         }
 
+        [HttpGet("searchTerm")]
+        public List<FoundAthlete> getAthletesBasedOnTerm()
+        {
+            string token = Request.Form["token"].ToString();
+
+            string term = Request.Form["term"].ToString();
+
+            bool isUserLoggedIn = Connector.validateToken(token);
+
+            if (isUserLoggedIn)
+            {
+                return Connector.searchAthleteBasedOnTerm(term);
+            }
+
+            return null;
+        }
     }
 }
