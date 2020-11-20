@@ -33,15 +33,14 @@ namespace StraviaTECRestFullAPI.DataAccess
         void DeleteOnlineUserRecord(string token);
         OnlineUser GetOnlineUserSingleRecord(string token);
         List<OnlineUser> GetOnlineUserRecords();
-        string getOnlineUserTokenRecord(LogInUserMsg userInfo);
 
         /*
         Description: CRUD Operations for race 
        */
-        void AddRaceRecord(Race race);
+        void AddRaceRecord(Race race,string token);
         void UpdateRaceRecord(Race race);
         void DeleteRaceRecord(string idrace);
-        Race GetRaceSingleRecord(string idrace);
+        Race GetRaceSingleRecord(string token);
         List<Race> GetRaceRecords();
 
         /*

@@ -28,23 +28,23 @@ namespace StraviaTECRestFullAPI.Controllers
             return _dataAccessProvider.GetRaceRecords();
         }
 
-        [HttpPost]
-        public IActionResult Create([FromBody] Race race)
+        [HttpPost("{token}")]
+        public IActionResult Create([FromBody] Race race,string token)
         {
             if (ModelState.IsValid)
             {
                 Guid obj = Guid.NewGuid();
                 race.id_race = obj.ToString();
-                _dataAccessProvider.AddRaceRecord(race);
+                _dataAccessProvider.AddRaceRecord(race, token);
                 return Ok();
             }
             return BadRequest();
         }
 
-        [HttpGet("{id}")]
-        public Race Details(string id)
+        [HttpGet("{token}")]
+        public Race Details(string token)
         {
-            return _dataAccessProvider.GetRaceSingleRecord(id);
+            return _dataAccessProvider.GetRaceSingleRecord(token);
         }
 
         [HttpPut]

@@ -23,7 +23,9 @@ namespace StraviaTECRestFullAPI.DataAccess
         {
             builder.Entity<Athlete>().HasKey(a => new { a.id, a.username });
             builder.Entity<Organizer>().HasKey(o => new { o.id, o.username });
+            builder.Entity<Race>().Property(r => r.id_race).ValueGeneratedOnAdd();
             base.OnModelCreating(builder);
+
         }
         
 

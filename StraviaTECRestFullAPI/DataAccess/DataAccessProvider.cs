@@ -206,30 +206,6 @@ namespace StraviaTECRestFullAPI.DataAccess
             
         }
         /*
-        Description:Get an online user token 
-        Params:Object OnlineUser
-        Output:None
-       */
-        public string getOnlineUserTokenRecord(LogInUserMsg userInfo)
-        {
-            string token = "Hola hay un error jejej";
-            if (_context.athletes.Any(o => o.username == userInfo.username))
-            {
-                string id_athlete = _context.athletes.Where(o => o.username == userInfo.username).Select(u => u.id).SingleOrDefault();
-                token = _context.onlineusers.Where(ou => ou.id_athlete_fk == id_athlete).Select(u => u.token).SingleOrDefault();
-                
-
-            }
-            else if (_context.organizers.Any(o => o.username == userInfo.username))
-            {
-                string id_organizer = _context.organizers.Where(o => o.username == userInfo.username).Select(u => u.id).SingleOrDefault();
-                token = _context.onlineusers.Where(ou => ou.id_organizer_fk == id_organizer).Select(u => u.token).SingleOrDefault();
-               
-            }
-            return token;
-
-        }
-        /*
         Description:Updates an online user in OnlineUser table 
         Params:Object OnlineUser
         Output:None
@@ -273,9 +249,9 @@ namespace StraviaTECRestFullAPI.DataAccess
         Params:Object Race
         Output:None
        */
-        public void AddRaceRecord(Race race)
+        public void AddRaceRecord(Race race,string token)
         {
-
+            race.id_organizer = _context.onlineusers.Where(ou => ou.token == token).Select(a => a.id_organizer_fk).SingleOrDefault();
             _context.race.Add(race);
             _context.SaveChanges();
         }
@@ -305,9 +281,10 @@ namespace StraviaTECRestFullAPI.DataAccess
         Params:id Race
         Output:Race object
        */
-        public Race GetRaceSingleRecord(string id)
+        public Race GetRaceSingleRecord(string token)
         {
-            return _context.race.FirstOrDefault(t => t.id_race == id);
+            string id_organizer = _context.onlineusers.Where(ou => ou.token == token).Select(a => a.id_organizer_fk).SingleOrDefault();
+            return _context.race.FirstOrDefault(t => t.id_organizer == id_organizer);
         }
         /*
         Description:Gets all the races in Race table 
@@ -339,8 +316,7 @@ namespace StraviaTECRestFullAPI.DataAccess
         Output:None
        */
         public void UpdateFollowsRecord(FollowRequest followrequest)
-        {
-            //Tiene que ser el objeto
+        { 
             
             string id_followee = _context.athletes.Where(a => a.username == followrequest.username).Select(u => u.id).SingleOrDefault();
             string id_athlete = _context.onlineusers.Where(ou => ou.token == followrequest.token).Select(a => a.id_athlete_fk).SingleOrDefault();
@@ -385,8 +361,6 @@ namespace StraviaTECRestFullAPI.DataAccess
         {
             string id_athlete = _context.onlineusers.Where(ou => ou.token == followrequest.token).Select(a => a.id_athlete_fk).SingleOrDefault();
             var id_followees = _context.follows.Where(f => f.id_athlete == id_athlete).Select(a => a.id_followee).ToArray();
-            //Athlete[] followeesList = _context.athletes.Where(f => id_followees.Contains(f.id)).ToArray();
-            //Array.ForEach(followeesList, Console.WriteLine);
             return _context.athletes.Where(f => id_followees.Contains(f.id)).ToList();
         }
         /*
@@ -398,8 +372,6 @@ namespace StraviaTECRestFullAPI.DataAccess
         {
             string id_athlete = _context.onlineusers.Where(ou => ou.token == followrequest.token).Select(a => a.id_athlete_fk).SingleOrDefault();
             var id_followers = _context.follows.Where(f => f.id_followee == id_athlete).Select(a => a.id_athlete).ToArray();
-            //Athlete[] followeesList = _context.athletes.Where(f => id_followees.Contains(f.id)).ToArray();
-            //Array.ForEach(followeesList, Console.WriteLine);
             return _context.athletes.Where(f => id_followers.Contains(f.id)).ToList();
         }
         /*
