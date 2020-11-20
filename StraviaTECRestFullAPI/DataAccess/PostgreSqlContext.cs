@@ -19,11 +19,17 @@ namespace StraviaTECRestFullAPI.DataAccess
 
         public DbSet<Follows> follows { get; set; }
 
+        public DbSet<AthleteEnrollsChallenge> athleteenrollschallenges { get; set; }
+
+        public DbSet<AthleteEnrollsRace> athleteenrollsraces { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<Athlete>().HasKey(a => new { a.id, a.username });
             builder.Entity<Organizer>().HasKey(o => new { o.id, o.username });
             builder.Entity<Race>().Property(r => r.id_race).ValueGeneratedOnAdd();
+            //builder.Entity<AthleteEnrollsChallenge>().Property(c => c.id).ValueGeneratedOnAdd();
+            //builder.Entity<AthleteEnrollsRace>().Property(r => r.id).ValueGeneratedOnAdd();
             base.OnModelCreating(builder);
 
         }

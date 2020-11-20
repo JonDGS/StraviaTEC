@@ -55,5 +55,23 @@ namespace StraviaTECRestFullAPI.DataAccess
         List<Athlete> GetFollowersRecord(FollowRequest followrequest);
         List<Follows> GetFollowsRecords();
 
+        /*
+       Description: CRUD Operations for AthletesEnrollsChallenge
+      */
+        void AddChallengeEnrollmentRecord(AthleteEnrollsChallenge atEnCh, string token);
+        void UpdateChallengeEnrollmentRecord(AthleteEnrollsChallenge atEnCh);
+        void DeleteChallengeEnrollmentRecord(int id);
+        AthleteEnrollsChallenge GetChallengeEnrollmentSingleRecord(int id);
+        List<AthleteEnrollsChallenge> GetChallengeEnrollmentRecords();
+
+        /*
+       Description: CRUD Operations for AthletesEnrollsRace
+      */
+        void AddRaceEnrollmentRecord(AthleteEnrollsRace atEnRa, string token);
+        void UpdateRaceEnrollmentRecord(AthleteEnrollsRace atEnRa);
+        void DeleteRaceEnrollmentRecord(int id);
+        AthleteEnrollsRace GetRaceEnrollmentSingleRecord(int id);
+        List<AthleteEnrollsRace> GetRaceEnrollmentRecords();
+
     }
 }

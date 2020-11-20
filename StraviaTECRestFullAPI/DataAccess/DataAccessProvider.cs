@@ -383,5 +383,108 @@ namespace StraviaTECRestFullAPI.DataAccess
         {
             return _context.follows.ToList();
         }
+        /*
+       Description:Adds a race to AthleteEnrollsChallenge table 
+       Params:Object Race
+       Output:None
+      */
+        public void AddChallengeEnrollmentRecord(AthleteEnrollsChallenge challengeEnrollment, string token)
+        {
+            challengeEnrollment.id_athlete = _context.onlineusers.Where(ou => ou.token == token).Select(a => a.id_athlete_fk).SingleOrDefault();
+            _context.athleteenrollschallenges.Add(challengeEnrollment);
+            _context.SaveChanges();
+        }
+        /*
+        Description:Updates an enrollment in AthleteEnrollsChallenge table 
+        Params:Object Race
+        Output:None
+       */
+        public void UpdateChallengeEnrollmentRecord(AthleteEnrollsChallenge challengeEnrollment)
+        {
+            _context.athleteenrollschallenges.Update(challengeEnrollment);
+            _context.SaveChanges();
+        }
+        /*
+        Description:Deletes an AthleteEnrollsChallenge with a specified id 
+        Params:id Race
+        Output:None
+       */
+        public void DeleteChallengeEnrollmentRecord(int id)
+        {
+            var entity = _context.athleteenrollschallenges.FirstOrDefault(t => t.id == id);
+            _context.athleteenrollschallenges.Remove(entity);
+            _context.SaveChanges();
+        }
+        /*
+        Description:Gets an AthleteEnrollsChallengewith the specified id 
+        Params:id Race
+        Output:Race object
+       */
+        public AthleteEnrollsChallenge GetChallengeEnrollmentSingleRecord(int id)
+        {
+            var enrollment = _context.athleteenrollschallenges.FirstOrDefault(ou => ou.id == id);
+            return enrollment;
+        }
+        /*
+        Description:Gets all enrollments the in AthleteEnrollsChallenge table 
+        Params:Object AthleteEnrollsChallenge object
+        Output:Array of AthleteEnrollsChallenge
+       */
+        public List<AthleteEnrollsChallenge> GetChallengeEnrollmentRecords()
+        {
+            return _context.athleteenrollschallenges.ToList();
+        }
+        /*
+      Description:Adds a race to AthleteEnrollsRace table 
+      Params:Object AthleteEnrollsRace
+      Output:None
+     */
+        public void AddRaceEnrollmentRecord(AthleteEnrollsRace raceEnrollment, string token)
+        {
+            raceEnrollment.id_athlete= _context.onlineusers.Where(ou => ou.token == token).Select(a => a.id_athlete_fk).SingleOrDefault();
+            _context.athleteenrollsraces.Add(raceEnrollment);
+            _context.SaveChanges();
+        }
+        /*
+        Description:Updates an enrollment in AthleteEnrollsRace table 
+        Params:Object AthleteEnrollsRace
+        Output:None
+       */
+        public void UpdateRaceEnrollmentRecord(AthleteEnrollsRace raceEnrollment)
+        {
+            _context.athleteenrollsraces.Update(raceEnrollment);
+            _context.SaveChanges();
+        }
+        /*
+        Description:Deletes an AthleteEnrollsRace with a specified id 
+        Params:id AthleteEnrollsRace
+        Output:None
+       */
+        public void DeleteRaceEnrollmentRecord(int id)
+        {
+            var entity = _context.athleteenrollsraces.FirstOrDefault(t => t.id == id);
+            _context.athleteenrollsraces.Remove(entity);
+            _context.SaveChanges();
+        }
+        /*
+        Description:Gets an AthleteEnrollsRace with the specified id 
+        Params:id Race
+        Output:Race object
+       */
+        public AthleteEnrollsRace GetRaceEnrollmentSingleRecord(int id)
+        {
+           
+            return _context.athleteenrollsraces.FirstOrDefault(r => r.id == id);
+        }
+        /*
+        Description:Gets all enrollments the in AthleteEnrollsChallenge table 
+        Params:Object AthleteEnrollsChallenge object
+        Output:Array of AthleteEnrollsChallenge
+       */
+        public List<AthleteEnrollsRace> GetRaceEnrollmentRecords()
+        {
+            return _context.athleteenrollsraces.ToList();
+        }
+
     }
 }
