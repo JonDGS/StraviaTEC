@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Npgsql;
+using StraviaTECRestFullAPI.Models;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -78,6 +79,47 @@ namespace StraviaTECRestFullAPI.Utilities
                 connection.Close();
 
                 return result;
+            }
+        }
+
+        public static List<Athlete> searchAthleteBasedOnTerm(string term)
+        {
+            connection.Open();
+
+            using (NpgsqlCommand cmd = new NpgsqlCommand("\"GetRangeOfAthletes\"", connection))
+            {
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("_startindex", 0);
+                cmd.Parameters.AddWithValue("_finishindex", 0);
+                cmd.Parameters.AddWithValue("_searchterm", term);
+                var result = cmd.ExecuteReader();
+
+                List<Athlete> currentAthletes = new List<Athlete>();
+
+                while (result.Read())
+                {
+                    int index = 0;
+                    List<String> attributes = new List<string>();
+                    while (true)
+                    {
+                        try
+                        {
+                            attributes.Add(result.GetValue(index).ToString());
+                            index++;
+                        }
+                        catch (Exception)
+                        {
+                            break;
+                        }
+                    }
+
+                    currentAthletes.Add(new Athlete(attributes[0], attributes[1], attributes[2], attributes[3], attributes[4], attributes[5], attributes[6], attributes[7],
+                       attributes[8], attributes[9], attributes[10], int.Parse(attributes[11]), int.Parse(attributes[12]), int.Parse(attributes[13]), int.Parse(attributes[14])));
+                }
+
+                connection.Close();
+
+                return currentAthletes;
             }
         }
     }
