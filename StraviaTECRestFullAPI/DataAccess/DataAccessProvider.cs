@@ -485,6 +485,69 @@ namespace StraviaTECRestFullAPI.DataAccess
         {
             return _context.athleteenrollsraces.ToList();
         }
+        /*
+       Description:Adds an Activity to Activity table 
+       Params:Object Activity, token
+       Output:None
+      */
+        public void AddActivityRecord(Activity activty, string token)
+        {
+            string id_athlete = _context.onlineusers.Where(ou => ou.token == token).Select(a => a.id_athlete_fk).SingleOrDefault();
+            activty.id_athlete = id_athlete;
+            _context.activity.Add(activty);
+            _context.SaveChanges();
+        }
+        /*
+        Description:Updates an Activity to Activity table 
+        Params:Object Activity
+        Output:None
+       */
+        public void UpdateActivityRecord(Activity activity)
+        {
+            _context.activity.Update(activity);
+            _context.SaveChanges();
+        }
+        /*
+        Description:Deletes an Activity to Activity table 
+        Params:id Activity
+        Output:none
+       */
+        public void DeleteActivityRecord(string token)
+        {
+            string id_athlete = _context.onlineusers.Where(ou => ou.token == token).Select(a => a.id_athlete_fk).SingleOrDefault();
+            var entity = _context.activity.FirstOrDefault(t => t.id_athlete == id_athlete);
+            _context.activity.Remove(entity);
+            _context.SaveChanges();
+        }
+        /*
+        Description:Gets an Activity according to a specified Activity id 
+        Params:id Activity
+        Output: Activity object
+       */
+        public Activity GetActivitySingleRecord(string actId)
+        {
+           
+            return _context.activity.FirstOrDefault(ac => ac.id_activity == actId);
+        }
+        /*
+        Description:Gets all the Activities in Activity table 
+        Params:none
+        Output:List of all the Activities
+       */
+        public List<Activity> GetActivityRecords()
+        {
+            return _context.activity.ToList();
+        }
+        /*
+        Description:Gets all the Activities in Activity table 
+        Params:none
+        Output:List of all the Activity
+       */
+        public List<Activity> GetActivityByToken(string token)
+        {
+            string id_athlete = _context.onlineusers.Where(ou => ou.token == token).Select(a => a.id_athlete_fk).SingleOrDefault();
+            return _context.activity.Where(a => a.id_athlete == id_athlete).ToList();
+        }
 
     }
 }

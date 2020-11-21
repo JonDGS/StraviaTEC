@@ -73,5 +73,15 @@ namespace StraviaTECRestFullAPI.DataAccess
         AthleteEnrollsRace GetRaceEnrollmentSingleRecord(int id);
         List<AthleteEnrollsRace> GetRaceEnrollmentRecords();
 
+        /*
+        Description: CRUD Operations for Activity
+       */
+        void AddActivityRecord(Activity activity, string token);
+        void UpdateActivityRecord(Activity activity);
+        void DeleteActivityRecord(string actId);
+        Activity GetActivitySingleRecord(string actId);
+        List<Activity> GetActivityByToken(string token);
+        List<Activity> GetActivityRecords();
+
     }
 }
