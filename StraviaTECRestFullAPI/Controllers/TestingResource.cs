@@ -49,5 +49,17 @@ namespace StraviaTECRestFullAPI.Controllers
 
             return test;
         }
+
+        [HttpPost("CreateChallenge")]
+        public bool createChallenge()
+        {
+            string token = Request.Form["token"];
+            string name = Request.Form["name"];
+            string startDate = Request.Form["startDate"];
+            string finishDate = Request.Form["finishDate"];
+            string activity_type = Request.Form["activity_type"];
+
+            return Connector.createChallenge(token, name, startDate, finishDate, activity_type);
+        }
     }
 }
