@@ -40,7 +40,8 @@ namespace StraviaTECRestFullAPI.DataAccess
         void AddRaceRecord(Race race,string token);
         void UpdateRaceRecord(Race race);
         void DeleteRaceRecord(string idrace);
-        Race GetRaceSingleRecord(string token);
+        List<Race> GetRacesByToken(string token);
+        Race GetRaceSingleRecord(string idrace);
         List<Race> GetRaceRecords();
 
         /*

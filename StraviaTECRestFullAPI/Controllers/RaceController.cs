@@ -42,11 +42,11 @@ namespace StraviaTECRestFullAPI.Controllers
         }
 
         [HttpGet("{token}")]
-        public Race Details(string token)
+        public List<Race> DetailsByToken(string token)
         {
-            return _dataAccessProvider.GetRaceSingleRecord(token);
+            Console.WriteLine("Holaaa");
+            return _dataAccessProvider.GetRacesByToken(token);
         }
-
         [HttpPut]
         public IActionResult Edit([FromBody] Race race)
         {

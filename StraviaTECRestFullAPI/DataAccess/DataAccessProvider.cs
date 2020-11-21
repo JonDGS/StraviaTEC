@@ -277,14 +277,24 @@ namespace StraviaTECRestFullAPI.DataAccess
             _context.SaveChanges();
         }
         /*
+        Description:Gets a race with token
+        Params:id Race
+        Output:Race object
+       */
+        public List<Race> GetRacesByToken(string token)
+        {
+            string id_organizer = _context.onlineusers.Where(ou => ou.token == token).Select(a => a.id_organizer_fk).SingleOrDefault();
+            
+            return _context.race.Where(t => t.id_organizer == id_organizer).ToList();
+        }
+        /*
         Description:Gets a race with the specified id 
         Params:id Race
         Output:Race object
        */
-        public Race GetRaceSingleRecord(string token)
+        public Race GetRaceSingleRecord(string id)
         {
-            string id_organizer = _context.onlineusers.Where(ou => ou.token == token).Select(a => a.id_organizer_fk).SingleOrDefault();
-            return _context.race.FirstOrDefault(t => t.id_organizer == id_organizer);
+            return _context.race.FirstOrDefault(r => r.id_race == id);
         }
         /*
         Description:Gets all the races in Race table 
