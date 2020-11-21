@@ -2,6 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {Group} from '../../../models/group.model';
 import {OrganizerService} from '../../organizer.service';
 import {NgForm} from '@angular/forms';
+import {Race} from '../../../models/race.model';
 
 @Component({
   selector: 'app-organizer-groups',
@@ -33,5 +34,12 @@ export class OrganizerGroupsComponent implements OnInit {
     //enviar el post
     this.oService.postGroup(object);
     console.log(this.groupForm);
+  }
+
+  /**
+   * This method is called when a group from the group list is deleted
+   * @param group to delete
+   */
+  onDeleteGroup(group: Group): void {
   }
 }

@@ -23,14 +23,14 @@ export class OrganizerRacesComponent implements OnInit {
   ngOnInit(): void {
     this.oService.getRaces().subscribe(res => {
       console.log(res);
-      
+
       this.races = res
       console.log(this.races);
-      
+
     }
     );
-    
-    
+
+
   }
 
   /**
@@ -47,4 +47,10 @@ export class OrganizerRacesComponent implements OnInit {
       this.oService.postRace(race);
   }
 
+  /**
+   * This method is called when a race from the race list is deleted
+   * @param race to delete
+   */
+  onDeleteRace(race: Race): void {
+  }
 }

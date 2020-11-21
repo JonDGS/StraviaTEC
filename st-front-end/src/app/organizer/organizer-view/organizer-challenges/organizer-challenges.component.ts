@@ -2,6 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {OrganizerService} from '../../organizer.service';
 import {Challenge} from '../../../models/challenge.model';
 import {NgForm} from '@angular/forms';
+import {Race} from '../../../models/race.model';
 
 @Component({
   selector: 'app-organizer-challenges',
@@ -29,5 +30,12 @@ export class OrganizerChallengesComponent implements OnInit {
    */
   addChallenge(): void {
     console.log(this.challengeForm);
+  }
+
+  /**
+   * This method is called when a challenge from the challenge list is deleted
+   * @param challenge to delete
+   */
+  onDeleteChallenge(challenge: Challenge): void {
   }
 }

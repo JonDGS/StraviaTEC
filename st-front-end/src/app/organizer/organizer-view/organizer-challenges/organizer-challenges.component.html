@@ -1,10 +1,14 @@
 <div class="card my-challenges-card">
   <div class="card-body">
     <h5 class="card-tittle">My Challenges</h5>
-    <div *ngFor="let c of challenges">
+    <div *ngFor="let c of challenges" style="padding: 5px; margin-bottom: 15px">
       - {{ c.name }} | {{ c.period }} | {{ c.activityType }}
+      <button
+        class="btn btn-danger float-right"
+        (click)="onDeleteChallenge(c)">Delete</button>
     </div>
     <br>
+
     <h5 class="card-tittle">Create New Challenge</h5>
     <form (ngSubmit)="addChallenge()" #newChallenge="ngForm">
 

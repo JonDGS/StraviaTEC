@@ -1,8 +1,11 @@
 <div class="card my-groups-card">
   <div class="card-body">
     <h5 class="card-tittle">My Groups</h5>
-    <div *ngFor="let g of groups">
+    <div *ngFor="let g of groups" style="padding: 5px; margin-bottom: 15px">
       - {{ g.name }} | Admin: {{ g.admin }}
+      <button
+        class="btn btn-danger float-right"
+        (click)="onDeleteGroup(g)">Delete</button>
     </div>
     <br>
 
