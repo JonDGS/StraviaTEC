@@ -10,16 +10,32 @@ import {NgForm} from '@angular/forms';
 })
 export class OrganizerRacesComponent implements OnInit {
   @ViewChild('newRace') raceForm: NgForm;
-  races: Race[];
+  public races;
 
   constructor(private oService: OrganizerService) { }
 
   ngOnInit(): void {
-    this.races = this.oService.myCreatedRaces;
+    this.oService.getRaces().subscribe(res => {
+      console.log(res);
+      
+      this.races = res
+      console.log(this.races);
+      
+    }
+    );
+    
+    
   }
 
   addRace(): void {
-    console.log(this.raceForm);
+    let race = {
+      "name": this.raceForm.value.name,
+      "date": this.raceForm.value.date,
+      "cost": this.raceForm.value.race,
+      "gpx": null,
+      "country": this.raceForm.value.bankAccount
+  }
+      this.oService.postRace(race);
   }
 
 }

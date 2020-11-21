@@ -1,7 +1,10 @@
+import { ServerService } from './../../../server.service';
 import { HomeService } from './../home.service';
 import { Router } from '@angular/router';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { logWarnings } from 'protractor/built/driverProviders';
+import { TimeoutError } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -25,7 +28,8 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin(){
-    this.goToPage('athlete');
-    this.hService.login();
+    this.hService.login(this.loginForm.value);
   }
+
+
 }

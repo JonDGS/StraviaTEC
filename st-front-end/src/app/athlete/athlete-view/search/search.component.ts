@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 // @ts-ignore
 import Any = jasmine.Any;
 import {AthleteService} from '../../athlete.service';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-search',
@@ -23,7 +24,9 @@ export class SearchComponent implements OnInit {
 
     switch (this.searchType) {
       case 'athletes': {
-        this.searchData = this.aService.availableAthletes;
+        this.aService.getSearchData().then(res => {
+          this.searchData = res;
+        })
         break;
       }
       case 'groups': {

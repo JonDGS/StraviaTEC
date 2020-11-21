@@ -1,3 +1,4 @@
+import { ServerService } from './../../../server.service';
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {AthleteService} from '../../athlete.service';
@@ -20,7 +21,7 @@ export class NavbarComponent implements OnInit {
   defaultCategory = 'athletes';
   changedView: boolean;
 
-  constructor(private aService: AthleteService, private router: Router) { }
+  constructor(private aService: AthleteService, private router: Router, private server:ServerService) { }
 
   ngOnInit(): void {
     this.changedView = this.aService.changedView;
@@ -40,9 +41,13 @@ export class NavbarComponent implements OnInit {
     this.aService.searchType = this.searchForm.value.category;
 
     // Aca llamamos a una funcion que en base a la busqueda rellena las listas de de availableX del servicio athlete ! ! ! !
-
+    
+    //call the server 
+    this.aService.setSearhData(this.server.getSearchData(this.searchForm.value.searchItem));
+    
     // We go to the search page
     this.router.navigate(['/athlete/search']);
+
   }
 
   /**
@@ -59,8 +64,17 @@ export class NavbarComponent implements OnInit {
   onAthleteViewReturned(): void {
     this.aService.changedView = false;
   }
-
+/**
+   *
+   * @param page
+   */
+  goToPage(pageName:string){
+    this.router.navigate([`${pageName}`]);
+    console.log("Login form");
+  }
   onAthleteLogout(): void {
+    this.aService.logout();
+    this.goToPage('')
 
   }
 }

@@ -1,3 +1,4 @@
+import { ServerService } from './../server.service';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {Athlete} from '../models/athlete.model';
@@ -14,6 +15,13 @@ import {Race} from '../models/race.model';
  * among the different components and calls for the http methods of the server.service
  */
 export class AthleteService {
+
+  //token
+  public token;
+  //set token
+  setToken(token){
+    this.token = token;
+  }
   // Used for storing the information of the current user
   currentUser: Athlete = new Athlete(
     'Alvaro',
@@ -98,6 +106,9 @@ export class AthleteService {
       '321')
   ];
 
+  //search Data
+  public searchData;
+  
   /*
     This lists are for the participating activities, should be filled with the info of the currently
     participating groups, races and challenges. For the moment we are filling them with the search lists
@@ -106,7 +117,28 @@ export class AthleteService {
   participatingRaces = this.availableRaces;
   participatingGroups = this.availableGroups;
 
-  constructor(private http: HttpClient) {
+  constructor(private server:ServerService) {
 
   }
+
+  setSearhData(data){
+    this.searchData = data;
+  }
+
+  getSearchData(){
+    return this.searchData;
+  }
+
+  logout(){
+    this.server.httplogout(this.token);
+  };
+
+  getFollowes(){
+   return this.server.getFollowees();
+  }
+
+  postActivity(activity){
+    this.server.postActivity(activity);
+  }
+
 }

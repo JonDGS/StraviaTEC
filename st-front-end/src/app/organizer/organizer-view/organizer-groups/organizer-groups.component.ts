@@ -19,6 +19,10 @@ export class OrganizerGroupsComponent implements OnInit {
   }
 
   addGroup(): void {
+    //crear el objeto
+    let object = {}
+    //enviar el post
+    this.oService.postGroup(object);
     console.log(this.groupForm);
   }
 }
