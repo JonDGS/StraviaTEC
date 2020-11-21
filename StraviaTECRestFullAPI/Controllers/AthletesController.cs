@@ -114,11 +114,8 @@ namespace StraviaTECRestFullAPI.Controllers
         }
 
         [HttpGet("searchTerm")]
-        public List<FoundAthlete> getAthletesBasedOnTerm()
+        public List<FoundAthlete> getAthletesBasedOnTerm([FromQuery] string token, [FromQuery] string term)
         {
-            string token = Request.Form["token"].ToString();
-
-            string term = Request.Form["term"].ToString();
 
             bool isUserLoggedIn = Connector.validateToken(token);
 
