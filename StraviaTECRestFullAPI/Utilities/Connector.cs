@@ -214,5 +214,46 @@ namespace StraviaTECRestFullAPI.Utilities
                 return result;
             }
         }
+
+        public static List<FoundChallenge> getChallenges()
+        {
+            connection.Open();
+
+            using (NpgsqlCommand cmd = new NpgsqlCommand("\"GetChallenges\"", connection))
+            {
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                var result = cmd.ExecuteReader();
+
+                List<FoundChallenge> foundChallenges = new List<FoundChallenge>();
+
+                while (result.Read())
+                {
+                    int index = 0;
+                    List<String> attributes = new List<string>();
+                    while (true)
+                    {
+                        try
+                        {
+                            attributes.Add(result.GetValue(index).ToString());
+                            index++;
+                        }
+                        catch (Exception)
+                        {
+                            break;
+                        }
+                    }
+
+                    DateTime start = DateTime.Parse(attributes[1]);
+                    DateTime finish = DateTime.Parse(attributes[2]);
+                    int period = Convert.ToInt32((finish - start).TotalDays);
+
+                    foundChallenges.Add(new FoundChallenge(attributes[0], period, attributes[3], attributes[4], int.Parse(attributes[5]), attributes[6]));
+                }
+
+                connection.Close();
+
+                return foundChallenges;
+            }
+        }
     }
 }
