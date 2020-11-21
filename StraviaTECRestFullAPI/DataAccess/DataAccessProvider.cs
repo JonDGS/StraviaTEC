@@ -284,7 +284,6 @@ namespace StraviaTECRestFullAPI.DataAccess
         public List<Race> GetRacesByToken(string token)
         {
             string id_organizer = _context.onlineusers.Where(ou => ou.token == token).Select(a => a.id_organizer_fk).SingleOrDefault();
-            
             return _context.race.Where(t => t.id_organizer == id_organizer).ToList();
         }
         /*
@@ -551,7 +550,7 @@ namespace StraviaTECRestFullAPI.DataAccess
             return _context.activity.ToList();
         }
         /*
-        Description:Gets all the Activities in Activity table 
+        Description:Gets all the Group in Group table 
         Params:none
         Output:List of all the Activity
        */
@@ -564,6 +563,71 @@ namespace StraviaTECRestFullAPI.DataAccess
         public List<ActivityType> GetActivityTypes() 
         {
             return _context.activity_type.ToList();
+        }
+        /*
+        Description:Adds an Group to Group table 
+        Params:Object Organizer
+        Output:None
+       */
+        public void AddGroupRecord(Group group,string token)
+        {
+            string id_organizer = _context.onlineusers.Where(ou => ou.token == token).Select(a => a.id_organizer_fk).SingleOrDefault();
+            string name = _context.organizers.Where(or => or.id == id_organizer).Select(o => o.name).SingleOrDefault();
+            group.id_organizer = id_organizer;
+            group.admin = name;
+            _context.groups.Add(group);
+            _context.SaveChanges();
+        }
+        /*
+        Description:Updates an Group to Group table 
+        Params:Object Group
+        Output:None
+       */
+        public void UpdateGroupRecord(Group group)
+        {
+            _context.groups.Update(group);
+            _context.SaveChanges();
+        }
+        /*
+        Description:Deletes an Group to Group table 
+        Params:id Group
+        Output:None
+       */
+        public void DeleteGroupRecord(string id)
+        {
+            
+            var entity = _context.groups.FirstOrDefault(t => t.id_group == id);
+            _context.groups.Remove(entity);
+            _context.SaveChanges();
+        }
+        /*
+        Description:Gets an Group to Group table 
+        Params:id Organizer
+        Output:Organizer object
+       */
+        public Group GetGroupSingleRecord(string id)
+        { 
+            return _context.groups.FirstOrDefault(t => t.id_group == id);
+        }
+
+        /*
+        Description:Gets all the Group in Group table 
+        Params:none
+        Output:List of all the Group
+       */
+        public List<Group> GetGroupRecords()
+        {
+            return _context.groups.ToList();
+        }
+        /*
+       Description:Gets a Group to Group table by token
+       Params:token
+       Output:Organizer object
+      */
+        public List<Group> GetGroupByToken(string token)
+        {
+            string id_organizer = _context.onlineusers.Where(ou => ou.token == token).Select(a => a.id_organizer_fk).SingleOrDefault();
+            return _context.groups.Where(t => t.id_organizer == id_organizer).ToList();
         }
 
     }

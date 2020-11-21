@@ -25,6 +25,7 @@ namespace StraviaTECRestFullAPI.DataAccess
 
         public DbSet<Activity> activity {get; set;}
         public DbSet<ActivityType> activity_type{get; set;}
+        public DbSet<Group> groups { set; get; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

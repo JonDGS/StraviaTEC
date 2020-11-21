@@ -58,7 +58,7 @@ namespace StraviaTECRestFullAPI.DataAccess
 
         /*
        Description: CRUD Operations for AthletesEnrollsChallenge
-      */
+       */
         void AddChallengeEnrollmentRecord(AthleteEnrollsChallenge atEnCh, string token);
         void UpdateChallengeEnrollmentRecord(AthleteEnrollsChallenge atEnCh);
         void DeleteChallengeEnrollmentRecord(int id);
@@ -67,7 +67,7 @@ namespace StraviaTECRestFullAPI.DataAccess
 
         /*
        Description: CRUD Operations for AthletesEnrollsRace
-      */
+       */
         void AddRaceEnrollmentRecord(AthleteEnrollsRace atEnRa, string token);
         void UpdateRaceEnrollmentRecord(AthleteEnrollsRace atEnRa);
         void DeleteRaceEnrollmentRecord(int id);
@@ -84,6 +84,17 @@ namespace StraviaTECRestFullAPI.DataAccess
         List<Activity> GetActivityByToken(string token);
         List<Activity> GetActivityRecords();
         List<ActivityType> GetActivityTypes();
+        /*
+       Description: CRUD Operations for group
+      */
+        void AddGroupRecord(Group group, string token);
+        void UpdateGroupRecord(Group group);
+        void DeleteGroupRecord(string idgroup);
+        Group GetGroupSingleRecord(string idgroup);
+        List<Group> GetGroupRecords();
+        List<Group> GetGroupByToken(string token);
+
+
 
     }
 }
