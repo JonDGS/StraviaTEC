@@ -1,9 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using StraviaTECRestFullAPI.Models;
 using StraviaTECRestFullAPI.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Cors;
+using StraviaTECRestFullAPI.DataAccess;
+using System.IO;
+using System.Net.Http;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -25,6 +30,14 @@ namespace StraviaTECRestFullAPI.Controllers
             int distancetravelled = int.Parse(Request.Form["distancetravelled"].ToString());
 
             return Connector.createChallenge(token, name, startdate, finishdate, activity_type, challengetype, distancetravelled);
+        }
+
+        [HttpGet("Challenges")]
+        public List<FoundChallenge> getChallenges()
+        {
+            List<FoundChallenge> found = Connector.getChallenges();
+            
+            return found;
         }
     }
 }
