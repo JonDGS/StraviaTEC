@@ -2,6 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {OrganizerService} from '../../organizer.service';
 import {Challenge} from '../../../models/challenge.model';
 import {NgForm} from '@angular/forms';
+import { FnParam } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-organizer-challenges',
@@ -19,6 +20,16 @@ export class OrganizerChallengesComponent implements OnInit {
   }
 
   addChallenge(): void {
-    console.log(this.challengeForm);
+    
+    let object = {
+      "token" :  null,
+      "name"  : this.challengeForm.value.name,
+      "startdate" : this.challengeForm.value.period,
+      "finishdate" : this.challengeForm.value.period,
+      "activity_type" : this.challengeForm.value.activityType,
+      "challengetype" : this.challengeForm.value.type,
+      "distancetravelled" : this.challengeForm.value.distance
+    }
+    this.oService.postChallange(object);
   }
 }

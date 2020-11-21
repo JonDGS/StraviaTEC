@@ -36,7 +36,10 @@ export class RegisterComponent implements OnInit {
         "birthyear":date.getFullYear(),
     }
     //console.log(object);
-    this.hService.registerAthlete(object);  
+    this.hService.registerAthlete(object);
+    alert('Register successfully')  
+    this.userForm.reset();
+    
       return;
     }else{
       let object = {
@@ -52,6 +55,9 @@ export class RegisterComponent implements OnInit {
     }
       //console.log(object);
       this.hService.registerOrganizer(object);  
+      alert('Register successfully') 
+      this.userForm.reset();
+      
     }
     
  

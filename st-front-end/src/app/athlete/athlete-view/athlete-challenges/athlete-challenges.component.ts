@@ -1,3 +1,4 @@
+import { ServerService } from './../../../server.service';
 import { Component, OnInit } from '@angular/core';
 import {Challenge} from '../../../models/challenge.model';
 import {AthleteService} from '../../athlete.service';
@@ -13,11 +14,13 @@ import {AthleteService} from '../../athlete.service';
  * is made by creating a list of athlete-challenges-item components
  */
 export class AthleteChallengesComponent implements OnInit {
-  challenges: Challenge[];
+  public challenges;
 
-  constructor(private aService: AthleteService) { }
+  constructor(private aService: AthleteService, private server: ServerService) { }
 
   ngOnInit(): void {
-    this.challenges = this.aService.challenges;
+    this.server.getChallanges().then( res => {
+      this.challenges = res;
+    })
   }
 }

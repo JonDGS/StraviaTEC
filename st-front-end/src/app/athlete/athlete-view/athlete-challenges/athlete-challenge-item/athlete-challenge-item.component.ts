@@ -1,3 +1,4 @@
+import { ServerService } from './../../../../server.service';
 import {Component, Input, OnInit} from '@angular/core';
 import {Challenge} from '../../../../models/challenge.model';
 
@@ -12,9 +13,9 @@ import {Challenge} from '../../../../models/challenge.model';
  * to join it
  */
 export class AthleteChallengeItemComponent implements OnInit {
-  @Input() challenge: Challenge;
+  @Input() challenge:any;
 
-  constructor() { }
+  constructor(private server: ServerService) { }
 
   ngOnInit(): void {
   }
@@ -22,8 +23,9 @@ export class AthleteChallengeItemComponent implements OnInit {
   /**
    * This method is called when a challenge-item join button is clicked
    */
-  onJoinChallenge(): void{
-    console.log(this.challenge.name + ' joined!');
+  onJoinChallenge( id_challange): void{
+    this.server.joinChallange(id_challange);
+    alert('successfully join a challange')
   }
 }
 
