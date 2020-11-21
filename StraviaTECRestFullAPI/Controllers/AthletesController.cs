@@ -126,5 +126,18 @@ namespace StraviaTECRestFullAPI.Controllers
 
             return null;
         }
+
+        [HttpGet("GetInfo")]
+        public FoundAthlete getInfoOfAthleteByToken([FromQuery] string token)
+        {
+            bool isUserLoggedIn = Connector.validateToken(token);
+
+            if (isUserLoggedIn)
+            {
+                return Connector.getAthleteInfoByToken(token);
+            }
+
+            return null;
+        }
     }
 }

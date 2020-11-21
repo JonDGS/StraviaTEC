@@ -178,5 +178,20 @@ namespace StraviaTECRestFullAPI.Utilities
                 return result;
             }
         }
+
+        public static FoundAthlete getAthleteInfoByToken(string token)
+        {
+            connection.Open();
+
+            using (NpgsqlCommand cmd = new NpgsqlCommand("\"GetUsernameBasedOnToken\"", connection))
+            {
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("_token", token);
+                string result = (string)cmd.ExecuteScalar();
+                connection.Close();
+
+                return searchAthleteBasedOnTerm(result)[0];
+            }
+        }
     }
 }
