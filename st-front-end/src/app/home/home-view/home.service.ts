@@ -1,6 +1,9 @@
 import { ServerService } from './../../server.service';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import {AthleteService} from '../../athlete/athlete.service';
+import {Router} from '@angular/router';
+import {DomSanitizer} from '@angular/platform-browser';
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +30,7 @@ export class HomeService {
 /********************************************** */
 
 
-  constructor(private server : ServerService,private sanitizer:DomSanitizer,private athlete:AthleteService,private router: Router) {
+  constructor(private server : ServerService,private sanitizer: DomSanitizer,private athlete: AthleteService,private router: Router) {
 
    }
 

@@ -1,1 +1,143 @@
 <app-organizer-navbar></app-organizer-navbar>
+<div class="row">
+  <div class="col-6">
+    <div class="card my-settings-info-card">
+      <!--<img src="..."  alt="...">-->
+      <div class="card-body">
+        <h5 class="card-title">General Information</h5>
+        <p class="card-text">
+          Name: {{ organizer.name }} {{ organizer.lastName1 }} {{ organizer.lastName2 }}<br>
+          Location: {{ organizer.country }}, {{ organizer.state }}, {{ organizer.city }}<br>
+          Username: {{ organizer.username }}
+        </p>
+      </div>
+    </div>
+    <div class="card my-settings-info-card">
+      <div class="card-body">
+        <button
+          class="btn-danger btn btn-block"
+          (click)="onDeleteAccount()"
+        >Delete Account</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-6">
+    <div class="card my-settings-update-card">
+      <!--<img src="..."  alt="...">-->
+      <div class="card-body">
+        <form (ngSubmit)="onUpdateProfile()" #updateProfileForm="ngForm">
+          <h5 class="card-title">Update General Information</h5>
+
+          <!--Full Name-->
+          <div class="form-row">
+            <div class="col">
+              <!--Name-->
+              <label for="newName">Name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="newName"
+                name="newName"
+                [ngModel]="oName"
+                required>
+            </div>
+            <div class="col">
+              <!--Last Name 1-->
+              <label for="newLastName1">First Last Name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="newLastName1"
+                name="newLastName1"
+                [ngModel]="oLastName1"
+                required>
+            </div>
+            <div class="col">
+              <!--Last Name 2-->
+              <label for="newLastName2">Second Last Name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="newLastName2"
+                name="newLastName2"
+                [ngModel]="oLastName2"
+                required>
+            </div>
+          </div>
+
+          <!--Location-->
+          <div class="form-row">
+            <div class="col">
+              <!--Country-->
+              <label for="newCountry">Country</label>
+              <input
+                type="text"
+                class="form-control"
+                id="newCountry"
+                name="newCountry"
+                [ngModel]="oCountry"
+                required>
+            </div>
+            <div class="col">
+              <!--State-->
+              <label for="newState">State</label>
+              <input
+                type="text"
+                class="form-control"
+                id="newState"
+                name="newState"
+                [ngModel]="oState"
+                required>
+            </div>
+            <div class="col">
+              <!--City-->
+              <label for="newCity">City</label>
+              <input
+                type="text"
+                class="form-control"
+                id="newCity"
+                name="newCity"
+                [ngModel]="oCity"
+                required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="col">
+              <!--Birthday-->
+              <label for="newBirthday">Birthday</label>
+              <input
+                type="date"
+                class="form-control"
+                id="newBirthday"
+                name="newBirthday"
+                ngModel
+                required>
+            </div>
+          </div>
+
+
+          <br>
+          <h5 class="card-title">Update Account Information</h5>
+
+          <!--Password-->
+          <label for="newPassword">New password</label>
+          <input
+            type="password"
+            class="form-control"
+            id="newPassword"
+            name="newPassword"
+            ngModel
+            required>
+
+          <br>
+          <button
+            class="btn btn-success"
+            type="submit"
+            [disabled]="!updateProfileForm.valid">Update Profile</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

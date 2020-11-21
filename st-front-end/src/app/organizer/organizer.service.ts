@@ -4,11 +4,23 @@ import {Challenge} from '../models/challenge.model';
 import {Group} from '../models/group.model';
 import {Athlete} from '../models/athlete.model';
 import {Race} from '../models/race.model';
+import {Organizer} from '../models/organizer.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class OrganizerService {
+  currentOrganizer = new Organizer(
+    'alvar',
+    '',
+    '123',
+    'San Jose',
+    'San Jose',
+    'Costa Rica',
+    'Alvaro',
+    'Vargas',
+    'Molina');
+
   /*
     Used for checking if the organizer home page view was changed (/organizer), mainly works for activating the return button
     on the organizer-navbar
@@ -16,8 +28,8 @@ export class OrganizerService {
   changedView = false;
 
 
-  constructor(private server:ServerService) {
-    
+  constructor(private server: ServerService) {
+
   }
 
   // These lists are for showing the created challenges, groups and races
@@ -64,11 +76,11 @@ export class OrganizerService {
     return this.server.getRacesByToken();
   }
   logout(){
- 
+
   }
   /**
-   * 
-   * @param race 
+   *
+   * @param race
    */
   postRace(race){
     this.server.postRace(race);
