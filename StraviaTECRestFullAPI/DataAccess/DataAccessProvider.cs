@@ -551,5 +551,10 @@ namespace StraviaTECRestFullAPI.DataAccess
             return _context.activity.Where(a => a.id_athlete == id_athlete).ToList();
         }
 
+        public List<ActivityType> GetActivityTypes() 
+        {
+            return _context.activity_type.ToList();
+        }
+
     }
 }

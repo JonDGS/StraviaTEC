@@ -24,6 +24,7 @@ namespace StraviaTECRestFullAPI.DataAccess
         public DbSet<AthleteEnrollsRace> athleteenrollsraces { get; set; }
 
         public DbSet<Activity> activity {get; set;}
+        public DbSet<ActivityType> activity_type{get; set;}
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

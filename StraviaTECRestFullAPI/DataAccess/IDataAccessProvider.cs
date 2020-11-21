@@ -82,6 +82,7 @@ namespace StraviaTECRestFullAPI.DataAccess
         Activity GetActivitySingleRecord(string actId);
         List<Activity> GetActivityByToken(string token);
         List<Activity> GetActivityRecords();
+        List<ActivityType> GetActivityTypes();
 
     }
 }

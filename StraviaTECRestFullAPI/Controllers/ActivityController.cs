@@ -26,6 +26,11 @@ namespace StraviaTECRestFullAPI.Controllers
         {
             return _dataAccessProvider.GetActivityRecords();
         }
+        [HttpGet("GetTypes")]
+        public IEnumerable<ActivityType> GetTypes()
+        {
+            return _dataAccessProvider.GetActivityTypes();
+        }
 
         [HttpPost("{token}")]
         public IActionResult Create([FromBody] Activity activity, string token)
