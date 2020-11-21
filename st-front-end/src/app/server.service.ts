@@ -128,7 +128,7 @@ setToken(token){
   }
 
   async getInfo(){
-    return await this.http.get(`http://jongs.mynetgear.com:27799/api/athletes/GetInfo?token=${this.token}`).toPromise();
+    return await this.http.get(`http://jongs.mynetgear.com:27799/api/athletes/${this.token}`).toPromise();
   }
 
   async getChallanges(){

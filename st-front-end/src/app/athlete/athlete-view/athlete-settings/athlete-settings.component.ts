@@ -1,3 +1,4 @@
+import { ServerService } from './../../../server.service';
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {Athlete} from '../../../models/athlete.model';
 import {AthleteService} from '../../athlete.service';
@@ -14,7 +15,7 @@ import {NgForm} from '@angular/forms';
  */
 export class AthleteSettingsComponent implements OnInit {
   @ViewChild('updateProfileForm') profileForm: NgForm;
-  athlete: Athlete;
+  athlete: any;
   aName: string;
   aLastName: string;
   aNationality: string;
@@ -22,12 +23,14 @@ export class AthleteSettingsComponent implements OnInit {
   aState: string;
   aCity: string;
 
-  constructor(private aService: AthleteService) { }
+  constructor(private aService: AthleteService, private server:ServerService) { }
 
   ngOnInit(): void {
-    this.athlete = this.aService.currentUser;
+    this.server.getInfo().then(res => {
+      this.athlete = res;
+    })
     this.aName = this.athlete.name;
-    this.aLastName = this.athlete.lastName;
+    this.aLastName = this.athlete.lastname_1;
     this.aNationality = this.athlete.nationality;
     this.aCountry = this.athlete.country;
     this.aState = this.athlete.state;
