@@ -7,6 +7,10 @@ using System.Threading.Tasks;
 
 namespace StraviaTECRestFullAPI.DataAccess
 {
+    /*
+     * Description:This class is where all the DB config is placed.
+    */
+      
     public class PostgreSqlContext : DbContext
     {
         public PostgreSqlContext(DbContextOptions<PostgreSqlContext> options) : base(options)
@@ -26,6 +30,10 @@ namespace StraviaTECRestFullAPI.DataAccess
         public DbSet<Activity> activity {get; set;}
         public DbSet<ActivityType> activity_type{get; set;}
         public DbSet<Group> groups { set; get; }
+        public DbSet<RaceSponsorship> racehassponsor { get; set; }
+
+        public DbSet<ChallengeSponsorship> challengehassponsor { get; set; }
+        public DbSet<Challenge> challenge { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

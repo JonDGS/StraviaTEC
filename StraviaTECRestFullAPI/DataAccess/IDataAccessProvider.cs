@@ -64,6 +64,8 @@ namespace StraviaTECRestFullAPI.DataAccess
         void DeleteChallengeEnrollmentRecord(int id);
         AthleteEnrollsChallenge GetChallengeEnrollmentSingleRecord(int id);
         List<AthleteEnrollsChallenge> GetChallengeEnrollmentRecords();
+        List<Challenge> GetChallengeEnrollmentByToken(string athletetoken);
+
 
         /*
        Description: CRUD Operations for AthletesEnrollsRace
@@ -73,6 +75,7 @@ namespace StraviaTECRestFullAPI.DataAccess
         void DeleteRaceEnrollmentRecord(int id);
         AthleteEnrollsRace GetRaceEnrollmentSingleRecord(int id);
         List<AthleteEnrollsRace> GetRaceEnrollmentRecords();
+        List<Race> GetRaceEnrollmentByToken(string athletetoken);
 
         /*
         Description: CRUD Operations for Activity
@@ -93,6 +96,28 @@ namespace StraviaTECRestFullAPI.DataAccess
         Group GetGroupSingleRecord(string idgroup);
         List<Group> GetGroupRecords();
         List<Group> GetGroupByToken(string token);
+
+        /*
+        Description: CRUD Operations for RaceSponsorship 
+       */
+        void AddRaceSponsorshipRecord(RaceSponsorship raceSponsorship);
+        void UpdateRaceSponsorshipRecord(RaceSponsorship raceSponsorship);
+        void DeleteRaceSponsorshipRecord(string id);
+        RaceSponsorship GetRaceSponsorshipSingleRecord(string id);
+        List<RaceSponsorship> GetRaceSponsorshipRecords();
+        List<RaceSponsorship> GetRaceSponsorshipByIDRace(string id);
+
+        /*
+        Description: CRUD Operations for ChallengeSponsorship 
+       */
+        void AddChallengeSponsorshipRecord(ChallengeSponsorship challengeSponsorship);
+        void UpdateChallengeSponsorshipRecord(ChallengeSponsorship challengeSponsorship);
+        void DeleteChallengeSponsorshipRecord(string id);
+        ChallengeSponsorship GetChallengeSponsorshipSingleRecord(string id);
+        List<ChallengeSponsorship> GetChallengeSponsorshipRecords();
+        List<ChallengeSponsorship> GetChallengeSponsorshipByIDChallenge(string id);
+
+
 
 
 

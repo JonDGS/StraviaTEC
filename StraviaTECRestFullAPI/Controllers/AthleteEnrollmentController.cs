@@ -66,6 +66,11 @@ namespace StraviaTECRestFullAPI.Controllers
             _dataAccessProvider.DeleteChallengeEnrollmentRecord(id);
             return Ok();
         }
+        [HttpGet("ChallengeEnrollment/GetChallenges/{token}")]
+        public List<Challenge> DetailChallengeEnrolled(string token)
+        {
+            return _dataAccessProvider.GetChallengeEnrollmentByToken(token);
+        }
 
         [HttpGet("RaceEnrollment")]
         public IEnumerable<AthleteEnrollsRace> GetRaceEnrollment()
@@ -88,6 +93,12 @@ namespace StraviaTECRestFullAPI.Controllers
         public AthleteEnrollsRace DetailsAthleteEnrollsRace(int id)
         {
             return _dataAccessProvider.GetRaceEnrollmentSingleRecord(id);
+        }
+
+        [HttpGet("RaceEnrollment/GetRaces/{token}")]
+        public List<Race> DetailRaceEnrolled(string token)
+        {
+            return _dataAccessProvider.GetRaceEnrollmentByToken(token);
         }
 
         [HttpPut("RaceEnrollment")]

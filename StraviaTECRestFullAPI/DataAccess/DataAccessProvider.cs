@@ -444,6 +444,17 @@ namespace StraviaTECRestFullAPI.DataAccess
             return _context.athleteenrollschallenges.ToList();
         }
         /*
+        Description:Gets challenges according to a specified token
+        Params:token
+        Output: List of Challenge object
+       */
+        public List<Challenge> GetChallengeEnrollmentByToken(string token)
+        {
+            string id_athlete = _context.onlineusers.Where(ou => ou.token == token).Select(a => a.id_athlete_fk).SingleOrDefault();
+            var id_challenges = _context.athleteenrollschallenges.Where(aec => aec.id_athlete == id_athlete).Select(ch => ch.id_challenge).ToArray();
+            return _context.challenge.Where(r => id_challenges.Contains(r.id_challenge)).ToList();
+        }
+        /*
       Description:Adds a race to AthleteEnrollsRace table 
       Params:Object AthleteEnrollsRace
       Output:None
@@ -493,6 +504,17 @@ namespace StraviaTECRestFullAPI.DataAccess
         public List<AthleteEnrollsRace> GetRaceEnrollmentRecords()
         {
             return _context.athleteenrollsraces.ToList();
+        }
+        /*
+        Description:Gets an athlete according to a specified id 
+        Params:id athlete
+        Output: Athlete object
+       */
+        public List<Race> GetRaceEnrollmentByToken(string token)
+        {
+            string id_athlete = _context.onlineusers.Where(ou => ou.token == token).Select(a => a.id_athlete_fk).SingleOrDefault();
+            var id_races = _context.athleteenrollsraces.Where(aer => aer.id_athlete == id_athlete).Select(r => r.id_race).ToArray();
+            return _context.race.Where(r => id_races.Contains(r.id_race)).ToList();
         }
         /*
        Description:Adds an Activity to Activity table 
@@ -628,6 +650,130 @@ namespace StraviaTECRestFullAPI.DataAccess
         {
             string id_organizer = _context.onlineusers.Where(ou => ou.token == token).Select(a => a.id_organizer_fk).SingleOrDefault();
             return _context.groups.Where(t => t.id_organizer == id_organizer).ToList();
+        }
+
+        /*
+       Description:Adds a RaceSponsorship to RaceSponsorship table 
+       Params:Object RaceSponsorship
+       Output:None
+      */
+        public void AddRaceSponsorshipRecord(RaceSponsorship rsponsorship)
+        {
+            
+            _context.racehassponsor.Add(rsponsorship);
+            _context.SaveChanges();
+        }
+        /*
+        Description:Updates a RaceSponsorship to RaceSponsorship table 
+        Params:Object RaceSponsorship
+        Output:None
+       */
+        public void UpdateRaceSponsorshipRecord(RaceSponsorship rsponsorship)
+        {
+            _context.racehassponsor.Update(rsponsorship);
+            _context.SaveChanges();
+        }
+        /*
+        Description:Deletes an RaceSponsorship to RaceSponsorship table 
+        Params:id ChallengeSponsorship
+        Output:None
+       */
+        public void DeleteRaceSponsorshipRecord(string id)
+        {
+
+            var entity = _context.racehassponsor.FirstOrDefault(r => r.id == id);
+            _context.racehassponsor.Remove(entity);
+            _context.SaveChanges();
+        }
+        /*
+        Description:Gets an RaceSponsorship to RaceSponsorship table 
+        Params:id RaceSponsorship
+        Output:RaceSponsorship object
+       */
+        public RaceSponsorship GetRaceSponsorshipSingleRecord(string id)
+        {
+            return _context.racehassponsor.FirstOrDefault(r => r.id == id);
+        }
+
+        /*
+        Description:Gets all the RaceSponsorship in RaceSponsorship table 
+        Params:none
+        Output:List of all the RaceSponsorship
+       */
+        public List<RaceSponsorship> GetRaceSponsorshipRecords()
+        {
+            return _context.racehassponsor.ToList();
+        }
+        /*
+       Description:Gets a Group to Group table by token
+       Params:token
+       Output:Organizer object
+      */
+        public List<RaceSponsorship> GetRaceSponsorshipByIDRace(string idrace)
+        {
+            var raceList = _context.racehassponsor.Where(r => r.id_race == idrace).ToList();
+            return raceList;
+        }
+        /*
+        Description:Adds a ChallengeSponsorship to ChallengeSponsorship table 
+        Params:Object ChallengeSponsorship
+        Output:None
+       */
+        public void AddChallengeSponsorshipRecord(ChallengeSponsorship chsponsorship)
+        {
+            _context.challengehassponsor.Add(chsponsorship);
+            _context.SaveChanges();
+        }
+        /*
+        Description:Updates a ChallengeSponsorship to ChallengeSponsorship table 
+        Params:Object ChallengeSponsorship
+        Output:None
+       */
+        public void UpdateChallengeSponsorshipRecord(ChallengeSponsorship chsponsorship)
+        {
+            _context.challengehassponsor.Update(chsponsorship);
+            _context.SaveChanges();
+        }
+        /*
+        Description:Deletes an ChallengeSponsorship to ChallengeSponsorship table 
+        Params:id ChallengeSponsorship
+        Output:None
+       */
+        public void DeleteChallengeSponsorshipRecord(string id)
+        {
+
+            var entity = _context.challengehassponsor.FirstOrDefault(t => t.id == id);
+            _context.challengehassponsor.Remove(entity);
+            _context.SaveChanges();
+        }
+        /*
+        Description:Gets an ChallengeSponsorship to ChallengeSponsorship table 
+        Params:id ChallengeSponsorship
+        Output:ChallengeSponsorship object
+       */
+        public ChallengeSponsorship GetChallengeSponsorshipSingleRecord(string id)
+        {
+            return _context.challengehassponsor.FirstOrDefault(ch => ch.id == id);
+        }
+
+        /*
+        Description:Gets all the Group in Group table 
+        Params:none
+        Output:List of all the Group
+       */
+        public List<ChallengeSponsorship> GetChallengeSponsorshipRecords()
+        {
+            return _context.challengehassponsor.ToList();
+        }
+        /*
+       Description:Gets a Group to Group table by token
+       Params:token
+       Output:Organizer object
+      */
+        public List<ChallengeSponsorship> GetChallengeSponsorshipByIDChallenge(string id)
+        {
+            var id_organizer = _context.challengehassponsor.Where(ch => ch.id == id).ToList();
+            return id_organizer;
         }
 
     }
