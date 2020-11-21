@@ -35,16 +35,20 @@ namespace StraviaTECRestFullAPI.Controllers
             return BadRequest();
         }
 
-        [HttpGet("GetFollowees")]
-        public List<Athlete> Details([FromBody] FollowRequest followrequest)
+        [HttpGet("GetFollowees/{token}")]
+        public List<Athlete> Details(string token)
         {
-            return _dataAccessProvider.GetFolloweesRecord(followrequest);
+            FollowRequest followRequest = new FollowRequest();
+            followRequest.token = token;
+            return _dataAccessProvider.GetFolloweesRecord(followRequest);
         }
 
-        [HttpGet("GetFollowers")]
-        public List<Athlete> DetailsFollowers([FromBody] FollowRequest followrequest)
+        [HttpGet("GetFollowers/{token}")]
+        public List<Athlete> DetailsFollowers(string token)
         {
-            return _dataAccessProvider.GetFollowersRecord(followrequest);
+            FollowRequest followRequest = new FollowRequest();
+            followRequest.token = token;
+            return _dataAccessProvider.GetFollowersRecord(followRequest);
         }
 
         [HttpPut]

@@ -62,15 +62,15 @@ namespace StraviaTECRestFullAPI.Controllers
             return BadRequest();
         }
 
-        [HttpDelete("{token}")]
-        public IActionResult DeleteConfirmed(string token)
+        [HttpDelete("{id}")]
+        public IActionResult DeleteConfirmed(string id)
         {
-            var data = _dataAccessProvider.GetActivitySingleRecord(token);
+            var data = _dataAccessProvider.GetActivitySingleRecord(id);
             if (data == null)
             {
                 return NotFound();
             }
-            _dataAccessProvider.DeleteActivityRecord(token);
+            _dataAccessProvider.DeleteActivityRecord(id);
             return Ok();
         }
 

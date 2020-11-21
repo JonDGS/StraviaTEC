@@ -18,7 +18,7 @@ namespace StraviaTECRestFullAPI.Models
         public int d_month { get; set;}
         public int d_year { get; set;}
         public int distance { get; set;}
-        public string text { get; set;}
+        public string route { get; set;}
         public string id_athlete { get; set;}
         public string id_type { get; set;}
         [Key]

@@ -490,11 +490,12 @@ namespace StraviaTECRestFullAPI.DataAccess
        Params:Object Activity, token
        Output:None
       */
-        public void AddActivityRecord(Activity activty, string token)
+        public void AddActivityRecord(Activity activity, string token)
         {
             string id_athlete = _context.onlineusers.Where(ou => ou.token == token).Select(a => a.id_athlete_fk).SingleOrDefault();
-            activty.id_athlete = id_athlete;
-            _context.activity.Add(activty);
+            activity.id_athlete = id_athlete;
+            activity.duration = activity.closing_time - activity.starting_time;
+            _context.activity.Add(activity);
             _context.SaveChanges();
         }
         /*
@@ -504,6 +505,7 @@ namespace StraviaTECRestFullAPI.DataAccess
        */
         public void UpdateActivityRecord(Activity activity)
         {
+            activity.duration = activity.closing_time - activity.starting_time;
             _context.activity.Update(activity);
             _context.SaveChanges();
         }
@@ -512,10 +514,10 @@ namespace StraviaTECRestFullAPI.DataAccess
         Params:id Activity
         Output:none
        */
-        public void DeleteActivityRecord(string token)
+        public void DeleteActivityRecord(string id)
         {
-            string id_athlete = _context.onlineusers.Where(ou => ou.token == token).Select(a => a.id_athlete_fk).SingleOrDefault();
-            var entity = _context.activity.FirstOrDefault(t => t.id_athlete == id_athlete);
+            
+            var entity = _context.activity.FirstOrDefault(t => t.id_activity == id);
             _context.activity.Remove(entity);
             _context.SaveChanges();
         }
