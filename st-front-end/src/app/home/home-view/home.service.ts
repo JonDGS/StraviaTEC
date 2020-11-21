@@ -49,6 +49,7 @@ export class HomeService {
  */
 registerOrganizer(dataForm?){
   this.server.httpRegisterOrganizer(dataForm)
+  alert('Register succssefully')
 }
 
    /**
@@ -57,7 +58,6 @@ registerOrganizer(dataForm?){
    */
   goToPage(pageName:string){
     this.router.navigate([`${pageName}`]);
-    console.log("Login form");
   }
 /**
  *
@@ -66,22 +66,21 @@ registerOrganizer(dataForm?){
     this.server.httpLogin(params).subscribe(res =>{
 
       if(res['token'] != "NotRegistered" && res['token'] != "BadPassword"){
-        console.log(res);
-
+        
         if(res['id_athlete_fk'] != null){
           this.token = res['token'];
-          console.log(res['token']);
           this.athlete.setToken(this.token);
           this.server.setToken(this.token)
           this.goToPage('athlete');
           return;
         }
         this.token = res['token'];
-        console.log(res['token']);
         this.athlete.setToken(this.token);
         this.server.setToken(this.token)
         this.goToPage('organizer');
+        return;
       }
+      alert("wrong username or password")
 
     });
   }

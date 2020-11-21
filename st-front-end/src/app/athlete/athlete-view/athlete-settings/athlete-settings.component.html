@@ -6,21 +6,18 @@
       <div class="card-body">
         <h5 class="card-title">General Information</h5>
         <p class="card-text">
-          Name: {{ athlete.name }} {{ athlete.lastName1 }} {{ athlete.lastName2 }}<br>
-          Nationality: {{ athlete.nationality }}<br>
-          Location: {{ athlete.country }}, {{ athlete.state }}, {{ athlete.city }}<br>
-          Birthday: {{ athlete.birthday }}<br>
-          Age: {{ athlete.age }}<br>
-          Username: {{ athlete.username }}
+          Name: {{ athlete.username }} <br />
+          Nationality: {{ athlete.nationality }}<br />
+          Location: {{ athlete.country }}, {{ athlete.state }}, {{ athlete.city
+          }}<br />
+          Birthday: {{ athlete.birthday }}<br />
+          Age: {{ athlete.age }}<br />
         </p>
-      </div>
-    </div>
-    <div class="card my-settings-info-card">
-      <div class="card-body">
-        <button
-          class="btn-danger btn btn-block"
-          (click)="onDeleteAccount()"
-        >Delete Account</button>
+        <h5 class="card-title">Account Information</h5>
+        <p class="card-text">
+          Username: {{ athlete.username }}<br />
+          Password: {{ athlete.password }}<br />
+        </p>
       </div>
     </div>
   </div>
@@ -43,7 +40,8 @@
                 id="newName"
                 name="newName"
                 [ngModel]="aName"
-                required>
+                required
+              />
             </div>
             <div class="col">
               <!--Last Name 1-->
@@ -54,7 +52,8 @@
                 id="newLastName1"
                 name="newLastName1"
                 [ngModel]="aLastName1"
-                required>
+                required
+              />
             </div>
             <div class="col">
               <!--Last Name 2-->
@@ -65,7 +64,8 @@
                 id="newLastName2"
                 name="newLastName2"
                 [ngModel]="aLastName2"
-                required>
+                required
+              />
             </div>
           </div>
 
@@ -79,7 +79,8 @@
                 id="newNationality"
                 name="newNationality"
                 [ngModel]="aNationality"
-                required>
+                required
+              />
             </div>
           </div>
 
@@ -94,7 +95,8 @@
                 id="newCountry"
                 name="newCountry"
                 [ngModel]="aCountry"
-                required>
+                required
+              />
             </div>
             <div class="col">
               <!--State-->
@@ -105,7 +107,8 @@
                 id="newState"
                 name="newState"
                 [ngModel]="aState"
-                required>
+                required
+              />
             </div>
             <div class="col">
               <!--City-->
@@ -116,7 +119,8 @@
                 id="newCity"
                 name="newCity"
                 [ngModel]="aCity"
-                required>
+                required
+              />
             </div>
           </div>
 
@@ -130,12 +134,12 @@
                 id="newBirthday"
                 name="newBirthday"
                 ngModel
-                required>
+                required
+              />
             </div>
           </div>
 
-
-          <br>
+          <br />
           <h5 class="card-title">Update Account Information</h5>
 
           <!--Password-->
@@ -146,13 +150,17 @@
             id="newPassword"
             name="newPassword"
             ngModel
-            required>
+            required
+          />
 
-          <br>
+          <br />
           <button
             class="btn btn-success"
             type="submit"
-            [disabled]="!updateProfileForm.valid">Update Profile</button>
+            [disabled]="!updateProfileForm.valid"
+          >
+            Update Profile
+          </button>
         </form>
       </div>
     </div>
