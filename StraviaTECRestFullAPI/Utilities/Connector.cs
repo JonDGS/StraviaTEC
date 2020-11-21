@@ -159,26 +159,6 @@ namespace StraviaTECRestFullAPI.Utilities
             }
         }
 
-        public static bool createChallenge(string token, string name, string startDate, string finishDate, string activity_type)
-        {
-            connection.Open();
-
-            using (NpgsqlCommand cmd = new NpgsqlCommand("\"CreateChallenge\"", connection))
-            {
-                cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("_name", name);
-                cmd.Parameters.AddWithValue("_startDate", startDate);
-                cmd.Parameters.AddWithValue("_finishDate", finishDate);
-                cmd.Parameters.AddWithValue("_activity_type", activity_type);
-                cmd.Parameters.AddWithValue("_token", token);
-                bool result = (bool)cmd.ExecuteScalar();
-
-                connection.Close();
-
-                return result;
-            }
-        }
-
         public static FoundAthlete getAthleteInfoByToken(string token)
         {
             connection.Open();
@@ -253,6 +233,24 @@ namespace StraviaTECRestFullAPI.Utilities
                 connection.Close();
 
                 return foundChallenges;
+            }
+        }
+
+        public static bool saveGPXForActivity(string token, string id, string gpx)
+        {
+            connection.Open();
+
+            using (NpgsqlCommand cmd = new NpgsqlCommand("\"UploadRouteForActivity\"", connection))
+            {
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("_token", token);
+                cmd.Parameters.AddWithValue("_name", id);
+                cmd.Parameters.AddWithValue("_route", gpx);
+                bool result = (bool)cmd.ExecuteScalar();
+
+                connection.Close();
+
+                return result;
             }
         }
     }

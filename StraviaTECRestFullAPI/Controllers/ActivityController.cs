@@ -39,7 +39,7 @@ namespace StraviaTECRestFullAPI.Controllers
             {
                 Guid obj = Guid.NewGuid();
                 activity.id_activity = obj.ToString();
-                _dataAccessProvider.AddActivityRecord(activity,token);
+                _dataAccessProvider.AddActivityRecord(activity, token);
                 return Ok();
             }
             return BadRequest();
@@ -77,6 +77,19 @@ namespace StraviaTECRestFullAPI.Controllers
             }
             _dataAccessProvider.DeleteActivityRecord(id);
             return Ok();
+        }
+
+        [HttpPost("uploadGPX")]
+        public bool uploadGPX([FromQuery] string token, [FromQuery] string id, FileUPloadAPI gpx)
+        {
+            string result = FileManager.saveFile(gpx, token, id, "activity");
+
+            if (!(result == null))
+            {
+                return true;
+            }
+
+            return false;
         }
 
     }

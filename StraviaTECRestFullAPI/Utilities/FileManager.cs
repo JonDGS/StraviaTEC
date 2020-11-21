@@ -15,11 +15,12 @@ namespace StraviaTECRestFullAPI.Utilities
             return extension.ToLower();
         }
         
-        public static string saveFile(FileUPloadAPI file, string token)
+        public static string saveFile(FileUPloadAPI file, string token, string id, string type)
         {
             string fileName = file.files.FileName;
             string destination = AppDomain.CurrentDomain.BaseDirectory + "/Database";
 
+            bool isGPX = false;
 
             switch (findExtension(fileName))
             {
@@ -34,6 +35,7 @@ namespace StraviaTECRestFullAPI.Utilities
                     break;
                 case ".gpx":
                     destination += "/gpxs/";
+                    isGPX = true;
                     break;
                 default:
                     return null;
@@ -46,7 +48,25 @@ namespace StraviaTECRestFullAPI.Utilities
 
             string fullPath = destination + "/" + file.files.FileName;
 
-            bool dbApproved = Connector.savePhoto(token, fullPath);
+            bool dbApproved;
+
+
+            if (!isGPX)
+            {
+                dbApproved = Connector.savePhoto(token, fullPath);
+            }
+            else
+            {
+                switch (type)
+                {
+                    case "activity":
+                        dbApproved = Connector.saveGPXForActivity(token, id, fullPath);
+                        break;
+                    default:
+                        dbApproved = false;
+                        break;
+                }
+            }
 
             if (dbApproved)
             {
