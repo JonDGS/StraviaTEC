@@ -8,7 +8,7 @@ import { Injectable } from '@angular/core';
 export class HomeService {
 
 /***********************************************
- * this data object is only for test porpuses 
+ * this data object is only for test porpuses
  */
   public data = {
   "username":"Dxnium",
@@ -40,12 +40,12 @@ export class HomeService {
   //     }
   //   );
   // }
-/**
- * Register Athlete
- * @param dataForm 
- */
-  register(dataForm?){
-    this.server.httpRegister(this.data)
+  /**
+   * Register Athlete
+   * @param dataForm of the registered athlete
+   */
+  register(dataForm?): void{
+    this.server.httpRegister(this.data);
   }
 
   login(){
