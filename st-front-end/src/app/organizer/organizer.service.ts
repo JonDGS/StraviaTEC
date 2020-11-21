@@ -1,3 +1,4 @@
+import { ServerService } from './../server.service';
 import { Injectable } from '@angular/core';
 import {Challenge} from '../models/challenge.model';
 import {Group} from '../models/group.model';
@@ -13,6 +14,11 @@ export class OrganizerService {
     on the organizer-navbar
    */
   changedView = false;
+
+
+  constructor(private server:ServerService) {
+    
+  }
 
   // These lists are for showing the created challenges, groups and races
   myCreatedChallenges = [
@@ -51,22 +57,27 @@ export class OrganizerService {
       '2',
       'Cris')
   ];
-  myCreatedRaces = [
-    new Race(
-      '1',
-      'Mario Circuit',
-      '4/4/2021',
-      '9000',
-      '',
-      'Kayak',
-      '123'),
-    new Race(
-      '2',
-      'Mew Mew Medows',
-      '7/7/2021',
-      '5000',
-      '',
-      'Running',
-      '321')
-  ];
+  public myCreatedRaces;
+
+
+  getRaces(){
+    return this.server.getRacesByToken();
+  }
+  logout(){
+ 
+  }
+  /**
+   * 
+   * @param race 
+   */
+  postRace(race){
+    this.server.postRace(race);
+  }
+
+  postGroup(group){
+    this.server.postGroup(group);
+  }
+  postChallange(challange){
+    this.server.postChallange(challange);
+  }
 }

@@ -1,12 +1,15 @@
+import { Router } from '@angular/router';
 import { ServerService } from './../../server.service';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import {DomSanitizer} from '@angular/platform-browser';
+import { AthleteService } from 'src/app/athlete/athlete.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HomeService {
-
+  public token;
 /***********************************************
  * this data object is only for test porpuses 
  */
@@ -27,29 +30,61 @@ export class HomeService {
 /********************************************** */
 
 
-  constructor(private server : ServerService) { }
+  constructor(private server : ServerService,private sanitizer:DomSanitizer,private athlete:AthleteService,private router: Router) {
+    
+   }
+  
 
-  // httpGET(){
-  //   return this.http.get(`http://jongs.mynetgear.com:45457/api/athletes`)
-  // }
-
-  // httpPost(){
-  //   this.http.post(`http://jongs.mynetgear.com:45457/api/athletes`,"").subscribe(
-  //     res=>{
-  //       console.log(res);
-  //     }
-  //   );
-  // }
 /**
  * Register Athlete
  * @param dataForm 
  */
-  register(dataForm?){
-    this.server.httpRegister(this.data)
+  registerAthlete(dataForm?){
+    this.server.httpRegisterAthlete(dataForm)
   }
 
-  login(){
-    this.server.httpLogin()
+  /**
+ * Register Athlete
+ * @param dataForm 
+ */
+registerOrganizer(dataForm?){
+  this.server.httpRegisterOrganizer(dataForm)
+}
+
+   /**
+   *
+   * @param page
+   */
+  goToPage(pageName:string){
+    this.router.navigate([`${pageName}`]);
+    console.log("Login form");
   }
+/**
+ * 
+ */
+  login(params){
+    this.server.httpLogin(params).subscribe(res =>{
+
+      if(res['token'] != "NotRegistered" && res['token'] != "BadPassword"){
+        console.log(res);
+        
+        if(res['id_athlete_fk'] != null){
+          this.token = res['token'];
+          console.log(res['token']);
+          this.athlete.setToken(this.token);
+          this.server.setToken(this.token)
+          this.goToPage('athlete');
+          return;
+        }
+        this.token = res['token'];
+        console.log(res['token']);
+        this.athlete.setToken(this.token);
+        this.server.setToken(this.token)
+        this.goToPage('organizer');
+      }
+
+    });
+  }
+
 
 }
