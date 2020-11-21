@@ -15,18 +15,36 @@ namespace StraviaTECRestFullAPI.Controllers
     public class TestingResource : ControllerBase
     {
         [HttpGet("TestingSearch")]
-        public List<Athlete> searchTerm()
+        public List<FoundAthlete> searchTerm()
         {
 
             string searchTerm = Request.Form["term"].ToString();
 
             string password = Request.Form["password"];
 
-            List<Athlete> test = null;
+            List<FoundAthlete> test = null;
 
             if (password.Equals("12345"))
             {
                 test = Connector.searchAthleteBasedOnTerm(searchTerm);
+            }
+
+            return test;
+        }
+
+        [HttpGet("CountActivies")]
+        public int countActivities()
+        {
+
+            string user = Request.Form["user"].ToString();
+
+            string password = Request.Form["password"];
+
+            int test = -1;
+
+            if (password.Equals("12345"))
+            {
+                test = Connector.getNumberOfActivitiesByAthlete(user);
             }
 
             return test;
