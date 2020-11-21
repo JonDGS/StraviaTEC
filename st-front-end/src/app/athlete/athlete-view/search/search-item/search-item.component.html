@@ -1,16 +1,22 @@
 <div *ngIf="searchItemType === 'athletes'" class="card search-card">
   <div class="card-body">
-    <h5 class="card-title">{{ searchItem.name }} {{ searchItem.lastName1 }} {{ searchItem.lastName2 }}</h5>
+    <h5 class="card-title">
+      {{ searchItem.name }} {{ searchItem.lastName1 }}
+      {{ searchItem.lastName2 }}
+    </h5>
     <div class="row">
       <div class="col-9">
-        Location: {{ searchItem.country }}, {{ searchItem.state }}<br>
-        Activities: 0 | Age: {{ searchItem.age }}<br>
+        Location: {{ searchItem.country }}, {{ searchItem.state }}<br />
+        Activities: {{ searchItem.activities }} | Age: {{ searchItem.age
+        }}<br />
       </div>
       <div class="col-3">
         <button
           class="btn btn-success btn-block"
           (click)="onFollowAthlete(searchItem.username)"
-        >Follow</button>
+        >
+          Follow
+        </button>
       </div>
     </div>
   </div>
@@ -21,14 +27,13 @@
     <h5 class="card-title">{{ searchItem.name }}</h5>
     <div class="row">
       <div class="col-9">
-        Date: {{ searchItem.date }} | Type: {{ searchItem.type }}<br>
-        Cost: {{ searchItem.cost }} | Bank Account: {{ searchItem.bankAccount }}<br>
+        Date: {{ searchItem.date }} | Type: {{ searchItem.type }}<br />
+        Cost: {{ searchItem.cost }} | Bank Account: {{ searchItem.bankAccount
+        }}<br />
         MOSTRAR GPX
       </div>
       <div class="col-3">
-        <button
-          class="btn btn-success btn-block"
-        >Upload Payment Ticket</button>
+        <button class="btn btn-success btn-block">Upload Payment Ticket</button>
       </div>
     </div>
   </div>
@@ -38,14 +43,18 @@
   <div class="card-body">
     <h5 class="card-title">{{ searchItem.name }}</h5>
     <div class="row">
-      <div class="col-9">
-        Admin: {{ searchItem.admin }}
-      </div>
+      <div class="col-9">Admin: {{ searchItem.admin }}</div>
       <div class="col-3">
+        <<<<<<< HEAD
+        <button class="btn btn-success btn-block">Join</button>
+        =======
         <button
           class="btn btn-success btn-block"
           (click)="onJoinGroup(searchItem.name)"
-        >Join</button>
+        >
+          Join
+        </button>
+        >>>>>>> 92c805d0c538feefbb9bd190b4dff8feea9f07a2
       </div>
     </div>
   </div>

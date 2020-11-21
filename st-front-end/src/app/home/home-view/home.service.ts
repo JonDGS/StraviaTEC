@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class HomeService {
-
+  public token;
 /***********************************************
  * this data object is only for test porpuses
  */
@@ -27,29 +27,61 @@ export class HomeService {
 /********************************************** */
 
 
-  constructor(private server : ServerService) { }
+  constructor(private server : ServerService,private sanitizer:DomSanitizer,private athlete:AthleteService,private router: Router) {
 
-  // httpGET(){
-  //   return this.http.get(`http://jongs.mynetgear.com:45457/api/athletes`)
-  // }
+   }
 
-  // httpPost(){
-  //   this.http.post(`http://jongs.mynetgear.com:45457/api/athletes`,"").subscribe(
-  //     res=>{
-  //       console.log(res);
-  //     }
-  //   );
-  // }
+
+/**
+ * Register Athlete
+ * @param dataForm
+ */
+  registerAthlete(dataForm?){
+    this.server.httpRegisterAthlete(dataForm)
+  }
+
   /**
-   * Register Athlete
-   * @param dataForm of the registered athlete
+ * Register Athlete
+ * @param dataForm
+ */
+registerOrganizer(dataForm?){
+  this.server.httpRegisterOrganizer(dataForm)
+}
+
+   /**
+   *
+   * @param page
    */
-  register(dataForm?): void{
-    this.server.httpRegister(this.data);
+  goToPage(pageName:string){
+    this.router.navigate([`${pageName}`]);
+    console.log("Login form");
+  }
+/**
+ *
+ */
+  login(params){
+    this.server.httpLogin(params).subscribe(res =>{
+
+      if(res['token'] != "NotRegistered" && res['token'] != "BadPassword"){
+        console.log(res);
+
+        if(res['id_athlete_fk'] != null){
+          this.token = res['token'];
+          console.log(res['token']);
+          this.athlete.setToken(this.token);
+          this.server.setToken(this.token)
+          this.goToPage('athlete');
+          return;
+        }
+        this.token = res['token'];
+        console.log(res['token']);
+        this.athlete.setToken(this.token);
+        this.server.setToken(this.token)
+        this.goToPage('organizer');
+      }
+
+    });
   }
 
-  login(){
-    this.server.httpLogin()
-  }
 
 }

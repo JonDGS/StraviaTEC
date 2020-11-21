@@ -2,13 +2,12 @@
   <div class="card-body">
     <h5 class="card-tittle">My Races</h5>
     <div *ngFor="let r of races">
-      - {{ r.name }} | {{ r.date }} | {{ r.type }} <br>
-      &nbsp;&nbsp;&nbsp;Bank Account: {{ r.bankAccount }} | Price: {{ r.cost}}
+      - {{ r.name }} | {{ r.date }} | <br />
+      &nbsp;&nbsp;&nbsp;Bank Account: {{ r.country }} | Price: {{ r.cost }}
     </div>
-    <br>
+    <br />
     <h5 class="card-tittle">Create New Race</h5>
     <form (ngSubmit)="addRace()" #newRace="ngForm">
-
       <div class="form-row">
         <!--Name-->
         <div class="col">
@@ -19,7 +18,8 @@
             name="name"
             id="raceName"
             ngModel
-            required>
+            required
+          />
         </div>
         <!--Date-->
         <div class="col">
@@ -30,7 +30,8 @@
             name="date"
             id="raceDate"
             ngModel
-            required>
+            required
+          />
         </div>
       </div>
 
@@ -44,7 +45,8 @@
             name="type"
             id="raceType"
             ngModel
-            required>
+            required
+          />
         </div>
         <!--GPX-->
         <div class="col">
@@ -55,7 +57,8 @@
             name="gpx"
             id="raceGPX"
             ngModel
-            required>
+            required
+          />
         </div>
       </div>
 
@@ -69,7 +72,8 @@
             name="race"
             id="raceCost"
             ngModel
-            required>
+            required
+          />
         </div>
         <!--Bank Account-->
         <div class="col">
@@ -80,16 +84,20 @@
             name="bankAccount"
             id="raceBankAccount"
             ngModel
-            required>
+            required
+          />
         </div>
       </div>
-      <br>
+      <br />
 
       <div class="form-row justify-content-center">
         <button
           type="submit"
           class="btn btn-success"
-          [disabled]="!newRace.valid">Create Race</button>
+          [disabled]="!newRace.valid"
+        >
+          Create Race
+        </button>
       </div>
     </form>
   </div>
