@@ -7,6 +7,10 @@ import {AthleteService} from '../../../athlete.service';
   templateUrl: './participating-races.component.html',
   styleUrls: ['./participating-races.component.css']
 })
+
+/**
+ * This class is used a widget for displaying the races the user is currently participating on
+ */
 export class ParticipatingRacesComponent implements OnInit {
   currentRaces: Race[];
 

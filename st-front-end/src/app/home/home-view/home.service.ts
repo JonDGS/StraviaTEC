@@ -1,9 +1,9 @@
-import { Router } from '@angular/router';
 import { ServerService } from './../../server.service';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import {AthleteService} from '../../athlete/athlete.service';
+import {Router} from '@angular/router';
 import {DomSanitizer} from '@angular/platform-browser';
-import { AthleteService } from 'src/app/athlete/athlete.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +11,7 @@ import { AthleteService } from 'src/app/athlete/athlete.service';
 export class HomeService {
   public token;
 /***********************************************
- * this data object is only for test porpuses 
+ * this data object is only for test porpuses
  */
   public data = {
   "username":"Dxnium",
@@ -30,14 +30,14 @@ export class HomeService {
 /********************************************** */
 
 
-  constructor(private server : ServerService,private sanitizer:DomSanitizer,private athlete:AthleteService,private router: Router) {
-    
+  constructor(private server : ServerService,private sanitizer: DomSanitizer,private athlete: AthleteService,private router: Router) {
+
    }
-  
+
 
 /**
  * Register Athlete
- * @param dataForm 
+ * @param dataForm
  */
   registerAthlete(dataForm?){
     this.server.httpRegisterAthlete(dataForm)
@@ -45,7 +45,7 @@ export class HomeService {
 
   /**
  * Register Athlete
- * @param dataForm 
+ * @param dataForm
  */
 registerOrganizer(dataForm?){
   this.server.httpRegisterOrganizer(dataForm)
@@ -60,7 +60,7 @@ registerOrganizer(dataForm?){
     this.router.navigate([`${pageName}`]);
   }
 /**
- * 
+ *
  */
   login(params){
     this.server.httpLogin(params).subscribe(res =>{

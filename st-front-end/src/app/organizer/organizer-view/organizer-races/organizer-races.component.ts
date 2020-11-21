@@ -8,6 +8,12 @@ import {NgForm} from '@angular/forms';
   templateUrl: './organizer-races.component.html',
   styleUrls: ['./organizer-races.component.css']
 })
+
+/**
+ * This class holds all the related information to the races of the organizer view. It holds a list of
+ * the created races of the current organizer, a form for adding a new race and section for editing and
+ * deleting the races
+ */
 export class OrganizerRacesComponent implements OnInit {
   @ViewChild('newRace') raceForm: NgForm;
   public races;
@@ -17,16 +23,19 @@ export class OrganizerRacesComponent implements OnInit {
   ngOnInit(): void {
     this.oService.getRaces().subscribe(res => {
       console.log(res);
-      
+
       this.races = res
       console.log(this.races);
-      
+
     }
     );
-    
-    
+
+
   }
 
+  /**
+   * This method is called when  a new race is created
+   */
   addRace(): void {
     let race = {
       "name": this.raceForm.value.name,
@@ -38,4 +47,10 @@ export class OrganizerRacesComponent implements OnInit {
       this.oService.postRace(race);
   }
 
+  /**
+   * This method is called when a race from the race list is deleted
+   * @param race to delete
+   */
+  onDeleteRace(race: Race): void {
+  }
 }

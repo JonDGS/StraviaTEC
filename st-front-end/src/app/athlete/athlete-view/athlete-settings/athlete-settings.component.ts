@@ -17,7 +17,8 @@ export class AthleteSettingsComponent implements OnInit {
   @ViewChild('updateProfileForm') profileForm: NgForm;
   athlete: any;
   aName: string;
-  aLastName: string;
+  aLastName1: string;
+  aLastName2: string;
   aNationality: string;
   aCountry: string;
   aState: string;
@@ -30,7 +31,8 @@ export class AthleteSettingsComponent implements OnInit {
       this.athlete = res;
     })
     this.aName = this.athlete.name;
-    this.aLastName = this.athlete.lastname_1;
+    this.aLastName1 = this.athlete.lastName1;
+    this.aLastName2 = this.athlete.lastName2;
     this.aNationality = this.athlete.nationality;
     this.aCountry = this.athlete.country;
     this.aState = this.athlete.state;
@@ -42,5 +44,14 @@ export class AthleteSettingsComponent implements OnInit {
    */
   onUpdateProfile(): void {
     console.log(this.profileForm);
+  }
+
+  /**
+   * This method is called when the user decides to delete its account
+   */
+  onDeleteAccount(): void {
+    if (confirm('Are you sure you want to delete your account? The information contained in it will be lost forever')) {
+      console.log(this.aService.currentUser.username + ' account is going to be deleted');
+    }
   }
 }

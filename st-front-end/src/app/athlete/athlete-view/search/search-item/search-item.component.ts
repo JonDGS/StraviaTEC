@@ -21,7 +21,20 @@ export class SearchItemComponent implements OnInit {
     this.searchItemType = this.aService.searchType;
   }
 
-  follow(username){
-    this.server.follow(username);
+  /**
+   * This method is called when a searched user is followed
+   * @param username of the followed athlete
+   */
+  onFollowAthlete(username: string): void{
+    console.log('Now following:' + username);
+  }
+
+  /**
+   * This method is called when a searched group is joined
+   * @param name of the joined group
+   * @param admin of the joined group
+   */
+  onJoinGroup(name: string, admin: string): void {
+    console.log('Joined: ' + name + ' | Admin: ' + admin);
   }
 }

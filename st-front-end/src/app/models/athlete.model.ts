@@ -1,7 +1,8 @@
 export class Athlete {
   constructor(
     public name: string,
-    public lastName: string,
+    public lastName1: string,
+    public lastName2: string,
     public nationality: string,
     public id: number,
     public age: number,

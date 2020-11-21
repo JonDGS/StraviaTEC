@@ -2,7 +2,6 @@ import { Athlete } from './../../../models/athlete.model';
 import { HomeService } from './../home.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { WeekDay } from '@angular/common';
 
 @Component({
   selector: 'app-register',
@@ -18,7 +17,7 @@ export class RegisterComponent implements OnInit {
   }
 
   onRegister(){
-    
+
     let date = new Date(this.userForm.value.userBirthday)
     if(this.viewType === "athlete"){
       let object = {
@@ -59,10 +58,10 @@ export class RegisterComponent implements OnInit {
       this.userForm.reset();
       
     }
-    
- 
-    
-    
+
+
+
+
   }
 /**
  * Change the actual viewType for organizer Form to register

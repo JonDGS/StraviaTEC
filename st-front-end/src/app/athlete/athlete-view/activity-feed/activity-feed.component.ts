@@ -7,6 +7,10 @@ import { AthleteService } from '../../athlete.service';
   templateUrl: './activity-feed.component.html',
   styleUrls: ['./activity-feed.component.css']
 })
+
+/**
+ * This class is used for displaying the followed users posts
+ */
 export class ActivityFeedComponent implements OnInit {
 
 //Api map image key
@@ -22,9 +26,9 @@ export class ActivityFeedComponent implements OnInit {
   }
 
   /**
-   * generateActivities 
-   * 
-   * Just for develoment porpuse 
+   * generateActivities
+   *
+   * Just for develoment porpuse
    * --> GetActivities(){}
    */
   generateActivities(){

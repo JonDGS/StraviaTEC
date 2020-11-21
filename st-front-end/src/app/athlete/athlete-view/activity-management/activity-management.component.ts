@@ -34,5 +34,4 @@ export class ActivityManagementComponent implements OnInit {
     this.aService.postActivity(activity);
   }
 
-
 }

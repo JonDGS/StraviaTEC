@@ -1,16 +1,12 @@
 <app-navbar></app-navbar>
 <div class="row">
   <div class="col-6">
-    <div
-      class="card"
-      style="margin-left: 10px; margin-top: 10px; border: #434e5a solid 1px"
-    >
+    <div class="card my-settings-info-card">
       <!--<img src="..."  alt="...">-->
       <div class="card-body">
         <h5 class="card-title">General Information</h5>
         <p class="card-text">
-          Name: {{ athlete.name }} {{ athlete.lastname_1 }}
-          {{ athlete.lastname_2 }}<br />
+          Name: {{ athlete.username }} <br />
           Nationality: {{ athlete.nationality }}<br />
           Location: {{ athlete.country }}, {{ athlete.state }}, {{ athlete.city
           }}<br />
@@ -26,97 +22,123 @@
       </div>
     </div>
   </div>
+
   <div class="col-6">
-    <div
-      class="card"
-      style="
-        margin-top: 10px;
-        margin-right: 10px;
-        margin-bottom: 10px;
-        border: #434e5a solid 1px;
-      "
-    >
+    <div class="card my-settings-update-card">
       <!--<img src="..."  alt="...">-->
       <div class="card-body">
         <form (ngSubmit)="onUpdateProfile()" #updateProfileForm="ngForm">
           <h5 class="card-title">Update General Information</h5>
 
-          <!--Name-->
-          <label for="newName">Name</label>
-          <input
-            type="text"
-            class="form-control"
-            id="newName"
-            name="newName"
-            [ngModel]="aName"
-            required
-          />
+          <!--Full Name-->
+          <div class="form-row">
+            <div class="col">
+              <!--Name-->
+              <label for="newName">Name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="newName"
+                name="newName"
+                [ngModel]="aName"
+                required
+              />
+            </div>
+            <div class="col">
+              <!--Last Name 1-->
+              <label for="newLastName1">First Last Name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="newLastName1"
+                name="newLastName1"
+                [ngModel]="aLastName1"
+                required
+              />
+            </div>
+            <div class="col">
+              <!--Last Name 2-->
+              <label for="newLastName2">Second Last Name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="newLastName2"
+                name="newLastName2"
+                [ngModel]="aLastName2"
+                required
+              />
+            </div>
+          </div>
 
-          <!--Last Name-->
-          <label for="newLastName">Last Name</label>
-          <input
-            type="text"
-            class="form-control"
-            id="newLastName"
-            name="newLastName"
-            [ngModel]="aLastName"
-            required
-          />
+          <div class="form-row">
+            <div class="col">
+              <!--Nationality-->
+              <label for="newNationality">Nationality</label>
+              <input
+                type="text"
+                class="form-control"
+                id="newNationality"
+                name="newNationality"
+                [ngModel]="aNationality"
+                required
+              />
+            </div>
+          </div>
 
-          <!--Nationality-->
-          <label for="newNationality">Nationality</label>
-          <input
-            type="text"
-            class="form-control"
-            id="newNationality"
-            name="newNationality"
-            [ngModel]="aNationality"
-            required
-          />
+          <!--Location-->
+          <div class="form-row">
+            <div class="col">
+              <!--Country-->
+              <label for="newCountry">Country</label>
+              <input
+                type="text"
+                class="form-control"
+                id="newCountry"
+                name="newCountry"
+                [ngModel]="aCountry"
+                required
+              />
+            </div>
+            <div class="col">
+              <!--State-->
+              <label for="newState">State</label>
+              <input
+                type="text"
+                class="form-control"
+                id="newState"
+                name="newState"
+                [ngModel]="aState"
+                required
+              />
+            </div>
+            <div class="col">
+              <!--City-->
+              <label for="newCity">City</label>
+              <input
+                type="text"
+                class="form-control"
+                id="newCity"
+                name="newCity"
+                [ngModel]="aCity"
+                required
+              />
+            </div>
+          </div>
 
-          <!--Country-->
-          <label for="newCountry">Country</label>
-          <input
-            type="text"
-            class="form-control"
-            id="newCountry"
-            name="newCountry"
-            [ngModel]="aCountry"
-            required
-          />
-
-          <!--State-->
-          <label for="newState">State</label>
-          <input
-            type="text"
-            class="form-control"
-            id="newState"
-            name="newState"
-            [ngModel]="aState"
-            required
-          />
-
-          <!--City-->
-          <label for="newCity">City</label>
-          <input
-            type="text"
-            class="form-control"
-            id="newCity"
-            name="newCity"
-            [ngModel]="aCity"
-            required
-          />
-
-          <!--Birthday-->
-          <label for="newBirthday">Birthday</label>
-          <input
-            type="date"
-            class="form-control"
-            id="newBirthday"
-            name="newBirthday"
-            ngModel
-            required
-          />
+          <div class="form-row">
+            <div class="col">
+              <!--Birthday-->
+              <label for="newBirthday">Birthday</label>
+              <input
+                type="date"
+                class="form-control"
+                id="newBirthday"
+                name="newBirthday"
+                ngModel
+                required
+              />
+            </div>
+          </div>
 
           <br />
           <h5 class="card-title">Update Account Information</h5>

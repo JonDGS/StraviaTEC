@@ -1,9 +1,12 @@
 <div class="card my-races-card">
   <div class="card-body">
     <h5 class="card-tittle">My Races</h5>
-    <div *ngFor="let r of races">
+    <div *ngFor="let r of races" style="padding: 5px; margin-bottom: 15px">
       - {{ r.name }} | {{ r.date }} | <br />
       &nbsp;&nbsp;&nbsp;Bank Account: {{ r.country }} | Price: {{ r.cost }}
+      <button
+        class="btn btn-danger float-right"
+        (click)="onDeleteRace(r)">Delete</button>
     </div>
     <br />
     <h5 class="card-tittle">Create New Race</h5>

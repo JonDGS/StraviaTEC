@@ -51,6 +51,7 @@ export class AthleteService {
     new Athlete(
       'Alvaro',
       'Vargas',
+      'Molina',
       'Costa Rican',
       117730762,
       20,
@@ -63,7 +64,8 @@ export class AthleteService {
       'abc123'),
     new Athlete(
       'Jon',
-      'Doro',
+      'Dor',
+      'ito',
       'Costa Rican',
       117720889,
       20,
