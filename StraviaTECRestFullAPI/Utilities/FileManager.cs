@@ -94,5 +94,17 @@ namespace StraviaTECRestFullAPI.Utilities
 
             return null;
         }
+
+        public static FileStream getGPXActivity(string id_activity)
+        {
+            FileStream picture = File.OpenRead(Connector.getGPXForActivity(id_activity));
+
+            if (picture != null)
+            {
+                return picture;
+            }
+
+            return null;
+        }
     }
 }

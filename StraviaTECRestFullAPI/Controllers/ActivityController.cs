@@ -92,5 +92,20 @@ namespace StraviaTECRestFullAPI.Controllers
             return false;
         }
 
+        [HttpGet("GetGPX")]
+        public IActionResult uploadGPX([FromQuery] string id_activity)
+        {
+
+            try
+            {
+                return new FileStreamResult(FileManager.getGPXActivity(id_activity), "application/octet-stream");
+            }
+            catch (Exception)
+            {
+
+                return NotFound("GPX was not found");
+            }
+        }
+
     }
 }
