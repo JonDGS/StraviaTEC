@@ -1,7 +1,7 @@
 <app-navbar></app-navbar>
 <div class="row">
   <div class="col-6">
-    <div class="card" style="margin-left: 10px; margin-top: 10px; border: #434e5a solid 1px">
+    <div class="card my-settings-info-card">
       <!--<img src="..."  alt="...">-->
       <div class="card-body">
         <h5 class="card-title">General Information</h5>
@@ -19,9 +19,17 @@
         </p>
       </div>
     </div>
+    <div class="card my-settings-info-card">
+      <div class="card-body">
+        <button
+          class="btn-danger btn btn-block"
+          (click)="onDeleteAccount()"
+        >Delete Account</button>
+      </div>
+    </div>
   </div>
   <div class="col-6">
-    <div class="card" style="margin-top: 10px; margin-right: 10px; margin-bottom: 10px; border: #434e5a solid 1px">
+    <div class="card my-settings-update-card">
       <!--<img src="..."  alt="...">-->
       <div class="card-body">
         <form (ngSubmit)="onUpdateProfile()" #updateProfileForm="ngForm">
