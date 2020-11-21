@@ -24,11 +24,11 @@ export class OrganizerChallengesComponent implements OnInit {
     let object = {
       "token" :  null,
       "name"  : this.challengeForm.value.name,
-      "startdate" : this.challengeForm.value.period,
-      "finishdate" : this.challengeForm.value.period,
+      "startdate" :  "2002-11-10",
+      "finishdate" :  "2002-11-15",
       "activity_type" : this.challengeForm.value.activityType,
       "challengetype" : this.challengeForm.value.type,
-      "distancetravelled" : this.challengeForm.value.distance
+      "distancetravelled" : parseInt(this.challengeForm.value.distance)
     }
     this.oService.postChallange(object);
   }
