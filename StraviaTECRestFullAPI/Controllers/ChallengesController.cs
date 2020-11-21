@@ -19,17 +19,11 @@ namespace StraviaTECRestFullAPI.Controllers
     public class ChallengesController : ControllerBase
     {
         [HttpPut("CreateChallenge")]
-        public bool createChallenge()
+        public bool createChallenge([FromBody] CreateChallengeObject createChallengeObject)
         {
-            string token = Request.Form["token"].ToString();
-            string name = Request.Form["name"].ToString();
-            string startdate = Request.Form["startdate"].ToString();
-            string finishdate = Request.Form["finishdate"].ToString();
-            string activity_type = Request.Form["activity_type"].ToString();
-            string challengetype = Request.Form["challengetype"].ToString();
-            int distancetravelled = int.Parse(Request.Form["distancetravelled"].ToString());
 
-            return Connector.createChallenge(token, name, startdate, finishdate, activity_type, challengetype, distancetravelled);
+            return Connector.createChallenge(createChallengeObject.token, createChallengeObject.name, createChallengeObject.startdate, createChallengeObject.finishdate,
+                createChallengeObject.activity_type, createChallengeObject.challengetype, createChallengeObject.distancetravelled);
         }
 
         [HttpGet("Challenges")]
