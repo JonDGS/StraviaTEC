@@ -117,6 +117,18 @@ namespace StraviaTECRestFullAPI.DataAccess
         List<ChallengeSponsorship> GetChallengeSponsorshipRecords();
         List<ChallengeSponsorship> GetChallengeSponsorshipByIDChallenge(string id);
 
+        /*
+        Description: CRUD Operations for AthleteBelongsGroup 
+       */
+        void AddAthleteBelongsGroupRecord(AthleteBelongsGroup athletebelongsgroup, string token);
+        void UpdateAthleteBelongsGroupRecord(AthleteBelongsGroup athletebelongsgroup);
+        void DeleteAthleteBelongsGroupRecord(string id);
+        AthleteBelongsGroup GetAthleteBelongsGroupSingleRecord(string id);
+        List<AthleteBelongsGroup> GetAthleteBelongsGroupRecords();
+        List<Group> GetGroupsByAthleteToken(string token);
+
+
+
 
 
 
