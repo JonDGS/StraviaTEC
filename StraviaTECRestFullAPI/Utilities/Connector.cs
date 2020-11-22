@@ -14,6 +14,13 @@ namespace StraviaTECRestFullAPI.Utilities
     {
         private static NpgsqlConnection connection = new NpgsqlConnection("Host=jongs.mynetgear.com;Port=5432;Username=Stravia_REST-API;Password=&fPcp8l<0oxmZQq]J;Database=StraviaTEC_DB");
 
+        /**
+         * Description: Check credentials for users
+         * Params:
+         * - username
+         * - password
+         * Return: Check from database
+         */
         public static bool checkUserPass(string username, string password)
         {
             connection.Open();
@@ -31,6 +38,13 @@ namespace StraviaTECRestFullAPI.Utilities
             }
         }
 
+        /**
+         * Description: Hashing a password using username as salt
+         * Params:
+         * - username
+         * - password
+         * Return: hashValue
+         */
         public static string generatedUserPassHash(string username, string password)
         {
             connection.Open();
@@ -48,6 +62,13 @@ namespace StraviaTECRestFullAPI.Utilities
             }
         }
 
+        /**
+         * Description: Saves an image to the database
+         * Params:
+         * - token: token given to user
+         * - path: path to image in file system
+         * Return: Checks if the image is valid for saving
+         */
         public static bool savePhoto(string token, string path) {
 
             connection.Open();
@@ -66,6 +87,12 @@ namespace StraviaTECRestFullAPI.Utilities
 
         }
 
+        /**
+         * Description: get the path to an image based on token
+         * Params:
+         * - token: token given to client
+         * Return: path to image
+         */
         public static string getPhotoPath(string token)
         {
             connection.Open();
@@ -82,6 +109,12 @@ namespace StraviaTECRestFullAPI.Utilities
             }
         }
 
+        /**
+         * Description: Searches for users based on term
+         * Params:
+         * - term: term for searching
+         * Return: List of found athletes
+         */
         public static List<FoundAthlete> searchAthleteBasedOnTerm(string term)
         {
             connection.Open();
@@ -127,6 +160,12 @@ namespace StraviaTECRestFullAPI.Utilities
             }
         }
 
+        /**
+         * Description: gets the number of activies for a user
+         * Params:
+         * - username
+         * Return: return number of events
+         */
         public static int getNumberOfActivitiesByAthlete(string username)
         {
             connection.Open();
@@ -143,6 +182,12 @@ namespace StraviaTECRestFullAPI.Utilities
             }
         }
 
+        /**
+         * Description: validates a token
+         * Params:
+         * - token: token given to user
+         * Return: Whether the token is validate
+         */
         public static bool validateToken(string token)
         {
             connection.Open();
@@ -159,6 +204,12 @@ namespace StraviaTECRestFullAPI.Utilities
             }
         }
 
+        /**
+         * Description: Get Athletes Info
+         * Params:
+         * - token: token given to user
+         * Return: Athletes info
+         */
         public static FoundAthlete getAthleteInfoByToken(string token)
         {
             connection.Open();
@@ -174,6 +225,18 @@ namespace StraviaTECRestFullAPI.Utilities
             }
         }
 
+        /**
+         * Description: Creates a challenge
+         * Params:
+         * - token: token given to user
+         * - name: name of challenge
+         * - startdate: startdate of challenge
+         * - finishdate: finishdate of challenge
+         * - activity_type: type of activity
+         * - challengetype
+         * - distancedtravelled
+         * Return: Whether or not the challenge was created
+         */
         public static bool createChallenge(string token, string name, string startdate, string finishdate, string activity_type, string challengetype, int distancetravelled)
         {
             connection.Open();
@@ -195,6 +258,10 @@ namespace StraviaTECRestFullAPI.Utilities
             }
         }
 
+        /**
+         * Description: Gets all challenges
+         * Return: Info from all the challenges
+         */
         public static List<FoundChallenge> getChallenges()
         {
             connection.Open();
@@ -236,6 +303,14 @@ namespace StraviaTECRestFullAPI.Utilities
             }
         }
 
+        /**
+         * Description: Saves a GPX to an specific gpx
+         * Params:
+         * - token: token given to user
+         * - id: id of activity
+         * - gpx: gpx file of activity
+         * Return: Validates whether the gpx was saved
+         */
         public static bool saveGPXForActivity(string token, string id, string gpx)
         {
             connection.Open();
@@ -254,6 +329,12 @@ namespace StraviaTECRestFullAPI.Utilities
             }
         }
 
+        /**
+         * Description: gets a gpx for an activity
+         * Params:
+         * - id_activity: id of activity
+         * Return: Returns path to the gpx
+         */
         public static string getGPXForActivity(string id_activity)
         {
             connection.Open();
