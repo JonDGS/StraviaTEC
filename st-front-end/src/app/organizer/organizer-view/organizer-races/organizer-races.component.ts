@@ -26,6 +26,7 @@ export class OrganizerRacesComponent implements OnInit {
   urType: string;
   urCost: string;
   urBankAccount: string;
+  public nRace;
 
   constructor(private oService: OrganizerService, private server : ServerService, private router: Router) { this.isUpdateForm = false;}
 
@@ -75,19 +76,31 @@ export class OrganizerRacesComponent implements OnInit {
    * for showing the update form and also sets a series of variables that fill the update form
    * @param race to update
    */
-  onUpdateRace(race: Race): void {
+  onUpdateRace(race): void {
     this.raceToUpdate = race;
     this.isUpdateForm = true;
     this.urName =  this.raceToUpdate.name;
     this.urType =  this.raceToUpdate.type;
     this.urCost =  this.raceToUpdate.cost;
     this.urBankAccount =  this.raceToUpdate.bankAccount;
+    this.nRace = race;
   }
 
   /**
    * This method is called when the update form is submitted
    */
-  updateRace(): void {
+  updateRace(race): void {
     this.isUpdateForm = false;
+
+    let nRace = {
+      "name": race.name,
+      "date": race.date,
+      "cost": parseInt(race.cost),
+      "gpx": null,
+      "country": race.country,
+      "id_race": race.id_race,
+      "id_organizer": race.id_organizer
+  }
+  this.server.updateRace(nRace);
   }
 }

@@ -115,7 +115,7 @@
     <h5 *ngIf="isUpdateForm" class="card-tittle">Update New Race</h5>
     <form
       *ngIf="isUpdateForm"
-      (ngSubmit)="updateRace()"
+      (ngSubmit)="updateRace(nRace)"
       #updateRaceForm="ngForm"
     >
       <div class="form-row">

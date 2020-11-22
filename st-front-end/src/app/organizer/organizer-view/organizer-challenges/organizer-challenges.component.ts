@@ -64,7 +64,8 @@ export class OrganizerChallengesComponent implements OnInit {
    * This method is called when a challenge from the challenge list is deleted
    * @param challenge to delete
    */
-  onDeleteChallenge(challenge: Challenge): void {
+  onDeleteChallenge(challenge): void {
+    this.server.deleteChallenge(challenge);
   }
 
   /**

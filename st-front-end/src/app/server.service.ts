@@ -183,4 +183,16 @@ setToken(token){
    deleteGroup(idGroup){
       this.http.delete(`http://jongs.mynetgear.com:27799/api/Group/${idGroup}`).subscribe(res => console.log(res))
    }
+   deleteChallenge(idChallenge){
+    this.http.delete(`http://jongs.mynetgear.com:27799/api/Challenges/Delete/${idChallenge}`).subscribe(res => console.log(res))
+ }
+
+
+   /**
+    * update
+    */
+   updateRace(nRace){
+    this.http.put(`http://jongs.mynetgear.com:27799/api/race`,nRace).subscribe(res => console.log(res)
+    )
+   }
 }
