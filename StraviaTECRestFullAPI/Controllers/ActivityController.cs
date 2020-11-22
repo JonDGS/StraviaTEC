@@ -98,7 +98,7 @@ namespace StraviaTECRestFullAPI.Controllers
 
             try
             {
-                return new FileStreamResult(FileManager.getGPXActivity(id_activity), "application/octet-stream");
+                return new FileStreamResult(FileManager.getGPXActivity(id_activity), "text/plain");
             }
             catch (Exception)
             {

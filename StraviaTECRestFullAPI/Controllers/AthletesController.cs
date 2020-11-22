@@ -104,7 +104,7 @@ namespace StraviaTECRestFullAPI.Controllers
 
             try
             {
-                return new FileStreamResult(FileManager.getUserPhoto(token), "application/octet-stream");
+                return new FileStreamResult(FileManager.getUserPhoto(token), "text/plain");
             }
             catch (Exception)
             {
