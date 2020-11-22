@@ -1,3 +1,4 @@
+import { ServerService } from './../../../server.service';
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {OrganizerService} from '../../organizer.service';
 import {Challenge} from '../../../models/challenge.model';
@@ -20,7 +21,7 @@ import {Router} from '@angular/router';
 export class OrganizerChallengesComponent implements OnInit {
   @ViewChild('newChallenge') challengeForm: NgForm;
   @ViewChild('updateChallengeForm') updateForm: NgForm;
-  challenges: Challenge[];
+  challenges: any;
   isUpdateForm;
   challengeToUpdate: Challenge;
   ucName: string;
@@ -30,12 +31,17 @@ export class OrganizerChallengesComponent implements OnInit {
   ucDistance: number;
   ucSponsors: Sponsor[];
 
-  constructor(private oService: OrganizerService) {
+
+
+  constructor(private oService: OrganizerService,private server:ServerService) { 
     this.isUpdateForm = false;
   }
 
   ngOnInit(): void {
-    this.challenges = this.oService.myCreatedChallenges;
+    
+    this.server.getChallengesOrganizerByToken().then(res => {
+      this.challenges = res;
+    })
   }
 
   /**

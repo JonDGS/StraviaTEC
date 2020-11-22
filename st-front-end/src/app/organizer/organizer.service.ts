@@ -1,5 +1,5 @@
 import { ServerService } from './../server.service';
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import {Challenge} from '../models/challenge.model';
 import {Group} from '../models/group.model';
 import {Athlete} from '../models/athlete.model';
@@ -9,17 +9,8 @@ import {Organizer} from '../models/organizer.model';
 @Injectable({
   providedIn: 'root'
 })
-export class OrganizerService {
-  currentOrganizer = new Organizer(
-    'alvar',
-    '',
-    '123',
-    'San Jose',
-    'San Jose',
-    'Costa Rica',
-    'Alvaro',
-    'Vargas',
-    'Molina');
+export class OrganizerService implements OnInit{
+  public currentOrganizer;
 
   /*
     Used for checking if the organizer home page view was changed (/organizer), mainly works for activating the return button
@@ -32,46 +23,22 @@ export class OrganizerService {
 
   }
 
+  
+
   // These lists are for showing the created challenges, groups and races
-  myCreatedChallenges = [
-    new Challenge(
-      '1',
-      'West Challenge',
-      '30 days',
-      'Running',
-      'Fondo?',
-      60,
-      []),
-    new Challenge(
-      '2',
-      'North Challenge',
-      '20 days',
-      'Swimming',
-      'Fondo?',
-      35,
-      []),
-    new Challenge(
-      '3',
-      'South Challenge',
-      '10 days',
-      'Kayaking',
-      'Fondo?',
-      40,
-      [])
-  ];
-  myCreatedGroups = [
-    new Group(
-      'FastBois',
-      '1',
-      'Jesus'),
-    new Group(
-      'FastMen',
-      '2',
-      'Cris')
-  ];
+  public myCreatedChallenges;
+  public myCreatedGroups;
   public myCreatedRaces;
 
+  ngOnInit(): void {
+    this.server.getGroupByToken().then(res => {
+      this.myCreatedGroups = res;
+    })
 
+    this.server.getInfoOrganizer().catch(res => {
+      this.currentOrganizer = res;
+    })
+  }
   getRaces(){
     return this.server.getRacesByToken();
   }

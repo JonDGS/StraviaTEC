@@ -1,7 +1,9 @@
+import { ServerService } from './../../../server.service';
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {Race} from '../../../models/race.model';
 import {OrganizerService} from '../../organizer.service';
 import {NgForm} from '@angular/forms';
+import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-organizer-races',
@@ -25,16 +27,12 @@ export class OrganizerRacesComponent implements OnInit {
   urCost: string;
   urBankAccount: string;
 
-  constructor(private oService: OrganizerService) {
-    this.isUpdateForm = false;
-  }
+  constructor(private oService: OrganizerService, private server : ServerService, private router: Router) { this.isUpdateForm = false;}
 
   ngOnInit(): void {
-    this.oService.getRaces().subscribe(res => {
-      console.log(res);
-      this.races = res;
-      console.log(this.races);
-    });
+    this.setRaces();
+
+
   }
 
   /**
@@ -50,12 +48,26 @@ export class OrganizerRacesComponent implements OnInit {
     };
     this.oService.postRace(race);
   }
+  /***
+   * set Races 
+   */
+  setRaces(){
+    this.oService.getRaces().then(res => {
+      console.log(res);
 
+      this.races = res
+      console.log(this.races);
+    }
+    );
+  }
   /**
    * This method is called when a race from the race list is deleted
    * @param race to delete
    */
-  onDeleteRace(race: Race): void {
+  onDeleteRace(race): void {
+    this.server.deleteRace(race.id_race);
+    this.setRaces();
+    
   }
 
   /**

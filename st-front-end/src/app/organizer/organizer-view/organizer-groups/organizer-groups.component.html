@@ -6,12 +6,15 @@
       <button
         class="btn btn-danger float-right"
         style="margin-left: 2px"
-        (click)="onDeleteGroup(g)">Delete</button>
-      <button
-        class="btn btn-success float-right"
-        (click)="onUpdateGroup(g)">Update</button>
+        (click)="onDeleteGroup(g.id_group)"
+      >
+        Delete
+      </button>
+      <button class="btn btn-success float-right" (click)="onUpdateGroup(g)">
+        Update
+      </button>
     </div>
-    <br>
+    <br />
 
     <h5 *ngIf="!isUpdateForm" class="card-tittle">Create New Group</h5>
     <form *ngIf="!isUpdateForm" (ngSubmit)="addGroup()" #newGroup="ngForm">
@@ -25,7 +28,8 @@
             name="name"
             id="groupName"
             ngModel
-            required>
+            required
+          />
         </div>
         <!--Admin-->
         <div class="col">
@@ -36,20 +40,33 @@
             name="admin"
             id="groupAdmin"
             ngModel
-            required>
+            required
+          />
         </div>
       </div>
-      <br>
+      <<<<<<< HEAD
+      <br />
+      =======
+      <br />
+
+      >>>>>>> front-end-Daniel
       <div class="form-row justify-content-center">
         <button
           type="submit"
           class="btn btn-success"
-          [disabled]="!newGroup.valid">Create Group</button>
+          [disabled]="!newGroup.valid"
+        >
+          Create Group
+        </button>
       </div>
     </form>
 
     <h5 *ngIf="isUpdateForm" class="card-tittle">Update Group</h5>
-    <form *ngIf="isUpdateForm" (ngSubmit)="updateGroup()" #updateGroupForm="ngForm">
+    <form
+      *ngIf="isUpdateForm"
+      (ngSubmit)="updateGroup()"
+      #updateGroupForm="ngForm"
+    >
       <div class="form-row">
         <!--Name-->
         <div class="col">
@@ -60,7 +77,8 @@
             name="name"
             id="updateGroupName"
             [ngModel]="ugName"
-            required>
+            required
+          />
         </div>
         <!--Admin-->
         <div class="col">
@@ -71,15 +89,19 @@
             name="admin"
             id="updateGroupAdmin"
             [ngModel]="ugAdmin"
-            required>
+            required
+          />
         </div>
       </div>
-      <br>
+      <br />
       <div class="form-row justify-content-center">
         <button
           type="submit"
           class="btn btn-success"
-          [disabled]="!updateGroupForm.valid">Update Group</button>
+          [disabled]="!updateGroupForm.valid"
+        >
+          Update Group
+        </button>
       </div>
     </form>
   </div>

@@ -6,17 +6,19 @@
       <div class="card-body">
         <h5 class="card-title">General Information</h5>
         <p class="card-text">
-          Name: {{ athlete.username }} <br />
+          Name: {{ athlete.name }} {{ athlete.lastname_1 }}
+          {{ athlete.lastname_2 }} <br />
           Nationality: {{ athlete.nationality }}<br />
           Location: {{ athlete.country }}, {{ athlete.state }}, {{ athlete.city
           }}<br />
-          Birthday: {{ athlete.birthday }}<br />
+          Birthday: {{ athlete.birthday }} / {{ athlete.birthmonth }} /
+          {{ athlete.birthyear }}<br />
           Age: {{ athlete.age }}<br />
         </p>
         <h5 class="card-title">Account Information</h5>
         <p class="card-text">
           Username: {{ athlete.username }}<br />
-          Password: {{ athlete.password }}<br />
+          Password: {{ athlete.passwordhash }}<br />
         </p>
       </div>
     </div>

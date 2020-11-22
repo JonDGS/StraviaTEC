@@ -83,7 +83,20 @@ registerOrganizer(dataForm?){
       alert("wrong username or password")
 
     });
-  }
+  // this.server.getImagebyToken().then(res => {
+  //   const reader = new FileReader();
+  //   reader.readAsDataURL(res);
+  //   reader.onloadend = function() {
+  //     // result includes identifier 'data:image/png;base64,' plus the base64 data
+  //     let mySrc = reader.result;
+  //     console.log(mySrc);
+           
+  //  }
+  // }
+  // )  
+}
+  
+  
 
 
 }

@@ -1,3 +1,4 @@
+import { ServerService } from './../../../../server.service';
 import { Component, OnInit } from '@angular/core';
 import {Challenge} from '../../../../models/challenge.model';
 import {AthleteService} from '../../../athlete.service';
@@ -12,10 +13,12 @@ import {AthleteService} from '../../../athlete.service';
  * This class is used a widget for displaying the challenges the user is currently participating on
  */
 export class ParticipatingChallengesComponent implements OnInit {
-  currentChallenges: Challenge[];
+  currentChallenges: any;
 
-  constructor(private aService: AthleteService) {
-    this.currentChallenges = this.aService.participatingChallenges;
+  constructor(private aService: AthleteService , private server: ServerService) {
+    this.server.getChallengeByToken().then( res => {
+      this.currentChallenges = res;
+    })
   }
 
   ngOnInit(): void {

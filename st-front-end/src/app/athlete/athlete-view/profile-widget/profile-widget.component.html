@@ -1,6 +1,12 @@
 <div class="card profile-card">
   <!--Profile Image-->
   <div class="text-center" style="margin-top: 25px">
+    <!-- <img
+      class="avatar"
+      src="https://www.hola.com/imagenes/cocina/recetas/20200617170335/mac-and-cheese/0-837-58/mac-cheese-adobe-m.jpg"
+      alt="User's profile picture"
+      style=""
+    /> -->
     <img
       class="avatar"
       src="https://www.hola.com/imagenes/cocina/recetas/20200617170335/mac-and-cheese/0-837-58/mac-cheese-adobe-m.jpg"
@@ -11,7 +17,7 @@
   <div class="card-body">
     <!--Profile Name-->
     <h3 class="card-title text-center">
-      {{ user.username }}
+      {{ user.name }} {{ user.lastname_1 }} {{ user.lastname_2 }}
     </h3>
 
     <!--Profile Info-->

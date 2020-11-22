@@ -34,7 +34,19 @@ export class SearchItemComponent implements OnInit {
    * @param name of the joined group
    * @param admin of the joined group
    */
-  onJoinGroup(name: string, admin: string): void {
-    console.log('Joined: ' + name + ' | Admin: ' + admin);
+  onJoinGroup(idGroup): void {
+    let params = {
+      "id_group":idGroup
+  }
+    this.server.joinGroup(params);
+  }
+
+  onJoinRace(idRace): void {
+    let params = {
+      "id_race":idRace,
+      "status":"Pending",
+      "receipt":null
+  }
+    this.server.joinRace(params);
   }
 }
