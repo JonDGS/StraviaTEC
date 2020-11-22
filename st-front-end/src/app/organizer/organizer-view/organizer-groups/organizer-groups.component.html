@@ -5,13 +5,15 @@
       - {{ g.name }} | Admin: {{ g.admin }}
       <button
         class="btn btn-danger float-right"
-        (click)="onDeleteGroup(g)">Delete</button>
+        (click)="onDeleteGroup(g.id_group)"
+      >
+        Delete
+      </button>
     </div>
-    <br>
+    <br />
 
     <h5 class="card-tittle">Create New Group</h5>
     <form (ngSubmit)="addGroup()" #newGroup="ngForm">
-
       <div class="form-row">
         <!--Name-->
         <div class="col">
@@ -22,7 +24,8 @@
             name="name"
             id="groupName"
             ngModel
-            required>
+            required
+          />
         </div>
         <!--Admin-->
         <div class="col">
@@ -33,16 +36,20 @@
             name="admin"
             id="groupAdmin"
             ngModel
-            required>
+            required
+          />
         </div>
       </div>
-      <br>
+      <br />
 
       <div class="form-row justify-content-center">
         <button
           type="submit"
           class="btn btn-success"
-          [disabled]="!newGroup.valid">Create Group</button>
+          [disabled]="!newGroup.valid"
+        >
+          Create Group
+        </button>
       </div>
     </form>
   </div>

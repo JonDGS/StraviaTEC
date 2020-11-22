@@ -1,3 +1,4 @@
+import { ServerService } from './../../../server.service';
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {Group} from '../../../models/group.model';
 import {OrganizerService} from '../../organizer.service';
@@ -17,12 +18,20 @@ import {Race} from '../../../models/race.model';
  */
 export class OrganizerGroupsComponent implements OnInit {
   @ViewChild('newGroup') groupForm: NgForm;
-  groups: Group[];
+  groups: any;
 
-  constructor(private oService: OrganizerService) { }
+  constructor(private oService: OrganizerService,private server: ServerService) { }
 
   ngOnInit(): void {
+    this.setGroups();
+    
+  }
+
+  setGroups(){
     this.groups = this.oService.myCreatedGroups;
+    this.server.getGroupByToken().then(res => {
+      this.groups = res;
+    });
   }
 
   /**
@@ -42,6 +51,8 @@ export class OrganizerGroupsComponent implements OnInit {
    * This method is called when a group from the group list is deleted
    * @param group to delete
    */
-  onDeleteGroup(group: Group): void {
+  onDeleteGroup(groupID): void {
+    this.server.deleteGroup(groupID);
+    this.setGroups();
   }
 }

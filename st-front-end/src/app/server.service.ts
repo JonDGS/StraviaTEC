@@ -110,8 +110,12 @@ setToken(token){
     );
   }
 
-  getRacesByToken(){
-    return this.http.get(`http://jongs.mynetgear.com:27799/api/race/${this.token}`)
+  async getRacesByToken(){
+    return await this.http.get(`http://jongs.mynetgear.com:27799/api/race/${this.token}`).toPromise();
+  }
+
+  async getGroupByToken(){
+    return await this.http.get(`http://jongs.mynetgear.com:27799/api/Group/${this.token}`).toPromise();
   }
 
  async getSearchData(term){
@@ -131,6 +135,10 @@ setToken(token){
     return await this.http.get(`http://jongs.mynetgear.com:27799/api/athletes/${this.token}`).toPromise();
   }
 
+  async getInfoOrganizer(){
+    return await this.http.get(`http://jongs.mynetgear.com:27799/api/Organizers/${this.token}`).toPromise();
+  }
+
   async getChallanges(){
     return await this.http.get(`http://jongs.mynetgear.com:27799/api/Challenges/Challenges`).toPromise();
   }
@@ -144,4 +152,13 @@ setToken(token){
     this.http.post(`http://jongs.mynetgear.com:27799/api/AthleteEnrollment/ChallengeEnrollment/${this.token}`,params).subscribe(res => console.log(res));
   }
 
+  /**
+   * Deletes
+   */
+   deleteRace(idRace){
+      this.http.delete(`http://jongs.mynetgear.com:27799/api/race/${idRace}`).subscribe(res => console.log(res))
+   }
+   deleteGroup(idGroup){
+      this.http.delete(`http://jongs.mynetgear.com:27799/api/Group/${idGroup}`).subscribe(res => console.log(res))
+   }
 }

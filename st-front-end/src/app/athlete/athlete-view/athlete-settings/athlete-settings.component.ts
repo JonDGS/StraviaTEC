@@ -29,14 +29,16 @@ export class AthleteSettingsComponent implements OnInit {
   ngOnInit(): void {
     this.server.getInfo().then(res => {
       this.athlete = res;
+      this.aName = this.athlete.name;
+      this.aLastName1 = this.athlete.lastname_1;
+      this.aLastName2 = this.athlete.lastname_2;
+      this.aNationality = this.athlete.nationality;
+      this.aCountry = this.athlete.country;
+     this.aState = this.athlete.state;
+      this.aCity = this.athlete.city;
     })
-    this.aName = this.athlete.name;
-    this.aLastName1 = this.athlete.lastName1;
-    this.aLastName2 = this.athlete.lastName2;
-    this.aNationality = this.athlete.nationality;
-    this.aCountry = this.athlete.country;
-    this.aState = this.athlete.state;
-    this.aCity = this.athlete.city;
+
+ 
   }
 
   /**
