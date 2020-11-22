@@ -6,11 +6,16 @@
       &nbsp;&nbsp;&nbsp;Bank Account: {{ r.country }} | Price: {{ r.cost }}
       <button
         class="btn btn-danger float-right"
+        style="margin-left: 2px"
         (click)="onDeleteRace(r)">Delete</button>
+      <button
+        class="btn btn-success float-right"
+        (click)="onUpdateRace(r)">Update</button>
     </div>
+
     <br />
-    <h5 class="card-tittle">Create New Race</h5>
-    <form (ngSubmit)="addRace()" #newRace="ngForm">
+    <h5 *ngIf="!isUpdateForm" class="card-tittle">Create New Race</h5>
+    <form *ngIf="!isUpdateForm" (ngSubmit)="addRace()" #newRace="ngForm">
       <div class="form-row">
         <!--Name-->
         <div class="col">
@@ -26,7 +31,7 @@
         </div>
         <!--Date-->
         <div class="col">
-          <label for="raceDate">Period</label>
+          <label for="raceDate">Date</label>
           <input
             type="date"
             class="form-control"
@@ -101,6 +106,98 @@
         >
           Create Race
         </button>
+      </div>
+    </form>
+
+    <h5 *ngIf="isUpdateForm" class="card-tittle">Update New Race</h5>
+    <form *ngIf="isUpdateForm" (ngSubmit)="updateRace()" #updateRaceForm="ngForm">
+      <div class="form-row">
+        <!--Name-->
+        <div class="col">
+          <label for="updateRaceName">Name</label>
+          <input
+            type="text"
+            class="form-control"
+            name="name"
+            id="updateRaceName"
+            [ngModel]="urName"
+            required
+          />
+        </div>
+        <!--Date-->
+        <div class="col">
+          <label for="updateRaceDate">Date</label>
+          <input
+            type="date"
+            class="form-control"
+            name="date"
+            id="updateRaceDate"
+            ngModel
+            required
+          />
+        </div>
+      </div>
+
+      <div class="form-row">
+        <!--Type-->
+        <div class="col">
+          <label for="updateRaceType">Type</label>
+          <input
+            type="text"
+            class="form-control"
+            name="type"
+            id="updateRaceType"
+            [ngModel]="urType"
+            required
+          />
+        </div>
+        <!--GPX-->
+        <div class="col">
+          <label for="updateRaceGPX">GPX</label>
+          <input
+            type="text"
+            class="form-control"
+            name="gpx"
+            id="updateRaceGPX"
+            ngModel
+            required
+          />
+        </div>
+      </div>
+
+      <div class="form-row">
+        <!--Cost-->
+        <div class="col">
+          <label for="updateRaceCost">Cost</label>
+          <input
+            type="number"
+            class="form-control"
+            name="race"
+            id="updateRaceCost"
+            [ngModel]="urCost"
+            required
+          />
+        </div>
+        <!--Bank Account-->
+        <div class="col">
+          <label for="updateRaceBankAccount">Bank Account</label>
+          <input
+            type="text"
+            class="form-control"
+            name="bankAccount"
+            id="updateRaceBankAccount"
+            [ngModel]="urBankAccount"
+            required
+          />
+        </div>
+      </div>
+      <br />
+
+      <div class="form-row justify-content-center">
+        <button
+          type="submit"
+          class="btn btn-success"
+          [disabled]="!updateRaceForm.valid">Update Race</button>
       </div>
     </form>
   </div>

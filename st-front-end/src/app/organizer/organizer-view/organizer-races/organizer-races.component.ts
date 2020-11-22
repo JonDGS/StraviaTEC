@@ -16,9 +16,19 @@ import {NgForm} from '@angular/forms';
  */
 export class OrganizerRacesComponent implements OnInit {
   @ViewChild('newRace') raceForm: NgForm;
+  @ViewChild('updateRaceForm') updateForm: NgForm;
   public races;
+  raceToUpdate: Race;
+  isUpdateForm: boolean;
+  urName: string;
+  urType: string;
+  urCost: string;
+  urBankAccount: string;
 
-  constructor(private oService: OrganizerService) { }
+
+  constructor(private oService: OrganizerService) {
+    this.isUpdateForm = false;
+  }
 
   ngOnInit(): void {
     this.oService.getRaces().subscribe(res => {
@@ -52,5 +62,18 @@ export class OrganizerRacesComponent implements OnInit {
    * @param race to delete
    */
   onDeleteRace(race: Race): void {
+  }
+
+  onUpdateRace(race: Race): void {
+    this.raceToUpdate = race;
+    this.isUpdateForm = true;
+    this.urName =  this.raceToUpdate.name;
+    this.urType =  this.raceToUpdate.type;
+    this.urCost =  this.raceToUpdate.cost;
+    this.urBankAccount =  this.raceToUpdate.bankAccount;
+  }
+
+  updateRace(): void {
+    this.isUpdateForm = false;
   }
 }

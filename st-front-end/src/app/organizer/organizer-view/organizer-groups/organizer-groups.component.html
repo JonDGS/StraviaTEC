@@ -5,13 +5,16 @@
       - {{ g.name }} | Admin: {{ g.admin }}
       <button
         class="btn btn-danger float-right"
+        style="margin-left: 2px"
         (click)="onDeleteGroup(g)">Delete</button>
+      <button
+        class="btn btn-success float-right"
+        (click)="onUpdateGroup(g)">Update</button>
     </div>
     <br>
 
-    <h5 class="card-tittle">Create New Group</h5>
-    <form (ngSubmit)="addGroup()" #newGroup="ngForm">
-
+    <h5 *ngIf="!isUpdateForm" class="card-tittle">Create New Group</h5>
+    <form *ngIf="!isUpdateForm" (ngSubmit)="addGroup()" #newGroup="ngForm">
       <div class="form-row">
         <!--Name-->
         <div class="col">
@@ -37,12 +40,46 @@
         </div>
       </div>
       <br>
-
       <div class="form-row justify-content-center">
         <button
           type="submit"
           class="btn btn-success"
           [disabled]="!newGroup.valid">Create Group</button>
+      </div>
+    </form>
+
+    <h5 *ngIf="isUpdateForm" class="card-tittle">Update Group</h5>
+    <form *ngIf="isUpdateForm" (ngSubmit)="updateGroup()" #updateGroupForm="ngForm">
+      <div class="form-row">
+        <!--Name-->
+        <div class="col">
+          <label for="updateGroupName">Name</label>
+          <input
+            type="text"
+            class="form-control"
+            name="name"
+            id="updateGroupName"
+            [ngModel]="ugName"
+            required>
+        </div>
+        <!--Admin-->
+        <div class="col">
+          <label for="updateGroupAdmin">Admin</label>
+          <input
+            type="text"
+            class="form-control"
+            name="admin"
+            id="updateGroupAdmin"
+            [ngModel]="ugAdmin"
+            required>
+        </div>
+      </div>
+      <br>
+      <div class="form-row justify-content-center">
+        <button
+          type="submit"
+          class="btn btn-success"
+          [disabled]="!updateGroupForm.valid">Update Group</button>
       </div>
     </form>
   </div>

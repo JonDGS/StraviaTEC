@@ -17,9 +17,16 @@ import {Race} from '../../../models/race.model';
  */
 export class OrganizerGroupsComponent implements OnInit {
   @ViewChild('newGroup') groupForm: NgForm;
+  @ViewChild('updateGroupForm') updateForm: NgForm;
   groups: Group[];
+  isUpdateForm: boolean;
+  groupToUpdate: Group;
+  ugName: string;
+  ugAdmin: string;
 
-  constructor(private oService: OrganizerService) { }
+  constructor(private oService: OrganizerService) {
+    this.isUpdateForm = false;
+  }
 
   ngOnInit(): void {
     this.groups = this.oService.myCreatedGroups;
@@ -42,4 +49,25 @@ export class OrganizerGroupsComponent implements OnInit {
    */
   onDeleteGroup(group: Group): void {
   }
+
+  /**
+   * This method is called when the update button is called. This method sets the boolean var
+   * for showing the update form and also sets a series of variables that fill the update form
+   * @param group to update
+   */
+  onUpdateGroup(group: Group): void {
+    this.groupToUpdate = group;
+    this.isUpdateForm = true;
+    this.ugName = this.groupToUpdate.name;
+    this.ugAdmin = this.groupToUpdate.admin;
+  }
+
+  /**
+   * This method is called when the update form is submitted
+   */
+  updateGroup(): void {
+    this.isUpdateForm = false;
+  }
 }
+
+
