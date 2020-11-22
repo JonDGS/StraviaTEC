@@ -8,18 +8,24 @@ import { NgForm } from '@angular/forms';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
+
+/**
+ * This component is used for managing the register feature of the project
+ */
 export class RegisterComponent implements OnInit {
-
-    viewType = "athlete"
-  constructor(private hService : HomeService) { }
   @ViewChild('userForm') userForm: NgForm;
-  ngOnInit(): void {
-  }
+  viewType = 'athlete';
 
-  onRegister(){
+  constructor(private hService: HomeService) { }
 
-    let date = new Date(this.userForm.value.userBirthday)
-    if(this.viewType === "athlete"){
+  ngOnInit(): void {}
+
+  /**
+   * This method is called when a user is registered
+   */
+  onRegister(): void {
+    let date = new Date(this.userForm.value.userBirthday);
+    if (this.viewType === "athlete") {
       let object = {
         "name": this.userForm.value.fullName.userFname,
         "passwordhash": this.userForm.value.userPassword,
@@ -33,12 +39,11 @@ export class RegisterComponent implements OnInit {
         "birthday": date.getDay(),
         "birthmonth":date.getMonth(),
         "birthyear":date.getFullYear(),
-    }
-    //console.log(object);
-    this.hService.registerAthlete(object);
-    alert('Register successfully')  
-    this.userForm.reset();
-    
+      };
+      // console.log(object);
+      this.hService.registerAthlete(object);
+      alert('Register successfully')  ;
+      this.userForm.reset();
       return;
     }else{
       let object = {
@@ -51,22 +56,18 @@ export class RegisterComponent implements OnInit {
         "name":this.userForm.value.fullName.userFname,
         "lastname_1":this.userForm.value.fullName.userLastName,
         "lastname_2":this.userForm.value.fullName.userLastName2
-    }
-      //console.log(object);
-      this.hService.registerOrganizer(object);  
-      alert('Register successfully') 
+    };
+      // console.log(object);
+      this.hService.registerOrganizer(object);
+      alert('Register successfully');
       this.userForm.reset();
-      
     }
-
-
-
-
   }
-/**
- * Change the actual viewType for organizer Form to register
- */
-  changeView(view: string){
+
+  /**
+   * Change the actual viewType for organizer Form to register
+   */
+  changeView(view: string): void {
     this.viewType = view;
   }
 }

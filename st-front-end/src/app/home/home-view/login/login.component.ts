@@ -11,27 +11,30 @@ import { TimeoutError } from 'rxjs';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
+
+/**
+ * This component is used for managing the login feature of the project
+ */
 export class LoginComponent implements OnInit {
   @ViewChild('loginForm') loginForm: NgForm;
   constructor(private router: Router, private hService : HomeService) { }
 
-  ngOnInit(){
-    
-  }
+  ngOnInit(): void {}
+
   /**
-   *
-   * @param page
+   * This method sends us to a specified page
+   * @param pageName to go to
    */
-  goToPage(pageName:string){
+  goToPage(pageName: string): void {
     this.router.navigate([`${pageName}`]);
-    console.log("Login form");
+    console.log('Login form');
   }
 
-  onLogin(){
+  /**
+   * This method is called when a login is made
+   */
+  onLogin(): void {
     this.hService.login(this.loginForm.value);
     this.loginForm.reset();
-    
   }
-
-
 }
