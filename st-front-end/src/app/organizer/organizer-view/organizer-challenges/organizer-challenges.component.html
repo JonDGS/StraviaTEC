@@ -2,16 +2,18 @@
   <div class="card-body">
     <h5 class="card-tittle">My Challenges</h5>
     <div *ngFor="let c of challenges" style="padding: 5px; margin-bottom: 15px">
-      - {{ c.name }} | {{ c.period }} | {{ c.activityType }}
+      - {{ c.name }} | {{ c.challengetype }} | {{ c.activity_type }}
       <button
         class="btn btn-danger float-right"
-        (click)="onDeleteChallenge(c)">Delete</button>
+        (click)="onDeleteChallenge(c.id_challenge)"
+      >
+        Delete
+      </button>
     </div>
-    <br>
+    <br />
 
     <h5 class="card-tittle">Create New Challenge</h5>
     <form (ngSubmit)="addChallenge()" #newChallenge="ngForm">
-
       <div class="form-row">
         <!--Name-->
         <div class="col">
@@ -22,7 +24,8 @@
             name="name"
             id="challengeName"
             ngModel
-            required>
+            required
+          />
         </div>
         <!--Period-->
         <div class="col">
@@ -33,7 +36,8 @@
             name="period"
             id="challengePeriod"
             ngModel
-            required>
+            required
+          />
         </div>
       </div>
 
@@ -47,7 +51,8 @@
             name="type"
             id="challengeType"
             ngModel
-            required>
+            required
+          />
         </div>
         <!--Activity Type-->
         <div class="col">
@@ -58,7 +63,8 @@
             name="activityType"
             id="challengeActivityType"
             ngModel
-            required>
+            required
+          />
         </div>
       </div>
 
@@ -72,7 +78,8 @@
             name="distance"
             id="challengeDistance"
             ngModel
-            required>
+            required
+          />
         </div>
         <!--Sponsors-->
         <div class="col">
@@ -83,16 +90,20 @@
             name="sponsors"
             id="challengeSponsors"
             ngModel
-            required>
+            required
+          />
         </div>
       </div>
-      <br>
+      <br />
 
       <div class="form-row justify-content-center">
         <button
           type="submit"
           class="btn btn-success"
-          [disabled]="!newChallenge.valid">Create Challenge</button>
+          [disabled]="!newChallenge.valid"
+        >
+          Create Challenge
+        </button>
       </div>
     </form>
   </div>

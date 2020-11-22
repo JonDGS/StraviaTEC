@@ -1,3 +1,4 @@
+import { ServerService } from './../../../server.service';
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {OrganizerService} from '../../organizer.service';
 import {Challenge} from '../../../models/challenge.model';
@@ -17,12 +18,14 @@ import {Race} from '../../../models/race.model';
  */
 export class OrganizerChallengesComponent implements OnInit {
   @ViewChild('newChallenge') challengeForm: NgForm;
-  challenges: Challenge[];
+  challenges: any;
 
-  constructor(private oService: OrganizerService) { }
+  constructor(private oService: OrganizerService,private server:ServerService) { }
 
   ngOnInit(): void {
-    this.challenges = this.oService.myCreatedChallenges;
+    this.server.getChallengesOrganizerByToken().then(res => {
+      this.challenges = res;
+    })
   }
 
   /**

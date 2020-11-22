@@ -1,3 +1,4 @@
+import { ServerService } from './../../../server.service';
 import { Component, OnInit } from '@angular/core';
 // @ts-ignore
 import Any = jasmine.Any;
@@ -15,9 +16,9 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
  */
 export class SearchComponent implements OnInit {
   searchType: string;
-  searchData: Any[];
+  searchData: Any;
 
-  constructor(private aService: AthleteService) {}
+  constructor(private aService: AthleteService, private server: ServerService) {}
 
   ngOnInit(): void {
     this.searchType = this.aService.searchType;
@@ -25,16 +26,20 @@ export class SearchComponent implements OnInit {
     switch (this.searchType) {
       case 'athletes': {
         this.aService.getSearchData().then(res => {
-          this.searchData = res;
+          this.searchData = res; 
         })
         break;
       }
       case 'groups': {
-        this.searchData = this.aService.availableGroups;
+        this.server.getSearchDataGroups().then( res => {
+          this.searchData = res;
+        })
         break;
       }
       case 'races': {
-        this.searchData = this.aService.availableRaces;
+        this.server.getSearchDataRaces().then( res => {
+          this.searchData = res;
+        })
         break;
       }
       default: {

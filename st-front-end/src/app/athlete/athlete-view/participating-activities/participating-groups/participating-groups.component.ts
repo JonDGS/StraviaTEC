@@ -1,3 +1,4 @@
+import { ServerService } from './../../../../server.service';
 import { Component, OnInit } from '@angular/core';
 import {Group} from '../../../../models/group.model';
 import {AthleteService} from '../../../athlete.service';
@@ -12,12 +13,14 @@ import {AthleteService} from '../../../athlete.service';
  * This class is used a widget for displaying the groups the user is currently participating on
  */
 export class ParticipatingGroupsComponent implements OnInit {
-  currentGroups: Group[];
+  currentGroups: any;
 
-  constructor(private aService: AthleteService) { }
+  constructor(private aService: AthleteService, private server:ServerService) { }
 
   ngOnInit(): void {
-    this.currentGroups = this.aService.participatingGroups;
+    this.server.getGroupAthleteByToken().then(res => {
+      this.currentGroups = res;
+    })
   }
 
 }

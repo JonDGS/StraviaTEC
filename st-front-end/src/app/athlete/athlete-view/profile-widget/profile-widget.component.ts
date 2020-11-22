@@ -1,12 +1,12 @@
 import { ServerService } from './../../../server.service';
 import { Component, OnInit } from '@angular/core';
-import {Athlete} from '../../../models/athlete.model';
-import {AthleteService} from '../../athlete.service';
+import { Athlete } from '../../../models/athlete.model';
+import { AthleteService } from '../../athlete.service';
 
 @Component({
   selector: 'app-profile-widget',
   templateUrl: './profile-widget.component.html',
-  styleUrls: ['./profile-widget.component.css']
+  styleUrls: ['./profile-widget.component.css'],
 })
 
 /**
@@ -14,13 +14,20 @@ import {AthleteService} from '../../athlete.service';
  */
 export class ProfileWidgetComponent implements OnInit {
   public user;
-
-  constructor(private aService: AthleteService , private server: ServerService) { }
+  public src;
+  constructor(
+    private aService: AthleteService,
+    private server: ServerService
+  ) {}
 
   ngOnInit(): void {
-    this.server.getInfo().then(res =>{
+    this.server.getInfo().then((res) => {
       this.user = res;
-    })
-    
+    });
+    // this.server.getImagebyToken().then((res) => {
+      
+    //   const blobUrl = URL.createObjectURL(res) // blob is the Blob object
+    //   this.src = blobUrl;
+    // });
   }
 }
