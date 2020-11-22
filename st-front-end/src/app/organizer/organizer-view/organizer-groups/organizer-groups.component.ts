@@ -36,11 +36,11 @@ export class OrganizerGroupsComponent implements OnInit {
    * This method is called when  a new group is created
    */
   addGroup(): void {
-    //crear el objeto
+    // Crear el objeto
     let object = {
-      "name":this.groupForm.value.name
-  }
-    //enviar el post
+      "name": this.groupForm.value.name
+    };
+    // Enviar el post
     this.oService.postGroup(object);
     console.log(this.groupForm);
   }

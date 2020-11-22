@@ -36,11 +36,18 @@ export class OrganizerNavbarComponent implements OnInit {
     this.oService.changedView = false;
   }
 
-  goToPage(pageName:string){
+  /**
+   * This method takes us to a specific page
+   * @param pageName to go to
+   */
+  goToPage(pageName: string): void{
     this.router.navigate([`${pageName}`]);
-    console.log("Login form");
+    console.log('Login form');
   }
 
+  /**
+   * This method is used by the organizer to end its session
+   */
   onOrganizerLogout(): void {
     this.goToPage('');
   }

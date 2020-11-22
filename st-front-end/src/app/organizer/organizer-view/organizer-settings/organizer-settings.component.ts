@@ -50,5 +50,4 @@ export class OrganizerSettingsComponent implements OnInit {
       console.log(this.oService.currentOrganizer.username + ' account is going to be deleted');
     }
   }
-
 }

@@ -42,7 +42,6 @@ export class OrganizerChallengesComponent implements OnInit {
    * This method is called when  a new challenge is created
    */
   addChallenge(): void {
-    
     let object = {
       "token" :  null,
       "name"  : this.challengeForm.value.name,
@@ -51,7 +50,7 @@ export class OrganizerChallengesComponent implements OnInit {
       "activity_type" : this.challengeForm.value.activityType,
       "challengetype" : this.challengeForm.value.type,
       "distancetravelled" : parseInt(this.challengeForm.value.distance)
-    }
+    };
     this.oService.postChallange(object);
   }
 

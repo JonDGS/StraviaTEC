@@ -25,7 +25,6 @@ export class OrganizerRacesComponent implements OnInit {
   urCost: string;
   urBankAccount: string;
 
-
   constructor(private oService: OrganizerService) {
     this.isUpdateForm = false;
   }
@@ -33,14 +32,9 @@ export class OrganizerRacesComponent implements OnInit {
   ngOnInit(): void {
     this.oService.getRaces().subscribe(res => {
       console.log(res);
-
-      this.races = res
+      this.races = res;
       console.log(this.races);
-
-    }
-    );
-
-
+    });
   }
 
   /**
@@ -53,8 +47,8 @@ export class OrganizerRacesComponent implements OnInit {
       "cost": this.raceForm.value.race,
       "gpx": null,
       "country": this.raceForm.value.bankAccount
-  }
-      this.oService.postRace(race);
+    };
+    this.oService.postRace(race);
   }
 
   /**

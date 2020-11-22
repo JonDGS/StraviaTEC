@@ -15,5 +15,4 @@ export class OrganizerViewComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }
