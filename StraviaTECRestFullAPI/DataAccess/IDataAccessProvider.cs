@@ -65,7 +65,10 @@ namespace StraviaTECRestFullAPI.DataAccess
         AthleteEnrollsChallenge GetChallengeEnrollmentSingleRecord(int id);
         List<AthleteEnrollsChallenge> GetChallengeEnrollmentRecords();
         List<Challenge> GetChallengeEnrollmentByToken(string athletetoken);
-
+        /*
+       Description: CRUD Operations for Challenge
+       */
+        List<Challenge> GetChallengeByOrganizerToken(string organizertoken);
 
         /*
        Description: CRUD Operations for AthletesEnrollsRace

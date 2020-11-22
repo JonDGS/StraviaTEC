@@ -18,6 +18,11 @@ namespace StraviaTECRestFullAPI.Controllers
     [ApiController]
     public class ChallengesController : ControllerBase
     {
+        private readonly IDataAccessProvider _dataAccessProvider;
+        public ChallengesController(IDataAccessProvider dataAccessProvider)
+        {
+            _dataAccessProvider = dataAccessProvider;
+        }
         [HttpPut("CreateChallenge")]
         public bool createChallenge([FromBody] CreateChallengeObject createChallengeObject)
         {
@@ -30,8 +35,15 @@ namespace StraviaTECRestFullAPI.Controllers
         public List<FoundChallenge> getChallenges()
         {
             List<FoundChallenge> found = Connector.getChallenges();
-            
+
             return found;
+        }
+        [HttpGet("{token}")]
+        public List<Challenge> getChallengesByOrganizerToken(string token)
+        {
+            var challengesList = _dataAccessProvider.GetChallengeByOrganizerToken(token);
+
+            return challengesList;
         }
     }
 }

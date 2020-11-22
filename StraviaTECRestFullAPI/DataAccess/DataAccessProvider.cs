@@ -841,5 +841,14 @@ namespace StraviaTECRestFullAPI.DataAccess
             var groupsIds = _context.athletebelongsgroup.Where(abg => abg.id_athlete == id_athlete).Select(abg => abg.id_group).ToArray();
             return _context.groups.Where(g => groupsIds.Contains(g.id_group)).ToList();
         }
+        /*
+       Description:Adds an athlete to AthleteBelongsGroup table 
+       Params:token
+       Output:AthleteBelongsGroup object
+      */
+        public List<Challenge> GetChallengeByOrganizerToken(string organizertoken) {
+            string idorganizer = _context.onlineusers.Where(ou => ou.token == organizertoken).Select(ou => ou.id_organizer_fk).SingleOrDefault();
+            return _context.challenge.Where(ch => ch.id_organizer == idorganizer).ToList();
+        }
     }
 }
