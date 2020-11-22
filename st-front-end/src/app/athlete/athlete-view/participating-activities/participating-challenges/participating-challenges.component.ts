@@ -20,5 +20,4 @@ export class ParticipatingChallengesComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }

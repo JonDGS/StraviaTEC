@@ -13,25 +13,26 @@ import { AthleteService } from '../../athlete.service';
 export class ActivityManagementComponent implements OnInit {
   @ViewChild('activityForm') activityForm: NgForm;
 
-  constructor(private aService:AthleteService) { }
+  constructor(private aService: AthleteService) { }
 
   ngOnInit(): void {
   }
 
-  //This will be a conection with http servicer PostActivity
-  onSubmit(){
-    let date = new Date(this.activityForm.value.date)
+  /**
+   * This method will be a connection with http service PostActivity
+   */
+  onSubmit(): void{
+    let date = new Date(this.activityForm.value.date);
     let activity = {
-      "clasification":this.activityForm.value.classification,
-      "closing_time":8,
-      "starting_time":5,
-      "d_day":date.getDay(),
-      "d_month":date.getMonth(),
-      "d_year":date.getFullYear(),
-      "distance":this.activityForm.value.spinner,
-      "id_type":this.activityForm.value.type
-  }
+      "clasification": this.activityForm.value.classification,
+      "closing_time": 8,
+      "starting_time": 5,
+      "d_day": date.getDay(),
+      "d_month": date.getMonth(),
+      "d_year": date.getFullYear(),
+      "distance": this.activityForm.value.spinner,
+      "id_type": this.activityForm.value.type
+    };
     this.aService.postActivity(activity);
   }
-
 }

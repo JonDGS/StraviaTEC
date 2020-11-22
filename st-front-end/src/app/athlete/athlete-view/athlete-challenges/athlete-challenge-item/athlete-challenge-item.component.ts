@@ -23,9 +23,9 @@ export class AthleteChallengeItemComponent implements OnInit {
   /**
    * This method is called when a challenge-item join button is clicked
    */
-  onJoinChallenge( id_challange): void{
+  onJoinChallenge(id_challange: string): void {
     this.server.joinChallange(id_challange);
-    alert('successfully join a challange')
+    alert('Successfully join a challenge');
   }
 }
 

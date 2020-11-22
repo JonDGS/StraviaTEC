@@ -15,5 +15,4 @@ export class ParticipatingActivitiesComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }

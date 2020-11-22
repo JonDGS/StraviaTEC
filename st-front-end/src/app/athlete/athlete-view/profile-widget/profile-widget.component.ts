@@ -18,9 +18,8 @@ export class ProfileWidgetComponent implements OnInit {
   constructor(private aService: AthleteService , private server: ServerService) { }
 
   ngOnInit(): void {
-    this.server.getInfo().then(res =>{
+    this.server.getInfo().then(res => {
       this.user = res;
-    })
-    
+    });
   }
 }

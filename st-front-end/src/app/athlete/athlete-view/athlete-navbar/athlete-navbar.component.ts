@@ -40,14 +40,11 @@ export class NavbarComponent implements OnInit {
     // We set the search type
     this.aService.searchType = this.searchForm.value.category;
 
-    // Aca llamamos a una funcion que en base a la busqueda rellena las listas de de availableX del servicio athlete ! ! ! !
-    
-    //call the server 
+    // Call the server
     this.aService.setSearhData(this.server.getSearchData(this.searchForm.value.searchItem));
-    
+
     // We go to the search page
     this.router.navigate(['/athlete/search']);
-
   }
 
   /**
@@ -64,17 +61,21 @@ export class NavbarComponent implements OnInit {
   onAthleteViewReturned(): void {
     this.aService.changedView = false;
   }
-/**
-   *
-   * @param page
+
+  /**
+   * This method takes us to a specified page after login in
+   * @param pageName to navigate to
    */
-  goToPage(pageName:string){
+  goToPage(pageName: string): void{
     this.router.navigate([`${pageName}`]);
-    console.log("Login form");
+    console.log('Login form');
   }
+
+  /**
+   * This method allows the user to ends its session
+   */
   onAthleteLogout(): void {
     this.aService.logout();
-    this.goToPage('')
-
+    this.goToPage('');
   }
 }

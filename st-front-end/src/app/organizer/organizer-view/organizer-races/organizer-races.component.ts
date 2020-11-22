@@ -64,6 +64,11 @@ export class OrganizerRacesComponent implements OnInit {
   onDeleteRace(race: Race): void {
   }
 
+  /**
+   * This method is called when the update button is called. This method sets the boolean var
+   * for showing the update form and also sets a series of variables that fill the update form
+   * @param race to update
+   */
   onUpdateRace(race: Race): void {
     this.raceToUpdate = race;
     this.isUpdateForm = true;
@@ -73,6 +78,9 @@ export class OrganizerRacesComponent implements OnInit {
     this.urBankAccount =  this.raceToUpdate.bankAccount;
   }
 
+  /**
+   * This method is called when the update form is submitted
+   */
   updateRace(): void {
     this.isUpdateForm = false;
   }

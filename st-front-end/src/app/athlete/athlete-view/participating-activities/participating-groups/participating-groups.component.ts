@@ -19,5 +19,4 @@ export class ParticipatingGroupsComponent implements OnInit {
   ngOnInit(): void {
     this.currentGroups = this.aService.participatingGroups;
   }
-
 }

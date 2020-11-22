@@ -26,7 +26,7 @@ export class SearchComponent implements OnInit {
       case 'athletes': {
         this.aService.getSearchData().then(res => {
           this.searchData = res;
-        })
+        });
         break;
       }
       case 'groups': {
@@ -42,5 +42,4 @@ export class SearchComponent implements OnInit {
       }
     }
   }
-
 }

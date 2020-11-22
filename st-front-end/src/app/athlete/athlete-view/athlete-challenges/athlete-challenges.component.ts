@@ -21,6 +21,6 @@ export class AthleteChallengesComponent implements OnInit {
   ngOnInit(): void {
     this.server.getChallanges().then( res => {
       this.challenges = res;
-    })
+    });
   }
 }
