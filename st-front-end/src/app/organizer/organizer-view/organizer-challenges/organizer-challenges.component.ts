@@ -42,7 +42,17 @@ export class OrganizerChallengesComponent implements OnInit {
    * This method is called when  a new challenge is created
    */
   addChallenge(): void {
-    console.log(this.challengeForm);
+    
+    let object = {
+      "token" :  null,
+      "name"  : this.challengeForm.value.name,
+      "startdate" :  "2002-11-10",
+      "finishdate" :  "2002-11-15",
+      "activity_type" : this.challengeForm.value.activityType,
+      "challengetype" : this.challengeForm.value.type,
+      "distancetravelled" : parseInt(this.challengeForm.value.distance)
+    }
+    this.oService.postChallange(object);
   }
 
   /**

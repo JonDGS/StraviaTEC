@@ -95,11 +95,14 @@ setToken(token){
   }
 
   postChallange(Challange){
-    //this.http.post(`http://jongs.mynetgear.com:27799/api/race/${this.token}`,Challange).subscribe(res=>console.log(res))
+    Challange['token']= this.token;
+    console.log(Challange);
+    
+    this.http.put(`http://jongs.mynetgear.com:27799/api/Challenges/CreateChallenge`,Challange).subscribe(res=>console.log(res))
   }
 
   postGroup(Group){
-    //this.http.post(`http://jongs.mynetgear.com:27799/api/race/${this.token}`,Group).subscribe(res=>console.log(res))
+    this.http.post(`http://jongs.mynetgear.com:27799/api/Group/${this.token}`,Group).subscribe(res=>console.log(res))
   }
 
   postActivity(activity){
@@ -123,4 +126,22 @@ setToken(token){
     this.http.post(`http://jongs.mynetgear.com:27799/api/Follows`,body).subscribe(res => console.log(res)
     );
   }
+
+  async getInfo(){
+    return await this.http.get(`http://jongs.mynetgear.com:27799/api/athletes/GetInfo?token=${this.token}`).toPromise();
+  }
+
+  async getChallanges(){
+    return await this.http.get(`http://jongs.mynetgear.com:27799/api/Challenges/Challenges`).toPromise();
+  }
+
+  joinChallange(id_challange){
+    let params = {
+      "id_challenge":id_challange,
+      "status":"Pending",
+      "receipt":null
+  }
+    this.http.post(`http://jongs.mynetgear.com:27799/api/AthleteEnrollment/ChallengeEnrollment/${this.token}`,params).subscribe(res => console.log(res));
+  }
+
 }

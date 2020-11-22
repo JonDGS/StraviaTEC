@@ -29,6 +29,8 @@ export class LoginComponent implements OnInit {
 
   onLogin(){
     this.hService.login(this.loginForm.value);
+    this.loginForm.reset();
+    
   }
 
 

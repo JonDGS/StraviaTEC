@@ -36,6 +36,9 @@ export class RegisterComponent implements OnInit {
     }
     //console.log(object);
     this.hService.registerAthlete(object);
+    alert('Register successfully')  
+    this.userForm.reset();
+    
       return;
     }else{
       let object = {
@@ -50,7 +53,10 @@ export class RegisterComponent implements OnInit {
         "lastname_2":this.userForm.value.fullName.userLastName2
     }
       //console.log(object);
-      this.hService.registerOrganizer(object);
+      this.hService.registerOrganizer(object);  
+      alert('Register successfully') 
+      this.userForm.reset();
+      
     }
 
 
