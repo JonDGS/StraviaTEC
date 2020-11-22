@@ -71,14 +71,6 @@ setToken(token){
     );
   }
 
-  
-  /**
-   * load a new image 
-   */
-  postImage(){
-    
-  }
-
 
   async getImagebyToken(){
     return await this.http.get(`http://jongs.mynetgear.com:27799/api/athletes/getProfilePicture?token=FNKZQENESLKJ`,{ responseType: "blob" }).toPromise();

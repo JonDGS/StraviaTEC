@@ -3,11 +3,19 @@
     <h5 class="card-tittle">My Challenges</h5>
     <div *ngFor="let c of challenges" style="padding: 5px; margin-bottom: 15px">
       - {{ c.name }} | {{ c.challengetype }} | {{ c.activity_type }}
+
       <button
         class="btn btn-danger float-right"
+        style="margin-left: 3px"
         (click)="onDeleteChallenge(c.id_challenge)"
       >
         Delete
+      </button>
+      <button
+        class="btn btn-success float-right"
+        (click)="onUpdateChallenge(c)"
+      >
+        Update
       </button>
     </div>
     <br />
