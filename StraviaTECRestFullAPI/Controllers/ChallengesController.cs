@@ -45,5 +45,33 @@ namespace StraviaTECRestFullAPI.Controllers
 
             return challengesList;
         }
+        [HttpGet("GetChallengeById/{id}")]
+        public Challenge getChallengesByID(string id)
+        {
+            var challengesList = _dataAccessProvider.GetChallengeSingleRecord(id);
+
+            return challengesList;
+        }
+        [HttpDelete("Delete/{id}")]
+        public IActionResult DeleteConfirmed(string id)
+        {
+            var data = _dataAccessProvider.GetChallengeSingleRecord(id);
+            if (data == null)
+            {
+                return NotFound();
+            }
+            _dataAccessProvider.DeleteChallengeRecord(id);
+            return Ok();
+        }
+        [HttpPut]
+        public IActionResult Edit([FromBody] Challenge challenge)
+        {
+            if (ModelState.IsValid)
+            {
+                _dataAccessProvider.UpdateChallengeRecord(challenge)    ;
+                return Ok();
+            }
+            return BadRequest();
+        }
     }
 }

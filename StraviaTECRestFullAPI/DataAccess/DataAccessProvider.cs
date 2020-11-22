@@ -831,9 +831,9 @@ namespace StraviaTECRestFullAPI.DataAccess
             return _context.athletebelongsgroup.ToList();
         }
         /*
-       Description:Adds an athlete to AthleteBelongsGroup table 
+       Description:Get a  Groups with token 
        Params:token
-       Output:AthleteBelongsGroup object
+       Output:athletebelongsgroup object
       */
         public List<Group> GetGroupsByAthleteToken(string token)
         {
@@ -842,13 +842,45 @@ namespace StraviaTECRestFullAPI.DataAccess
             return _context.groups.Where(g => groupsIds.Contains(g.id_group)).ToList();
         }
         /*
-       Description:Adds an athlete to AthleteBelongsGroup table 
+       Description:Gets challenge to ChallengeByOrganizerToken table 
        Params:token
-       Output:AthleteBelongsGroup object
+       Output:Challenges object
       */
         public List<Challenge> GetChallengeByOrganizerToken(string organizertoken) {
             string idorganizer = _context.onlineusers.Where(ou => ou.token == organizertoken).Select(ou => ou.id_organizer_fk).SingleOrDefault();
             return _context.challenge.Where(ch => ch.id_organizer == idorganizer).ToList();
         }
+        /*
+       Description:Deletes an Challenges to Challenges table 
+       Params:id
+       Output:Challenges object
+      */
+        public void DeleteChallengeRecord(string id)
+        {
+            var entity = _context.challenge.FirstOrDefault(ch => ch.id_challenge == id);
+            _context.challenge.Remove(entity);
+            _context.SaveChanges();
+        }
+        /*
+       Description:Updates a Challenge to Challenges table 
+       Params:id
+       Output:Challenges object
+      */
+        public void UpdateChallengeRecord(Challenge challenge)
+        {
+            _context.challenge.Update(challenge);
+            _context.SaveChanges();
+        }
+        /*
+        Description:Gets an Challenge with the specified id 
+        Params:id Challenge
+        Output:Challenge object
+       */
+        public Challenge GetChallengeSingleRecord(string id)
+        {
+
+            return _context.challenge.FirstOrDefault(ch=> ch.id_challenge == id);
+        }
+
     }
 }

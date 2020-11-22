@@ -69,6 +69,9 @@ namespace StraviaTECRestFullAPI.DataAccess
        Description: CRUD Operations for Challenge
        */
         List<Challenge> GetChallengeByOrganizerToken(string organizertoken);
+        Challenge GetChallengeSingleRecord(string id);
+        void UpdateChallengeRecord(Challenge challenge);
+        void DeleteChallengeRecord(string id);
 
         /*
        Description: CRUD Operations for AthletesEnrollsRace
