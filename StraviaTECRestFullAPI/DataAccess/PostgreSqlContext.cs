@@ -34,6 +34,7 @@ namespace StraviaTECRestFullAPI.DataAccess
 
         public DbSet<ChallengeSponsorship> challengehassponsor { get; set; }
         public DbSet<Challenge> challenge { get; set; }
+        public DbSet<AthleteBelongsGroup> athletebelongsgroup { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

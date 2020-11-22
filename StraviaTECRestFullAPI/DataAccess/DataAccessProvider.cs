@@ -775,6 +775,71 @@ namespace StraviaTECRestFullAPI.DataAccess
             var id_organizer = _context.challengehassponsor.Where(ch => ch.id == id).ToList();
             return id_organizer;
         }
+        /*
+       Description:Adds an athlete to AthleteBelongsGroup table 
+       Params:AthleteBelongsGroup
+       Output:AthleteBelongsGroup object
+      */
 
+        public void AddAthleteBelongsGroupRecord(AthleteBelongsGroup athletebelongsgroup, string token)
+        {
+            string id_athlete = _context.onlineusers.Where(ou => ou.token == token).Select(a => a.id_athlete_fk).SingleOrDefault();
+            athletebelongsgroup.id_athlete = id_athlete;
+            _context.athletebelongsgroup.Add(athletebelongsgroup);
+            _context.SaveChanges();
+        }
+        /*
+       Description:Updates an athlete to AthleteBelongsGroup table 
+       Params:AthleteBelongsGroup
+       Output:AthleteBelongsGroup object
+      */
+
+        public void UpdateAthleteBelongsGroupRecord(AthleteBelongsGroup athletebelongsgroup)
+        {
+            _context.athletebelongsgroup.Update(athletebelongsgroup);
+            _context.SaveChanges();
+        }
+        /*
+       Description:Deletes an athlete to AthleteBelongsGroup table 
+       Params:id
+       Output:AthleteBelongsGroup object
+      */
+
+        public void DeleteAthleteBelongsGroupRecord(string id)
+        {
+            var entity = _context.athletebelongsgroup.FirstOrDefault(abg => abg.id == id);
+            _context.athletebelongsgroup.Remove(entity);
+            _context.SaveChanges();
+        }
+        /*
+       Description:Get an AthleteBelongsGroup table 
+       Params:id
+       Output:AthleteBelongsGroup object
+      */
+
+        public AthleteBelongsGroup GetAthleteBelongsGroupSingleRecord(string id)
+        {
+            return _context.athletebelongsgroup.FirstOrDefault(abg => abg.id == id);
+        }
+        /*
+       Description:Get all the AthleteBelongsGroup table 
+       Params:token
+       Output:AthleteBelongsGroup object
+      */
+        public List<AthleteBelongsGroup> GetAthleteBelongsGroupRecords()
+        {
+            return _context.athletebelongsgroup.ToList();
+        }
+        /*
+       Description:Adds an athlete to AthleteBelongsGroup table 
+       Params:token
+       Output:AthleteBelongsGroup object
+      */
+        public List<Group> GetGroupsByAthleteToken(string token)
+        {
+            string id_athlete = _context.onlineusers.Where(ou => ou.token == token).Select(a => a.id_athlete_fk).SingleOrDefault();
+            var groupsIds = _context.athletebelongsgroup.Where(abg => abg.id_athlete == id_athlete).Select(abg => abg.id_group).ToArray();
+            return _context.groups.Where(g => groupsIds.Contains(g.id_group)).ToList();
+        }
     }
 }
