@@ -1,0 +1,66 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light myHomeViewNavbar">
+  <a class="navbar-brand">StraviaTEC</a>
+  <div class="collapse navbar-collapse" id="navbarNav">
+
+    <ul class="navbar-nav">
+      <!--User Settings-->
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          [routerLink]="['/athlete/settings']"
+          (click)="onAthleteViewChanged()">Settings</a>
+      </li>
+
+      <!--Challenges-->
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          [routerLink]="['/athlete/challenges']"
+          (click)="onAthleteViewChanged()">Challenges</a>
+      </li>
+    </ul>
+
+    <!--Search Form-->
+    <form class="form-inline my-2 my-lg-0  m-auto" (ngSubmit)="onSearch()" #searchForm="ngForm">
+      <input
+        class="form-control mr-sm-2"
+        type="search"
+        placeholder="Search"
+        name="searchItem"
+        ngModel
+        required>
+      <select
+        class="form-control mr-sm-2"
+        [ngModel]="defaultCategory"
+        name="category">
+        <option value="athletes">Athletes</option>
+        <option value="groups">Groups</option>
+        <option value="races">Races</option>
+      </select>
+      <button
+        class="btn btn-outline-success my-2 my-sm-0"
+        [disabled]="!searchForm.valid"
+        type="submit"
+        >Search</button>
+    </form>
+
+    <ul class="navbar-nav">
+      <!--Home Page-->
+      <li class="nav-item" *ngIf="changedView">
+        <a
+          class="nav-link"
+          [routerLink]="['/athlete']"
+          (click)="onAthleteViewReturned()">Return</a>
+      </li>
+      <!--Logout-->
+      <li class="nav-item">
+        <a
+        class="nav-link"
+        [routerLink]="['/home']"
+        (click)="onAthleteLogout()">Logout</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+

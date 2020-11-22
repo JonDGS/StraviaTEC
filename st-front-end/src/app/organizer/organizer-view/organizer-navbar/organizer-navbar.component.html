@@ -1,0 +1,31 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light myHomeViewNavbar">
+  <a class="navbar-brand">StraviaTEC</a>
+  <div class="collapse navbar-collapse" id="navbarNav">
+
+    <ul class="navbar-nav">
+      <!--User Settings-->
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          [routerLink]="['/organizer/settings']"
+          (click)="onOrganizerViewChanged()">Settings</a>
+      </li>
+
+      <!--Home Page-->
+      <li class="nav-item" *ngIf="changedView">
+        <a
+          class="nav-link"
+          [routerLink]="['/organizer']"
+          (click)="onOrganizerViewReturned()">Return</a>
+      </li>
+      <!--Logout-->
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          [routerLink]="['/home']"
+          (click)="onOrganizerLogout()">Logout</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+

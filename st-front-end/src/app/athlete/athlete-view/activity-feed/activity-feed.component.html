@@ -1,0 +1,21 @@
+<div
+  class="card"
+  *ngFor="let activity of activities"
+  style="border: #434e5a solid 1px"
+>
+  <img
+    src="https://image.maps.ls.hereapi.com/mia/1.6/mapview?apiKey=Z-68H2MHBYk-Y6CrvdYh37u5eGTqF49qoIGkmjWNczM&lat=9.909901&lon=-84.142722&w=800
+    &h=400"
+    class="card-img-top"
+    alt="gpx route"
+  />
+  <div class="card-body">
+    <h5 class="card-title">
+      {{ activity.name }} {{ activity.lastname_1 }} {{ activity.lastname_2 }}
+    </h5>
+    <p class="card-text">
+      {{ activity.nationality }}
+    </p>
+    <a class="btn btn-primary">More details</a>
+  </div>
+</div>

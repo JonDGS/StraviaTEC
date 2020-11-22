@@ -1,0 +1,188 @@
+<div class="text-center">
+  <button
+    class="btn btn-primary myRegisterButton"
+    (click)="changeView('athlete')"
+  >
+    Register as an Athlete
+  </button>
+  <button
+    class="btn btn-primary myRegisterButton"
+    (click)="changeView('organizer')"
+  >
+    Register as an Organizer
+  </button>
+</div>
+<div class="modal-dialog text-center">
+  <div class="col-sm-9 main-section">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Register</h5>
+      </div>
+      <div class="modal-body">
+        <form (ngSubmit)="onRegister()" #userForm="ngForm">
+          <div class="from-group" ngModelGroup="fullName">
+            <div class="row">
+              <!--First Name-->
+              <div class="col-md-4 mb-3">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Name"
+                  ngModel
+                  name="userFname"
+                  required
+                />
+              </div>
+
+              <!--Last Name-->
+              <div class="col-md-4 mb-3">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Last Name"
+                  ngModel
+                  name="userLastName"
+                  required
+                />
+              </div>
+              <!--Last Name 2-->
+              <div class="col-md-4 mb-3">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Last Name"
+                  ngModel
+                  name="userLastName2"
+                  required
+                />
+              </div>
+            </div>
+          </div>
+          <div class="form-group" *ngIf="viewType != 'organizer'">
+            <div class="row">
+              <!--ID-->
+              <div class="col-md-6">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Nationality"
+                  ngModel
+                  name="userNationality"
+                  required
+                />
+              </div>
+
+              <!--Birthday-->
+              <div class="col-md-6">
+                <input
+                  class="form-control birthdate"
+                  type="date"
+                  placeholder="YYYY-MM-DD"
+                  data-date-split-input="true"
+                  ngModel
+                  name="userBirthday"
+                  required
+                />
+              </div>
+            </div>
+          </div>
+
+          <!--Country-->
+          <div class="form-group" ngModelGroup="location">
+            <div class="row">
+              <!--Province-->
+              <div class="col-md">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Country"
+                  ngModel
+                  name="userCountry"
+                  required
+                />
+              </div>
+
+              <!--State-->
+              <div class="col-md">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="State"
+                  ngModel
+                  name="userState"
+                  required
+                />
+              </div>
+
+              <!--City-->
+              <div class="col-md">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="City"
+                  ngModel
+                  name="userCity"
+                  required
+                />
+              </div>
+            </div>
+          </div>
+
+          <!-- Photo just in case
+          <div class="form-group">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Photo"
+              ngModel
+              name="userPhoto"
+              required
+            />
+          </div> -->
+          <div class="form-group">
+            <div class="row">
+              <div class="col">
+                <!--Username-->
+                <div class="input-group mb-2">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">@</div>
+                  </div>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="inlineFormInputGroup"
+                    placeholder="username"
+                    ngModel
+                    name="userName"
+                    required
+                  />
+                </div>
+              </div>
+
+              <!--Password-->
+              <div class="col">
+                <input
+                  type="password"
+                  class="form-control"
+                  placeholder="password"
+                  ngModel
+                  name="userPassword"
+                  required
+                />
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              class="btn btn-success"
+              type="submit"
+              [disabled]="!userForm.valid"
+            >
+              Submit
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

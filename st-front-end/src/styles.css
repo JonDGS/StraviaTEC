@@ -1,0 +1,6 @@
+@import "~bootstrap/dist/css/bootstrap.min.css";
+* {
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+}

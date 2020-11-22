@@ -1,0 +1,59 @@
+<div *ngIf="searchItemType === 'athletes'" class="card search-card">
+  <div class="card-body">
+    <h5 class="card-title">
+      {{ searchItem.username }}
+    </h5>
+    <div class="row">
+      <div class="col-9">
+        Location: {{ searchItem.country }}, {{ searchItem.state }}<br />
+        Activities: {{ searchItem.activities }} | Age: {{ searchItem.age
+        }}<br />
+      </div>
+      <div class="col-3">
+        <button
+          class="btn btn-success btn-block"
+          (click)="onFollowAthlete(searchItem.username)"
+        >
+          Follow
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="searchItemType === 'races'" class="card search-card">
+  <div class="card-body">
+    <h5 class="card-title">{{ searchItem.name }}</h5>
+    <div class="row">
+      <div class="col-9">
+        Date: {{ searchItem.date }} | Type: {{ searchItem.type }}<br />
+        Cost: {{ searchItem.cost }} <br />
+      </div>
+      <div class="col-3">
+        <button
+          class="btn btn-success btn-block"
+          (click)="onJoinRace(searchItem.id_race)"
+        >
+          Join
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="searchItemType === 'groups'" class="card search-card">
+  <div class="card-body">
+    <h5 class="card-title">{{ searchItem.name }}</h5>
+    <div class="row">
+      <div class="col-9">Admin: {{ searchItem.admin }}</div>
+      <div class="col-3">
+        <button
+          class="btn btn-success btn-block"
+          (click)="onJoinGroup(searchItem.id_group)"
+        >
+          Join
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

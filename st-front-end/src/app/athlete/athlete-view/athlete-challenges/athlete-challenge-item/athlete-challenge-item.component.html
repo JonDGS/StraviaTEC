@@ -1,0 +1,21 @@
+<div class="card challenge-card">
+  <div class="card-body">
+    <h5 class="card-title">{{ challenge.name }}</h5>
+    <div class="row">
+      <div class="col-9">
+        Period: {{ challenge.period }} | Type: {{ challenge.challenge }}<br />
+        Activity: {{ challenge.activity_type }} | Distance:
+        {{ challenge.distancetravelled }}<br />
+        Sponsors:
+      </div>
+      <div class="col-3">
+        <button
+          class="btn btn-success btn-block"
+          (click)="onJoinChallenge(challenge.id_challenge)"
+        >
+          Join
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
