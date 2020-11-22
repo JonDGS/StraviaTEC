@@ -78,7 +78,7 @@ namespace StraviaTECRestFullAPI.Controllers
             {
                 if (image.files.Length > 0)
                 {
-                    string savedLocation = FileManager.saveFile(image, token);
+                    string savedLocation = FileManager.saveFile(image, token, "", "");
 
                     if (savedLocation == null)
                     {
